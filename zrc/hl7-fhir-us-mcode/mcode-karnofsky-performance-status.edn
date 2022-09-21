@@ -1,0 +1,106 @@
+{ns hl7-fhir-us-mcode.mcode-karnofsky-performance-status,
+ import
+ #{hl7-fhir-r4-core.integer
+   hl7-fhir-r4-core.Period
+   hl7-fhir-r4-core.Observation
+   hl7-fhir-r4-core.BackboneElement
+   hl7-fhir-r4-core.CarePlan
+   hl7-fhir-r4-core.code
+   zen.fhir
+   hl7-fhir-r4-core.dateTime
+   hl7-fhir-us-core.us-core-patient
+   hl7-fhir-r4-core.Reference
+   hl7-fhir-r4-core.ServiceRequest
+   hl7-fhir-r4-core.Element
+   hl7-fhir-r4-core.Procedure
+   hl7-fhir-r4-core.CodeableConcept},
+ schema
+ {:zen.fhir/version "0.5.21-6",
+  :confirms #{hl7-fhir-r4-core.Observation/schema zen.fhir/Resource},
+  :zen/tags #{zen.fhir/profile-schema zen/schema},
+  :zen.fhir/profileUri
+  "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-karnofsky-performance-status",
+  :require #{:subject},
+  :type zen/map,
+  :zen/desc
+  "The Karnofsky Performance Status (KPS) is a tool used to measure a patient's functional status. It can be used to compare the effectiveness of different therapies and to help assess the prognosis of certain patients, such as those with certain cancers. The KPS score ranges from 0 to 100 in intervals of 10. Higher scores are associated with better functional status, with 100 representing no symptoms or evidence of disease, and 0 representing death.",
+  :keys
+  {:category
+   {:type zen/vector,
+    :every
+    {:match
+     {:coding
+      #{{:system
+         "http://terminology.hl7.org/CodeSystem/observation-category",
+         :code "survey"}}},
+     :confirms #{hl7-fhir-r4-core.CodeableConcept/schema}}},
+   :hasMember
+   {:type zen/vector,
+    :every
+    {:confirms #{hl7-fhir-r4-core.Reference/schema zen.fhir/Reference},
+     :zen.fhir/reference {:refers #{}},
+     :zen/desc "Not used in this profile"}},
+   :interpretation
+   {:type zen/vector,
+    :every
+    {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+     :fhir/flags #{:MS}}},
+   :specimen
+   {:confirms #{hl7-fhir-r4-core.Reference/schema zen.fhir/Reference},
+    :zen.fhir/reference {:refers #{}},
+    :zen/desc "Not used in this profile"},
+   :value
+   {:fhir/polymorphic true,
+    :type zen/map,
+    :keys
+    {:integer {:confirms #{hl7-fhir-r4-core.integer/schema}},
+     :_integer {:confirms #{hl7-fhir-r4-core.Element/schema}}},
+    :fhir/flags #{:MS}},
+   :_status {:confirms #{hl7-fhir-r4-core.Element/schema}},
+   :component
+   {:type zen/vector,
+    :every
+    {:confirms #{hl7-fhir-r4-core.BackboneElement/schema},
+     :zen/desc "Not used in this profile"}},
+   :status
+   {:confirms #{hl7-fhir-r4-core.code/schema}, :fhir/flags #{:MS}},
+   :effective
+   {:fhir/polymorphic true,
+    :exclusive-keys #{#{:dateTime :Period}},
+    :type zen/map,
+    :keys
+    {:dateTime {:confirms #{hl7-fhir-r4-core.dateTime/schema}},
+     :_dateTime {:confirms #{hl7-fhir-r4-core.Element/schema}},
+     :Period {:confirms #{hl7-fhir-r4-core.Period/schema}}},
+    :fhir/flags #{:MS}},
+   :code
+   {:match {:coding #{{:system "http://loinc.org", :code "89243-0"}}},
+    :confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+    :fhir/flags #{:MS}},
+   :bodySite
+   {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+    :zen/desc "Not used in this profile"},
+   :device
+   {:confirms #{hl7-fhir-r4-core.Reference/schema zen.fhir/Reference},
+    :zen.fhir/reference {:refers #{}},
+    :zen/desc "Not used in this profile"},
+   :basedOn
+   {:type zen/vector,
+    :every
+    {:confirms #{hl7-fhir-r4-core.Reference/schema zen.fhir/Reference},
+     :zen.fhir/reference
+     {:refers
+      #{hl7-fhir-r4-core.ServiceRequest/schema
+        hl7-fhir-r4-core.CarePlan/schema}}}},
+   :partOf
+   {:type zen/vector,
+    :every
+    {:confirms #{hl7-fhir-r4-core.Reference/schema zen.fhir/Reference},
+     :zen.fhir/reference
+     {:refers #{hl7-fhir-r4-core.Procedure/schema}}}},
+   :subject
+   {:confirms #{hl7-fhir-r4-core.Reference/schema zen.fhir/Reference},
+    :fhir/flags #{:MS},
+    :zen.fhir/reference
+    {:refers #{hl7-fhir-us-core.us-core-patient/schema}}}},
+  :zen.fhir/type "Observation"}}

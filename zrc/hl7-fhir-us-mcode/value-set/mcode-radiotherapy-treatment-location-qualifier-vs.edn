@@ -1,0 +1,15 @@
+{ns
+ hl7-fhir-us-mcode.value-set.mcode-radiotherapy-treatment-location-qualifier-vs,
+ import #{zen.fhir},
+ value-set
+ {:zen/tags #{zen.fhir/value-set},
+  :zen/desc
+  "Various modifiers that can be applied to body locations where radiotherapy treatments can be directed.",
+  :zen.fhir/version "0.5.21-6",
+  :fhir/code-systems
+  #{{:fhir/url "http://terminology.hl7.org/CodeSystem/umls",
+     :zen.fhir/content :bundled}
+    {:fhir/url "http://snomed.info/sct", :zen.fhir/content :bundled}},
+  :uri
+  "http://hl7.org/fhir/us/mcode/ValueSet/mcode-radiotherapy-treatment-location-qualifier-vs",
+  :version "1.16.0"}}

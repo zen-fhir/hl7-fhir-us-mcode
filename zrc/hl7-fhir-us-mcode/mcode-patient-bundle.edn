@@ -1,0 +1,37 @@
+{ns hl7-fhir-us-mcode.mcode-patient-bundle,
+ import
+ #{hl7-fhir-r4-core.BackboneElement
+   hl7-fhir-r4-core.code
+   zen.fhir
+   hl7-fhir-r4-core.instant
+   hl7-fhir-r4-core.Bundle
+   hl7-fhir-r4-core.Element
+   hl7-fhir-r4-core.Resource},
+ schema
+ {:zen.fhir/version "0.5.21-6",
+  :confirms #{zen.fhir/Resource hl7-fhir-r4-core.Bundle/schema},
+  :zen/tags #{zen.fhir/profile-schema zen/schema},
+  :zen.fhir/profileUri
+  "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-patient-bundle",
+  :require #{:entry},
+  :type zen/map,
+  :zen/desc "A collection of data for an mCODE cancer patient.",
+  :keys
+  {:type
+   {:match "collection", :confirms #{hl7-fhir-r4-core.code/schema}},
+   :_type {:confirms #{hl7-fhir-r4-core.Element/schema}},
+   :timestamp
+   {:confirms #{hl7-fhir-r4-core.instant/schema}, :fhir/flags #{:MS}},
+   :_timestamp {:confirms #{hl7-fhir-r4-core.Element/schema}},
+   :entry
+   {:type zen/vector,
+    :every
+    {:confirms #{hl7-fhir-r4-core.BackboneElement/schema},
+     :type zen/map,
+     :keys
+     {:resource
+      {:confirms #{hl7-fhir-r4-core.Resource/schema},
+       :fhir/flags #{:MS}}},
+     :fhir/flags #{:MS}},
+    :minItems 1}},
+  :zen.fhir/type "Bundle"}}

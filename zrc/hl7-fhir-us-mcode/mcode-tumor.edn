@@ -1,0 +1,84 @@
+{ns hl7-fhir-us-mcode.mcode-tumor,
+ import
+ #{hl7-fhir-us-mcode.value-set.mcode-cancer-body-location-vs
+   zen.fhir
+   hl7-fhir-us-mcode.value-set.mcode-location-qualifier-vs
+   hl7-fhir-us-mcode.mcode-primary-cancer-condition
+   hl7-fhir-us-mcode.mcode-cancer-patient
+   hl7-fhir-r4-core.Reference
+   hl7-fhir-r4-core.BodyStructure
+   hl7-fhir-r4-core.CodeableConcept
+   hl7-fhir-r4-core.Identifier
+   hl7-fhir-us-mcode.mcode-secondary-cancer-condition
+   hl7-fhir-us-mcode.mcode-condition-related},
+ schema
+ {:zen.fhir/version "0.5.21-6",
+  :confirms #{hl7-fhir-r4-core.BodyStructure/schema zen.fhir/Resource},
+  :zen/tags #{zen.fhir/profile-schema zen/schema},
+  :zen.fhir/profileUri
+  "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-tumor",
+  :require #{:identifier :location},
+  :type zen/map,
+  :zen/desc
+  "Identifies a tumor that has not been removed from the body. Whenever possible, a single resource conforming to this profile will be used to track a tumor over time (as opposed to creating new Tumor-conforming BodyStructure resources each time that tumor is measured). Use [TumorSpecimen](StructureDefinition-mcode-tumor-specimen.html) to represent the tumor after removal from the body.",
+  :keys
+  {:relatedCondition
+   {:confirms #{hl7-fhir-us-mcode.mcode-condition-related/schema},
+    :fhir/extensionUri
+    "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-condition-related",
+    :type zen/map,
+    :keys
+    {:value
+     {:fhir/polymorphic true,
+      :type zen/map,
+      :keys
+      {:Reference
+       {:confirms
+        #{hl7-fhir-r4-core.Reference/schema zen.fhir/Reference},
+        :zen.fhir/reference
+        {:refers
+         #{hl7-fhir-us-mcode.mcode-primary-cancer-condition/schema
+           hl7-fhir-us-mcode.mcode-secondary-cancer-condition/schema}}}},
+      :fhir/flags #{:MS}}},
+    :fhir/flags #{:MS},
+    :zen/desc
+    "Reference to cancer condition associated with this tumor"},
+   :identifier
+   {:slicing {:slices {}},
+    :type zen/vector,
+    :every
+    {:confirms #{hl7-fhir-r4-core.Identifier/schema},
+     :fhir/flags #{:MS},
+     :zen/desc "Stable identifier(s) for this tumor"},
+    :minItems 1},
+   :morphology
+   {:match
+    {:coding
+     #{{:system "http://snomed.info/sct",
+        :code "367651003",
+        :display
+        "Malignant neoplasm of primary, secondary, or uncertain origin (morphologic abnormality)"}}},
+    :confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+    :fhir/flags #{:MS}},
+   :location
+   {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+    :fhir/flags #{:MS},
+    :zen.fhir/value-set
+    {:symbol
+     hl7-fhir-us-mcode.value-set.mcode-cancer-body-location-vs/value-set,
+     :strength :extensible}},
+   :locationQualifier
+   {:type zen/vector,
+    :every
+    {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+     :fhir/flags #{:MS},
+     :zen.fhir/value-set
+     {:symbol
+      hl7-fhir-us-mcode.value-set.mcode-location-qualifier-vs/value-set,
+      :strength :required}}},
+   :patient
+   {:confirms #{hl7-fhir-r4-core.Reference/schema zen.fhir/Reference},
+    :fhir/flags #{:MS},
+    :zen.fhir/reference
+    {:refers #{hl7-fhir-us-mcode.mcode-cancer-patient/schema}}}},
+  :zen.fhir/type "BodyStructure"}}

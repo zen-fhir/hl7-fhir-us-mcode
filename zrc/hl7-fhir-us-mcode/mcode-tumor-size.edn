@@ -1,0 +1,128 @@
+{ns hl7-fhir-us-mcode.mcode-tumor-size,
+ import
+ #{hl7-fhir-r4-core.Observation
+   hl7-fhir-r4-core.BackboneElement
+   zen.fhir
+   hl7-fhir-us-mcode.mcode-tumor-specimen
+   hl7-fhir-us-mcode.mcode-cancer-patient
+   hl7-fhir-us-mcode.mcode-tumor
+   hl7-fhir-r4-core.Quantity
+   hl7-fhir-us-mcode.value-set.mcode-tumor-size-units-vs
+   hl7-fhir-r4-core.Reference
+   hl7-fhir-us-mcode.value-set.mcode-tumor-size-method-vs
+   hl7-fhir-r4-core.CodeableConcept},
+ schema
+ {:zen.fhir/version "0.5.21-6",
+  :confirms #{hl7-fhir-r4-core.Observation/schema zen.fhir/Resource},
+  :zen/tags #{zen.fhir/profile-schema zen/schema},
+  :zen.fhir/profileUri
+  "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-tumor-size",
+  :require #{:component :subject},
+  :type zen/map,
+  :zen/desc "Records the dimensions of a tumor",
+  :keys
+  {:code
+   {:match {:coding #{{:system "http://loinc.org", :code "21889-1"}}},
+    :confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+    :fhir/flags #{:MS}},
+   :subject
+   {:confirms #{hl7-fhir-r4-core.Reference/schema zen.fhir/Reference},
+    :fhir/flags #{:MS},
+    :zen.fhir/reference
+    {:refers #{hl7-fhir-us-mcode.mcode-cancer-patient/schema}},
+    :zen/desc "The patient whose tumor was measured."},
+   :focus
+   {:type zen/vector,
+    :every
+    {:confirms #{hl7-fhir-r4-core.Reference/schema zen.fhir/Reference},
+     :fhir/flags #{:MS},
+     :zen.fhir/reference
+     {:refers #{hl7-fhir-us-mcode.mcode-tumor/schema}},
+     :zen/desc
+     "Identifies a tumor that has NOT been removed from the body"},
+    :maxItems 1},
+   :effective #:fhir{:polymorphic true, :flags #{:MS}},
+   :method
+   {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+    :fhir/flags #{:MS},
+    :zen.fhir/value-set
+    {:symbol
+     hl7-fhir-us-mcode.value-set.mcode-tumor-size-method-vs/value-set,
+     :strength :extensible},
+    :zen/desc "Method for measuring the tumor"},
+   :specimen
+   {:confirms #{hl7-fhir-r4-core.Reference/schema zen.fhir/Reference},
+    :fhir/flags #{:MS},
+    :zen.fhir/reference
+    {:refers #{hl7-fhir-us-mcode.mcode-tumor-specimen/schema}},
+    :zen/desc
+    "Identifies a tumor that has been removed from the body"},
+   :component
+   {:slicing
+    {:slices
+     {"tumorLongestDimension"
+      {:schema
+       {:type zen/vector,
+        :minItems 1,
+        :maxItems 1,
+        :every
+        {:type zen/map,
+         :keys
+         {:code
+          {:match
+           {:coding #{{:system "http://loinc.org", :code "33728-7"}}},
+           :confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+           :fhir/flags #{:MS}},
+          :value
+          {:type zen/map,
+           :keys
+           {:Quantity
+            {:confirms #{hl7-fhir-r4-core.Quantity/schema},
+             :zen.fhir/value-set
+             {:symbol
+              hl7-fhir-us-mcode.value-set.mcode-tumor-size-units-vs/value-set,
+              :strength :required}}}},
+          :dataAbsentReason
+          {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+           :fhir/flags #{:MS}}}}},
+       :filter
+       {:engine :match,
+        :match
+        {:code
+         {:coding #{{:system "http://loinc.org", :code "33728-7"}}}}}},
+      "tumorOtherDimension"
+      {:schema
+       {:type zen/vector,
+        :maxItems 2,
+        :every
+        {:type zen/map,
+         :keys
+         {:code
+          {:match
+           {:coding #{{:system "http://loinc.org", :code "33729-5"}}},
+           :confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+           :fhir/flags #{:MS}},
+          :value
+          {:type zen/map,
+           :keys
+           {:Quantity
+            {:confirms #{hl7-fhir-r4-core.Quantity/schema},
+             :zen.fhir/value-set
+             {:symbol
+              hl7-fhir-us-mcode.value-set.mcode-tumor-size-units-vs/value-set,
+              :strength :required}}}},
+          :dataAbsentReason
+          {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+           :fhir/flags #{:MS}}}}},
+       :filter
+       {:engine :match,
+        :match
+        {:code
+         {:coding
+          #{{:system "http://loinc.org", :code "33729-5"}}}}}}}},
+    :type zen/vector,
+    :every
+    {:confirms #{hl7-fhir-r4-core.BackboneElement/schema},
+     :fhir/flags #{:MS}},
+    :minItems 1}},
+  :zen.fhir/type "Observation"}}

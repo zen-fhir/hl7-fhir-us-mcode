@@ -1,0 +1,109 @@
+{ns hl7-fhir-us-mcode.mcode-cancer-disease-status,
+ import
+ #{hl7-fhir-r4-core.Observation
+   hl7-fhir-r4-core.BackboneElement
+   hl7-fhir-r4-core.code
+   zen.fhir
+   hl7-fhir-us-core.us-core-practitioner
+   hl7-fhir-r4-core.dateTime
+   hl7-fhir-us-mcode.mcode-evidence-type
+   hl7-fhir-us-mcode.mcode-primary-cancer-condition
+   hl7-fhir-us-mcode.mcode-cancer-patient
+   hl7-fhir-us-mcode.mcode-tumor
+   hl7-fhir-r4-core.Reference
+   hl7-fhir-r4-core.Element
+   hl7-fhir-r4-core.CodeableConcept
+   hl7-fhir-us-mcode.value-set.mcode-condition-status-trend-vs
+   hl7-fhir-us-mcode.mcode-secondary-cancer-condition},
+ schema
+ {:zen.fhir/version "0.5.21-6",
+  :confirms #{hl7-fhir-r4-core.Observation/schema zen.fhir/Resource},
+  :zen/tags #{zen.fhir/profile-schema zen/schema},
+  :zen.fhir/profileUri
+  "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-cancer-disease-status",
+  :require #{:subject},
+  :type zen/map,
+  :zen/desc
+  "A clinician's qualitative judgment on the current trend of the cancer, e.g., whether it is stable, worsening (progressing), or improving (responding). The judgment may be based a single type or multiple kinds of evidence, such as imaging data, assessment of symptoms, tumor markers, laboratory data, etc.",
+  :keys
+  {:referenceRange
+   {:type zen/vector,
+    :every
+    {:confirms #{hl7-fhir-r4-core.BackboneElement/schema},
+     :zen/desc "Not used in this profile"}},
+   :hasMember
+   {:type zen/vector,
+    :every
+    {:confirms #{hl7-fhir-r4-core.Reference/schema zen.fhir/Reference},
+     :zen.fhir/reference {:refers #{}},
+     :zen/desc "Not used in this profile"}},
+   :specimen
+   {:confirms #{hl7-fhir-r4-core.Reference/schema zen.fhir/Reference},
+    :zen.fhir/reference {:refers #{}},
+    :zen/desc "Not used in this profile"},
+   :value
+   {:fhir/polymorphic true,
+    :type zen/map,
+    :keys
+    {:CodeableConcept
+     {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema}}},
+    :fhir/flags #{:MS},
+    :zen.fhir/value-set
+    {:symbol
+     hl7-fhir-us-mcode.value-set.mcode-condition-status-trend-vs/value-set,
+     :strength :required}},
+   :_status {:confirms #{hl7-fhir-r4-core.Element/schema}},
+   :component
+   {:type zen/vector,
+    :every
+    {:confirms #{hl7-fhir-r4-core.BackboneElement/schema},
+     :zen/desc "Not used in this profile"}},
+   :status
+   {:confirms #{hl7-fhir-r4-core.code/schema}, :fhir/flags #{:MS}},
+   :evidenceType
+   {:type zen/vector,
+    :every
+    {:confirms #{hl7-fhir-us-mcode.mcode-evidence-type/schema},
+     :fhir/extensionUri
+     "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-evidence-type",
+     :fhir/flags #{:MS}}},
+   :effective
+   {:fhir/polymorphic true,
+    :type zen/map,
+    :keys
+    {:dateTime {:confirms #{hl7-fhir-r4-core.dateTime/schema}},
+     :_dateTime {:confirms #{hl7-fhir-r4-core.Element/schema}}},
+    :fhir/flags #{:MS}},
+   :code
+   {:match {:coding #{{:system "http://loinc.org", :code "88040-1"}}},
+    :confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+    :fhir/flags #{:MS}},
+   :focus
+   {:type zen/vector,
+    :every
+    {:confirms #{hl7-fhir-r4-core.Reference/schema zen.fhir/Reference},
+     :fhir/flags #{:MS},
+     :zen.fhir/reference
+     {:refers
+      #{hl7-fhir-us-mcode.mcode-tumor/schema
+        hl7-fhir-us-mcode.mcode-primary-cancer-condition/schema
+        hl7-fhir-us-mcode.mcode-secondary-cancer-condition/schema}}}},
+   :device
+   {:confirms #{hl7-fhir-r4-core.Reference/schema zen.fhir/Reference},
+    :zen.fhir/reference {:refers #{}},
+    :zen/desc "Not used in this profile"},
+   :subject
+   {:confirms #{hl7-fhir-r4-core.Reference/schema zen.fhir/Reference},
+    :fhir/flags #{:MS},
+    :zen.fhir/reference
+    {:refers #{hl7-fhir-us-mcode.mcode-cancer-patient/schema}}},
+   :performer
+   {:type zen/vector,
+    :every
+    {:confirms #{hl7-fhir-r4-core.Reference/schema zen.fhir/Reference},
+     :zen.fhir/reference
+     {:refers #{hl7-fhir-us-core.us-core-practitioner/schema}}}},
+   :dataAbsentReason
+   {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+    :fhir/flags #{:MS}}},
+  :zen.fhir/type "Observation"}}

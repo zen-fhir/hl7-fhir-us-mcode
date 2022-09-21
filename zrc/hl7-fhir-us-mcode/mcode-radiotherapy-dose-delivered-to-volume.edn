@@ -1,0 +1,30 @@
+{ns hl7-fhir-us-mcode.mcode-radiotherapy-dose-delivered-to-volume,
+ import
+ #{zen.fhir
+   hl7-fhir-us-mcode.mcode-radiotherapy-volume
+   hl7-fhir-r4-core.Quantity
+   hl7-fhir-r4-core.unsignedInt
+   hl7-fhir-r4-core.Reference},
+ schema
+ {:zen.fhir/version "0.5.21-6",
+  :zen/tags #{zen/schema zen.fhir/structure-schema},
+  :zen.fhir/profileUri
+  "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-radiotherapy-dose-delivered-to-volume",
+  :require #{:volume},
+  :type zen/map,
+  :zen/desc "Dose parameters for one radiotherapy volume.",
+  :keys
+  {:volume
+   {:confirms #{hl7-fhir-r4-core.Reference/schema zen.fhir/Reference},
+    :fhir/flags #{:MS},
+    :zen.fhir/reference
+    {:refers #{hl7-fhir-us-mcode.mcode-radiotherapy-volume/schema}},
+    :zen/desc "Volume in the body where radiation was delivered"},
+   :totalDoseDelivered
+   {:confirms #{hl7-fhir-r4-core.Quantity/schema},
+    :fhir/flags #{:MS},
+    :zen/desc "Total Radiation Dose Delivered"},
+   :fractionsDelivered
+   {:confirms #{hl7-fhir-r4-core.unsignedInt/schema},
+    :fhir/flags #{:MS},
+    :zen/desc "Number of Fractions Delivered"}}}}

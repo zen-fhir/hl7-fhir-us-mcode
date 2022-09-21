@@ -1,0 +1,18 @@
+{ns hl7-fhir-us-mcode.mcode-location-qualifier,
+ import
+ #{zen.fhir
+   hl7-fhir-us-mcode.value-set.mcode-location-qualifier-vs
+   hl7-fhir-r4-core.CodeableConcept},
+ schema
+ {:zen/tags #{zen/schema zen.fhir/structure-schema},
+  :zen/desc
+  "Qualifier to refine an body location. These include qualifiers for laterality, relative location, directionality, number, and plane.",
+  :zen.fhir/type "CodeableConcept",
+  :zen.fhir/profileUri
+  "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-location-qualifier",
+  :zen.fhir/version "0.5.21-6",
+  :confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+  :zen.fhir/value-set
+  {:symbol
+   hl7-fhir-us-mcode.value-set.mcode-location-qualifier-vs/value-set,
+   :strength :required}}}

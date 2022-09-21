@@ -1,0 +1,11 @@
+{ns hl7-fhir-us-mcode.value-set.mcode-treatment-intent-vs,
+ import #{zen.fhir},
+ value-set
+ {:zen/tags #{zen.fhir/value-set},
+  :zen/desc "The purpose of a treatment.",
+  :zen.fhir/version "0.5.21-6",
+  :fhir/code-systems
+  #{{:fhir/url "http://snomed.info/sct", :zen.fhir/content :bundled}},
+  :uri
+  "http://hl7.org/fhir/us/mcode/ValueSet/mcode-treatment-intent-vs",
+  :version "1.16.0"}}

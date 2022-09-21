@@ -1,0 +1,63 @@
+{ns hl7-fhir-us-mcode.mcode-radiotherapy-volume,
+ import
+ #{zen.fhir
+   hl7-fhir-r4-core.string
+   hl7-fhir-us-mcode.value-set.mcode-radiotherapy-volume-type-vs
+   hl7-fhir-r4-core.Reference
+   hl7-fhir-r4-core.BodyStructure
+   hl7-fhir-r4-core.Element
+   hl7-fhir-us-mcode.value-set.mcode-radiotherapy-treatment-location-vs
+   hl7-fhir-r4-core.CodeableConcept
+   hl7-fhir-r4-core.Identifier
+   hl7-fhir-us-mcode.value-set.mcode-radiotherapy-treatment-location-qualifier-vs},
+ schema
+ {:zen/tags #{zen.fhir/profile-schema zen/schema},
+  :zen/desc
+  "A volume of the body used in radiotherapy planning or treatment delivery.",
+  :zen.fhir/type "BodyStructure",
+  :zen.fhir/profileUri
+  "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-radiotherapy-volume",
+  :zen.fhir/version "0.5.21-6",
+  :confirms #{hl7-fhir-r4-core.BodyStructure/schema zen.fhir/Resource},
+  :type zen/map,
+  :keys
+  {:identifier
+   {:type zen/vector,
+    :every
+    {:confirms #{hl7-fhir-r4-core.Identifier/schema},
+     :fhir/flags #{:MS},
+     :zen/desc "Volume Identifier"}},
+   :morphology
+   {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+    :fhir/flags #{:MS},
+    :zen.fhir/value-set
+    {:symbol
+     hl7-fhir-us-mcode.value-set.mcode-radiotherapy-volume-type-vs/value-set,
+     :strength :extensible},
+    :zen/desc "Type of Radiotherapy Volume"},
+   :location
+   {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+    :fhir/flags #{:MS},
+    :zen.fhir/value-set
+    {:symbol
+     hl7-fhir-us-mcode.value-set.mcode-radiotherapy-treatment-location-vs/value-set,
+     :strength :required},
+    :zen/desc "Body Location Code."},
+   :locationQualifier
+   {:type zen/vector,
+    :every
+    {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+     :fhir/flags #{:MS},
+     :zen.fhir/value-set
+     {:symbol
+      hl7-fhir-us-mcode.value-set.mcode-radiotherapy-treatment-location-qualifier-vs/value-set,
+      :strength :extensible}}},
+   :description
+   {:confirms #{hl7-fhir-r4-core.string/schema},
+    :fhir/flags #{:MS},
+    :zen/desc "Volume Description"},
+   :_description {:confirms #{hl7-fhir-r4-core.Element/schema}},
+   :patient
+   {:confirms #{hl7-fhir-r4-core.Reference/schema zen.fhir/Reference},
+    :fhir/flags #{:MS},
+    :zen.fhir/reference {:refers #{}}}}}}

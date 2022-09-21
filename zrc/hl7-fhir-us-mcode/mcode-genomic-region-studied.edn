@@ -1,0 +1,202 @@
+{ns hl7-fhir-us-mcode.mcode-genomic-region-studied,
+ import
+ #{hl7-fhir-r4-core.BackboneElement
+   zen.fhir
+   hl7-fhir-r4-core.Range
+   hl7-fhir-r4-core.string
+   hl7-fhir-us-core.us-core-observation-lab
+   hl7-fhir-r4-core.Element
+   hl7-fhir-us-mcode.value-set.mcode-hgvs-vs
+   hl7-fhir-r4-core.CodeableConcept
+   hl7-fhir-us-mcode.value-set.mcode-hgnc-vs},
+ schema
+ {:zen/tags #{zen.fhir/profile-schema zen/schema},
+  :zen/desc
+  "The area of the genome region referenced in testing for variants.",
+  :zen.fhir/type "Observation",
+  :zen.fhir/profileUri
+  "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-genomic-region-studied",
+  :zen.fhir/version "0.5.21-6",
+  :confirms
+  #{hl7-fhir-us-core.us-core-observation-lab/schema zen.fhir/Resource},
+  :type zen/map,
+  :keys
+  {:code
+   {:match {:coding #{{:system "http://loinc.org", :code "53041-0"}}},
+    :confirms #{hl7-fhir-r4-core.CodeableConcept/schema}},
+   :value #:fhir{:polymorphic true},
+   :component
+   {:slicing
+    {:slices
+     {"geneMutations"
+      {:schema
+       {:type zen/vector,
+        :every
+        {:type zen/map,
+         :keys
+         {:code
+          {:match
+           {:coding #{{:system "http://loinc.org", :code "36908-2"}}},
+           :confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+           :fhir/flags #{:MS}},
+          :value
+          {:fhir/polymorphic true,
+           :type zen/map,
+           :keys
+           {:CodeableConcept
+            {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema}}},
+           :fhir/flags #{:MS},
+           :zen.fhir/value-set
+           {:symbol
+            hl7-fhir-us-mcode.value-set.mcode-hgvs-vs/value-set,
+            :strength :required}},
+          :dataAbsentReason
+          {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+           :fhir/flags #{:MS}}}}},
+       :filter
+       {:engine :match,
+        :match
+        {:code
+         {:coding #{{:system "http://loinc.org", :code "36908-2"}}}}}},
+      "geneStudied"
+      {:schema
+       {:type zen/vector,
+        :every
+        {:type zen/map,
+         :keys
+         {:code
+          {:match
+           {:coding #{{:system "http://loinc.org", :code "48018-6"}}},
+           :confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+           :fhir/flags #{:MS}},
+          :value
+          {:fhir/polymorphic true,
+           :type zen/map,
+           :keys
+           {:CodeableConcept
+            {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema}}},
+           :fhir/flags #{:MS},
+           :zen.fhir/value-set
+           {:symbol
+            hl7-fhir-us-mcode.value-set.mcode-hgnc-vs/value-set,
+            :strength :extensible}},
+          :dataAbsentReason
+          {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+           :fhir/flags #{:MS}}}}},
+       :filter
+       {:engine :match,
+        :match
+        {:code
+         {:coding #{{:system "http://loinc.org", :code "48018-6"}}}}}},
+      "dnaRegionDescription"
+      {:schema
+       {:type zen/vector,
+        :every
+        {:type zen/map,
+         :keys
+         {:code
+          {:match
+           {:coding #{{:system "http://loinc.org", :code "81293-3"}}},
+           :confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+           :fhir/flags #{:MS}},
+          :value
+          {:fhir/polymorphic true,
+           :type zen/map,
+           :keys
+           {:string {:confirms #{hl7-fhir-r4-core.string/schema}},
+            :_string {:confirms #{hl7-fhir-r4-core.Element/schema}}},
+           :fhir/flags #{:MS}},
+          :dataAbsentReason
+          {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+           :fhir/flags #{:MS}}}}},
+       :filter
+       {:engine :match,
+        :match
+        {:code
+         {:coding #{{:system "http://loinc.org", :code "81293-3"}}}}}},
+      "dnaRangesExamined"
+      {:schema
+       {:type zen/vector,
+        :every
+        {:type zen/map,
+         :keys
+         {:code
+          {:match
+           {:coding #{{:system "http://loinc.org", :code "51959-5"}}},
+           :confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+           :fhir/flags #{:MS}},
+          :value
+          {:fhir/polymorphic true,
+           :type zen/map,
+           :keys {:Range {:confirms #{hl7-fhir-r4-core.Range/schema}}},
+           :fhir/flags #{:MS}},
+          :dataAbsentReason
+          {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+           :fhir/flags #{:MS}}}}},
+       :filter
+       {:engine :match,
+        :match
+        {:code
+         {:coding #{{:system "http://loinc.org", :code "51959-5"}}}}}},
+      "genomicRegionCoordinateSystem"
+      {:schema
+       {:type zen/vector,
+        :maxItems 1,
+        :every
+        {:type zen/map,
+         :keys
+         {:code
+          {:match
+           {:coding #{{:system "http://loinc.org", :code "92822-6"}}},
+           :confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+           :fhir/flags #{:MS}},
+          :value
+          {:fhir/polymorphic true,
+           :type zen/map,
+           :keys
+           {:CodeableConcept
+            {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema}}},
+           :fhir/flags #{:MS}},
+          :dataAbsentReason
+          {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+           :fhir/flags #{:MS}}}}},
+       :filter
+       {:engine :match,
+        :match
+        {:code
+         {:coding #{{:system "http://loinc.org", :code "92822-6"}}}}}},
+      "genomicReferenceSequenceId"
+      {:schema
+       {:type zen/vector,
+        :maxItems 1,
+        :every
+        {:type zen/map,
+         :keys
+         {:code
+          {:match
+           {:coding #{{:system "http://loinc.org", :code "48013-7"}}},
+           :confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+           :fhir/flags #{:MS}},
+          :value #:fhir{:polymorphic true, :flags #{:MS}},
+          :dataAbsentReason
+          {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+           :fhir/flags #{:MS}}}}},
+       :filter
+       {:engine :match,
+        :match
+        {:code
+         {:coding
+          #{{:system "http://loinc.org", :code "48013-7"}}}}}}}},
+    :type zen/vector,
+    :every
+    {:confirms #{hl7-fhir-r4-core.BackboneElement/schema},
+     :type zen/map,
+     :keys
+     {:code
+      {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+       :fhir/flags #{:MS}},
+      :value #:fhir{:polymorphic true, :flags #{:MS}},
+      :dataAbsentReason
+      {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+       :fhir/flags #{:MS}}},
+     :fhir/flags #{:MS}}}}}}

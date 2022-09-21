@@ -1,0 +1,75 @@
+{ns hl7-fhir-us-mcode.mcode-cancer-related-medication-administration,
+ import
+ #{hl7-fhir-us-mcode.value-set.mcode-cancer-disorder-vs
+   hl7-fhir-r4-core.code
+   zen.fhir
+   hl7-fhir-us-core.value-set.us-core-medication-codes
+   hl7-fhir-r4-core.MedicationAdministration
+   hl7-fhir-us-mcode.mcode-treatment-termination-reason
+   hl7-fhir-us-mcode.mcode-primary-cancer-condition
+   hl7-fhir-us-mcode.mcode-cancer-patient
+   hl7-fhir-r4-core.Reference
+   hl7-fhir-r4-core.Element
+   hl7-fhir-r4-core.CodeableConcept
+   hl7-fhir-us-mcode.mcode-treatment-intent
+   hl7-fhir-us-mcode.mcode-secondary-cancer-condition},
+ schema
+ {:zen/tags #{zen.fhir/profile-schema zen/schema},
+  :zen/desc
+  "An episode of medication administration for a patient whose condition is related to a primary or secondary cancer condition. In the context of chemotherapy drugs, the medication administration in most cases is performed and documented by the provider.",
+  :zen.fhir/type "MedicationAdministration",
+  :zen.fhir/profileUri
+  "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-cancer-related-medication-administration",
+  :zen.fhir/version "0.5.21-6",
+  :confirms
+  #{hl7-fhir-r4-core.MedicationAdministration/schema
+    zen.fhir/Resource},
+  :type zen/map,
+  :keys
+  {:terminationReason
+   {:type zen/vector,
+    :every
+    {:confirms
+     #{hl7-fhir-us-mcode.mcode-treatment-termination-reason/schema},
+     :fhir/extensionUri
+     "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-treatment-termination-reason",
+     :fhir/flags #{:MS}}},
+   :_status {:confirms #{hl7-fhir-r4-core.Element/schema}},
+   :reasonCode
+   {:type zen/vector,
+    :every
+    {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+     :fhir/flags #{:MS},
+     :zen.fhir/value-set
+     {:symbol
+      hl7-fhir-us-mcode.value-set.mcode-cancer-disorder-vs/value-set,
+      :strength :required}}},
+   :treatmentIntent
+   {:confirms #{hl7-fhir-us-mcode.mcode-treatment-intent/schema},
+    :fhir/extensionUri
+    "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-treatment-intent",
+    :fhir/flags #{:MS}},
+   :status
+   {:confirms #{hl7-fhir-r4-core.code/schema}, :fhir/flags #{:MS}},
+   :effective #:fhir{:polymorphic true, :flags #{:MS}},
+   :subject
+   {:confirms #{hl7-fhir-r4-core.Reference/schema zen.fhir/Reference},
+    :fhir/flags #{:MS},
+    :zen.fhir/reference
+    {:refers #{hl7-fhir-us-mcode.mcode-cancer-patient/schema}}},
+   :medication
+   {:fhir/polymorphic true,
+    :fhir/flags #{:MS},
+    :zen.fhir/value-set
+    {:symbol
+     hl7-fhir-us-core.value-set.us-core-medication-codes/value-set,
+     :strength :extensible}},
+   :reasonReference
+   {:type zen/vector,
+    :every
+    {:confirms #{hl7-fhir-r4-core.Reference/schema zen.fhir/Reference},
+     :fhir/flags #{:MS},
+     :zen.fhir/reference
+     {:refers
+      #{hl7-fhir-us-mcode.mcode-primary-cancer-condition/schema
+        hl7-fhir-us-mcode.mcode-secondary-cancer-condition/schema}}}}}}}

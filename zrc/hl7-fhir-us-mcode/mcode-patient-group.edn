@@ -1,0 +1,37 @@
+{ns hl7-fhir-us-mcode.mcode-patient-group,
+ import
+ #{hl7-fhir-r4-core.BackboneElement
+   zen.fhir
+   hl7-fhir-r4-core.Group
+   hl7-fhir-us-mcode.mcode-cancer-patient
+   hl7-fhir-r4-core.Reference
+   hl7-fhir-r4-core.CodeableConcept},
+ schema
+ {:zen/tags #{zen.fhir/profile-schema zen/schema},
+  :zen/desc
+  "A group of patients included in the scope of mCODE, whose cancer-related resources conform to mCODE profiles.",
+  :zen.fhir/type "Group",
+  :zen.fhir/profileUri
+  "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-patient-group",
+  :zen.fhir/version "0.5.21-6",
+  :confirms #{zen.fhir/Resource hl7-fhir-r4-core.Group/schema},
+  :type zen/map,
+  :keys
+  {:code
+   {:match
+    {:coding
+     #{{:system
+        "http://hl7.org/fhir/us/mcode/CodeSystem/mcode-resource-identifier-cs",
+        :code "mcode-patient"}}},
+    :confirms #{hl7-fhir-r4-core.CodeableConcept/schema}},
+   :member
+   {:type zen/vector,
+    :every
+    {:confirms #{hl7-fhir-r4-core.BackboneElement/schema},
+     :type zen/map,
+     :keys
+     {:entity
+      {:confirms
+       #{hl7-fhir-r4-core.Reference/schema zen.fhir/Reference},
+       :zen.fhir/reference
+       {:refers #{hl7-fhir-us-mcode.mcode-cancer-patient/schema}}}}}}}}}

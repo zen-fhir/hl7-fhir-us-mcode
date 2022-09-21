@@ -1,0 +1,1127 @@
+{ns hl7-fhir-us-mcode.mcode-comorbidities-elixhauser,
+ import
+ #{hl7-fhir-r4-core.BackboneElement
+   hl7-fhir-r4-core.code
+   zen.fhir
+   hl7-fhir-us-mcode.mcode-primary-cancer-condition
+   hl7-fhir-us-mcode.value-set.mcode-present-absent-unknown
+   hl7-fhir-us-mcode.mcode-comorbidities-parent
+   hl7-fhir-r4-core.Reference
+   hl7-fhir-r4-core.Element
+   hl7-fhir-r4-core.CodeableConcept},
+ schema
+ {:zen/tags #{zen.fhir/profile-schema zen/schema},
+  :zen/desc
+  "Comorbid condition checklist and optional risk score, using Elixhauser comorbidity categories as defined by the Agency for Healthcare Research and Quality (AHRQ) Healthcare Cost and Utilization Project (H-CUP).",
+  :zen.fhir/type "Observation",
+  :zen.fhir/profileUri
+  "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-comorbidities-elixhauser",
+  :zen.fhir/version "0.5.21-6",
+  :confirms
+  #{zen.fhir/Resource
+    hl7-fhir-us-mcode.mcode-comorbidities-parent/schema},
+  :type zen/map,
+  :keys
+  {:status
+   {:confirms #{hl7-fhir-r4-core.code/schema}, :fhir/flags #{:MS}},
+   :_status {:confirms #{hl7-fhir-r4-core.Element/schema}},
+   :code
+   {:match
+    {:coding
+     #{{:system "http://loinc.org",
+        :code "78923-0",
+        :display "Comorbid condition panel"}}},
+    :confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+    :fhir/flags #{:MS}},
+   :subject
+   {:confirms #{hl7-fhir-r4-core.Reference/schema zen.fhir/Reference},
+    :fhir/flags #{:MS},
+    :zen.fhir/reference {:refers #{}}},
+   :focus
+   {:type zen/vector,
+    :every
+    {:confirms #{hl7-fhir-r4-core.Reference/schema zen.fhir/Reference},
+     :fhir/flags #{:MS},
+     :zen.fhir/reference
+     {:refers
+      #{hl7-fhir-us-mcode.mcode-primary-cancer-condition/schema}}}},
+   :effective #:fhir{:polymorphic true, :flags #{:MS}},
+   :component
+   {:slicing
+    {:slices
+     {"valvularDisease"
+      {:schema
+       {:type zen/vector,
+        :maxItems 1,
+        :every
+        {:type zen/map,
+         :keys
+         {:extension #:fhir{:flags #{:MS}},
+          :code
+          {:match
+           {:coding
+            #{{:system
+               "http://terminology.hl7.org/CodeSystem/comorbidities-elixhauser",
+               :code "VALVE"}}},
+           :confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+           :fhir/flags #{:MS}},
+          :value #:fhir{:polymorphic true, :flags #{:MS}},
+          :dataAbsentReason
+          {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+           :fhir/flags #{:MS}}}}},
+       :filter
+       {:engine :match,
+        :match
+        {:code
+         {:coding
+          #{{:system
+             "http://terminology.hl7.org/CodeSystem/comorbidities-elixhauser",
+             :code "VALVE"}}}}}},
+      "pulmonaryCirculationDisorder"
+      {:schema
+       {:type zen/vector,
+        :maxItems 1,
+        :every
+        {:type zen/map,
+         :keys
+         {:extension #:fhir{:flags #{:MS}},
+          :code
+          {:match
+           {:coding
+            #{{:system
+               "http://terminology.hl7.org/CodeSystem/comorbidities-elixhauser",
+               :code "PULMCIRC"}}},
+           :confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+           :fhir/flags #{:MS}},
+          :value #:fhir{:polymorphic true, :flags #{:MS}},
+          :dataAbsentReason
+          {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+           :fhir/flags #{:MS}}}}},
+       :filter
+       {:engine :match,
+        :match
+        {:code
+         {:coding
+          #{{:system
+             "http://terminology.hl7.org/CodeSystem/comorbidities-elixhauser",
+             :code "PULMCIRC"}}}}}},
+      "cerebrovascular"
+      {:schema
+       {:type zen/vector,
+        :maxItems 1,
+        :every
+        {:type zen/map,
+         :keys
+         {:extension #:fhir{:flags #{:MS}},
+          :code
+          {:match
+           {:coding
+            #{{:system
+               "http://terminology.hl7.org/CodeSystem/comorbidities-elixhauser",
+               :code "CBVD"}}},
+           :confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+           :fhir/flags #{:MS}},
+          :value #:fhir{:polymorphic true, :flags #{:MS}},
+          :dataAbsentReason
+          {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+           :fhir/flags #{:MS}}}}},
+       :filter
+       {:engine :match,
+        :match
+        {:code
+         {:coding
+          #{{:system
+             "http://terminology.hl7.org/CodeSystem/comorbidities-elixhauser",
+             :code "CBVD"}}}}}},
+      "psychosis"
+      {:schema
+       {:type zen/vector,
+        :maxItems 1,
+        :every
+        {:type zen/map,
+         :keys
+         {:extension #:fhir{:flags #{:MS}},
+          :code
+          {:match
+           {:coding
+            #{{:system
+               "http://terminology.hl7.org/CodeSystem/comorbidities-elixhauser",
+               :code "PSYCHOSIS"}}},
+           :confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+           :fhir/flags #{:MS}},
+          :value #:fhir{:polymorphic true, :flags #{:MS}},
+          :dataAbsentReason
+          {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+           :fhir/flags #{:MS}}}}},
+       :filter
+       {:engine :match,
+        :match
+        {:code
+         {:coding
+          #{{:system
+             "http://terminology.hl7.org/CodeSystem/comorbidities-elixhauser",
+             :code "PSYCHOSIS"}}}}}},
+      "cancerLymphoma"
+      {:schema
+       {:type zen/vector,
+        :maxItems 1,
+        :every
+        {:type zen/map,
+         :keys
+         {:extension #:fhir{:flags #{:MS}},
+          :code
+          {:match
+           {:coding
+            #{{:system
+               "http://terminology.hl7.org/CodeSystem/comorbidities-elixhauser",
+               :code "CANCER_LYMPH"}}},
+           :confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+           :fhir/flags #{:MS}},
+          :value #:fhir{:polymorphic true, :flags #{:MS}},
+          :dataAbsentReason
+          {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+           :fhir/flags #{:MS}}}}},
+       :filter
+       {:engine :match,
+        :match
+        {:code
+         {:coding
+          #{{:system
+             "http://terminology.hl7.org/CodeSystem/comorbidities-elixhauser",
+             :code "CANCER_LYMPH"}}}}}},
+      "hypertensionComplicated"
+      {:schema
+       {:type zen/vector,
+        :maxItems 1,
+        :every
+        {:type zen/map,
+         :keys
+         {:extension #:fhir{:flags #{:MS}},
+          :code
+          {:match
+           {:coding
+            #{{:system
+               "http://terminology.hl7.org/CodeSystem/comorbidities-elixhauser",
+               :code "HTN_CX"}}},
+           :confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+           :fhir/flags #{:MS}},
+          :value #:fhir{:polymorphic true, :flags #{:MS}},
+          :dataAbsentReason
+          {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+           :fhir/flags #{:MS}}}}},
+       :filter
+       {:engine :match,
+        :match
+        {:code
+         {:coding
+          #{{:system
+             "http://terminology.hl7.org/CodeSystem/comorbidities-elixhauser",
+             :code "HTN_CX"}}}}}},
+      "deficiencyAnemia"
+      {:schema
+       {:type zen/vector,
+        :maxItems 1,
+        :every
+        {:type zen/map,
+         :keys
+         {:extension #:fhir{:flags #{:MS}},
+          :code
+          {:match
+           {:coding
+            #{{:system
+               "http://terminology.hl7.org/CodeSystem/comorbidities-elixhauser",
+               :code "ANEMDF"}}},
+           :confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+           :fhir/flags #{:MS}},
+          :value #:fhir{:polymorphic true, :flags #{:MS}},
+          :dataAbsentReason
+          {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+           :fhir/flags #{:MS}}}}},
+       :filter
+       {:engine :match,
+        :match
+        {:code
+         {:coding
+          #{{:system
+             "http://terminology.hl7.org/CodeSystem/comorbidities-elixhauser",
+             :code "ANEMDF"}}}}}},
+      "paralysis"
+      {:schema
+       {:type zen/vector,
+        :maxItems 1,
+        :every
+        {:type zen/map,
+         :keys
+         {:extension #:fhir{:flags #{:MS}},
+          :code
+          {:match
+           {:coding
+            #{{:system
+               "http://terminology.hl7.org/CodeSystem/comorbidities-elixhauser",
+               :code "PARALYSIS"}}},
+           :confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+           :fhir/flags #{:MS}},
+          :value #:fhir{:polymorphic true, :flags #{:MS}},
+          :dataAbsentReason
+          {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+           :fhir/flags #{:MS}}}}},
+       :filter
+       {:engine :match,
+        :match
+        {:code
+         {:coding
+          #{{:system
+             "http://terminology.hl7.org/CodeSystem/comorbidities-elixhauser",
+             :code "PARALYSIS"}}}}}},
+      "renalFailureModerate"
+      {:schema
+       {:type zen/vector,
+        :maxItems 1,
+        :every
+        {:type zen/map,
+         :keys
+         {:extension #:fhir{:flags #{:MS}},
+          :code
+          {:match
+           {:coding
+            #{{:system
+               "http://terminology.hl7.org/CodeSystem/comorbidities-elixhauser",
+               :code "RENLFL_MOD"}}},
+           :confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+           :fhir/flags #{:MS}},
+          :value #:fhir{:polymorphic true, :flags #{:MS}},
+          :dataAbsentReason
+          {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+           :fhir/flags #{:MS}}}}},
+       :filter
+       {:engine :match,
+        :match
+        {:code
+         {:coding
+          #{{:system
+             "http://terminology.hl7.org/CodeSystem/comorbidities-elixhauser",
+             :code "RENLFL_MOD"}}}}}},
+      "neurologicalOther"
+      {:schema
+       {:type zen/vector,
+        :maxItems 1,
+        :every
+        {:type zen/map,
+         :keys
+         {:extension #:fhir{:flags #{:MS}},
+          :code
+          {:match
+           {:coding
+            #{{:system
+               "http://terminology.hl7.org/CodeSystem/comorbidities-elixhauser",
+               :code "NEURO_OTH"}}},
+           :confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+           :fhir/flags #{:MS}},
+          :value #:fhir{:polymorphic true, :flags #{:MS}},
+          :dataAbsentReason
+          {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+           :fhir/flags #{:MS}}}}},
+       :filter
+       {:engine :match,
+        :match
+        {:code
+         {:coding
+          #{{:system
+             "http://terminology.hl7.org/CodeSystem/comorbidities-elixhauser",
+             :code "NEURO_OTH"}}}}}},
+      "cancerSolidInSitu"
+      {:schema
+       {:type zen/vector,
+        :maxItems 1,
+        :every
+        {:type zen/map,
+         :keys
+         {:extension #:fhir{:flags #{:MS}},
+          :code
+          {:match
+           {:coding
+            #{{:system
+               "http://terminology.hl7.org/CodeSystem/comorbidities-elixhauser",
+               :code "CANCER_NSITU"}}},
+           :confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+           :fhir/flags #{:MS}},
+          :value #:fhir{:polymorphic true, :flags #{:MS}},
+          :dataAbsentReason
+          {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+           :fhir/flags #{:MS}}}}},
+       :filter
+       {:engine :match,
+        :match
+        {:code
+         {:coding
+          #{{:system
+             "http://terminology.hl7.org/CodeSystem/comorbidities-elixhauser",
+             :code "CANCER_NSITU"}}}}}},
+      "depression"
+      {:schema
+       {:type zen/vector,
+        :maxItems 1,
+        :every
+        {:type zen/map,
+         :keys
+         {:extension #:fhir{:flags #{:MS}},
+          :code
+          {:match
+           {:coding
+            #{{:system
+               "http://terminology.hl7.org/CodeSystem/comorbidities-elixhauser",
+               :code "DEPRESS"}}},
+           :confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+           :fhir/flags #{:MS}},
+          :value #:fhir{:polymorphic true, :flags #{:MS}},
+          :dataAbsentReason
+          {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+           :fhir/flags #{:MS}}}}},
+       :filter
+       {:engine :match,
+        :match
+        {:code
+         {:coding
+          #{{:system
+             "http://terminology.hl7.org/CodeSystem/comorbidities-elixhauser",
+             :code "DEPRESS"}}}}}},
+      "thyroidOther"
+      {:schema
+       {:type zen/vector,
+        :maxItems 1,
+        :every
+        {:type zen/map,
+         :keys
+         {:extension #:fhir{:flags #{:MS}},
+          :code
+          {:match
+           {:coding
+            #{{:system
+               "http://terminology.hl7.org/CodeSystem/comorbidities-elixhauser",
+               :code "THYROID_OTH"}}},
+           :confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+           :fhir/flags #{:MS}},
+          :value #:fhir{:polymorphic true, :flags #{:MS}},
+          :dataAbsentReason
+          {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+           :fhir/flags #{:MS}}}}},
+       :filter
+       {:engine :match,
+        :match
+        {:code
+         {:coding
+          #{{:system
+             "http://terminology.hl7.org/CodeSystem/comorbidities-elixhauser",
+             :code "THYROID_OTH"}}}}}},
+      "dementia"
+      {:schema
+       {:type zen/vector,
+        :maxItems 1,
+        :every
+        {:type zen/map,
+         :keys
+         {:extension #:fhir{:flags #{:MS}},
+          :code
+          {:match
+           {:coding
+            #{{:system
+               "http://terminology.hl7.org/CodeSystem/comorbidities-elixhauser",
+               :code "DEMENTIA"}}},
+           :confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+           :fhir/flags #{:MS}},
+          :value #:fhir{:polymorphic true, :flags #{:MS}},
+          :dataAbsentReason
+          {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+           :fhir/flags #{:MS}}}}},
+       :filter
+       {:engine :match,
+        :match
+        {:code
+         {:coding
+          #{{:system
+             "http://terminology.hl7.org/CodeSystem/comorbidities-elixhauser",
+             :code "DEMENTIA"}}}}}},
+      "alcoholAbuse"
+      {:schema
+       {:type zen/vector,
+        :maxItems 1,
+        :every
+        {:type zen/map,
+         :keys
+         {:extension #:fhir{:flags #{:MS}},
+          :code
+          {:match
+           {:coding
+            #{{:system
+               "http://terminology.hl7.org/CodeSystem/comorbidities-elixhauser",
+               :code "ALCOHOL"}}},
+           :confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+           :fhir/flags #{:MS}},
+          :value #:fhir{:polymorphic true, :flags #{:MS}},
+          :dataAbsentReason
+          {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+           :fhir/flags #{:MS}}}}},
+       :filter
+       {:engine :match,
+        :match
+        {:code
+         {:coding
+          #{{:system
+             "http://terminology.hl7.org/CodeSystem/comorbidities-elixhauser",
+             :code "ALCOHOL"}}}}}},
+      "neurologicalSeizure"
+      {:schema
+       {:type zen/vector,
+        :maxItems 1,
+        :every
+        {:type zen/map,
+         :keys
+         {:extension #:fhir{:flags #{:MS}},
+          :code
+          {:match
+           {:coding
+            #{{:system
+               "http://terminology.hl7.org/CodeSystem/comorbidities-elixhauser",
+               :code "NEURO_SEIZ"}}},
+           :confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+           :fhir/flags #{:MS}},
+          :value #:fhir{:polymorphic true, :flags #{:MS}},
+          :dataAbsentReason
+          {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+           :fhir/flags #{:MS}}}}},
+       :filter
+       {:engine :match,
+        :match
+        {:code
+         {:coding
+          #{{:system
+             "http://terminology.hl7.org/CodeSystem/comorbidities-elixhauser",
+             :code "NEURO_SEIZ"}}}}}},
+      "renalFailureSevere"
+      {:schema
+       {:type zen/vector,
+        :maxItems 1,
+        :every
+        {:type zen/map,
+         :keys
+         {:extension #:fhir{:flags #{:MS}},
+          :code
+          {:match
+           {:coding
+            #{{:system
+               "http://terminology.hl7.org/CodeSystem/comorbidities-elixhauser",
+               :code "RENLFL_SEV"}}},
+           :confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+           :fhir/flags #{:MS}},
+          :value #:fhir{:polymorphic true, :flags #{:MS}},
+          :dataAbsentReason
+          {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+           :fhir/flags #{:MS}}}}},
+       :filter
+       {:engine :match,
+        :match
+        {:code
+         {:coding
+          #{{:system
+             "http://terminology.hl7.org/CodeSystem/comorbidities-elixhauser",
+             :code "RENLFL_SEV"}}}}}},
+      "hypertensionUncomplicated"
+      {:schema
+       {:type zen/vector,
+        :maxItems 1,
+        :every
+        {:type zen/map,
+         :keys
+         {:extension #:fhir{:flags #{:MS}},
+          :code
+          {:match
+           {:coding
+            #{{:system
+               "http://terminology.hl7.org/CodeSystem/comorbidities-elixhauser",
+               :code "HTN_UNCX"}}},
+           :confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+           :fhir/flags #{:MS}},
+          :value #:fhir{:polymorphic true, :flags #{:MS}},
+          :dataAbsentReason
+          {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+           :fhir/flags #{:MS}}}}},
+       :filter
+       {:engine :match,
+        :match
+        {:code
+         {:coding
+          #{{:system
+             "http://terminology.hl7.org/CodeSystem/comorbidities-elixhauser",
+             :code "HTN_UNCX"}}}}}},
+      "obesity"
+      {:schema
+       {:type zen/vector,
+        :maxItems 1,
+        :every
+        {:type zen/map,
+         :keys
+         {:extension #:fhir{:flags #{:MS}},
+          :code
+          {:match
+           {:coding
+            #{{:system
+               "http://terminology.hl7.org/CodeSystem/comorbidities-elixhauser",
+               :code "OBESE"}}},
+           :confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+           :fhir/flags #{:MS}},
+          :value #:fhir{:polymorphic true, :flags #{:MS}},
+          :dataAbsentReason
+          {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+           :fhir/flags #{:MS}}}}},
+       :filter
+       {:engine :match,
+        :match
+        {:code
+         {:coding
+          #{{:system
+             "http://terminology.hl7.org/CodeSystem/comorbidities-elixhauser",
+             :code "OBESE"}}}}}},
+      "cancerMetastatic"
+      {:schema
+       {:type zen/vector,
+        :maxItems 1,
+        :every
+        {:type zen/map,
+         :keys
+         {:extension #:fhir{:flags #{:MS}},
+          :code
+          {:match
+           {:coding
+            #{{:system
+               "http://terminology.hl7.org/CodeSystem/comorbidities-elixhauser",
+               :code "CANCER_METS"}}},
+           :confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+           :fhir/flags #{:MS}},
+          :value #:fhir{:polymorphic true, :flags #{:MS}},
+          :dataAbsentReason
+          {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+           :fhir/flags #{:MS}}}}},
+       :filter
+       {:engine :match,
+        :match
+        {:code
+         {:coding
+          #{{:system
+             "http://terminology.hl7.org/CodeSystem/comorbidities-elixhauser",
+             :code "CANCER_METS"}}}}}},
+      "liverDiseaseSevere"
+      {:schema
+       {:type zen/vector,
+        :maxItems 1,
+        :every
+        {:type zen/map,
+         :keys
+         {:extension #:fhir{:flags #{:MS}},
+          :code
+          {:match
+           {:coding
+            #{{:system
+               "http://terminology.hl7.org/CodeSystem/comorbidities-elixhauser",
+               :code "LIVER_SEV"}}},
+           :confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+           :fhir/flags #{:MS}},
+          :value #:fhir{:polymorphic true, :flags #{:MS}},
+          :dataAbsentReason
+          {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+           :fhir/flags #{:MS}}}}},
+       :filter
+       {:engine :match,
+        :match
+        {:code
+         {:coding
+          #{{:system
+             "http://terminology.hl7.org/CodeSystem/comorbidities-elixhauser",
+             :code "LIVER_SEV"}}}}}},
+      "peripheralVascularDisease"
+      {:schema
+       {:type zen/vector,
+        :maxItems 1,
+        :every
+        {:type zen/map,
+         :keys
+         {:extension #:fhir{:flags #{:MS}},
+          :code
+          {:match
+           {:coding
+            #{{:system
+               "http://terminology.hl7.org/CodeSystem/comorbidities-elixhauser",
+               :code "PERIVASC"}}},
+           :confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+           :fhir/flags #{:MS}},
+          :value #:fhir{:polymorphic true, :flags #{:MS}},
+          :dataAbsentReason
+          {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+           :fhir/flags #{:MS}}}}},
+       :filter
+       {:engine :match,
+        :match
+        {:code
+         {:coding
+          #{{:system
+             "http://terminology.hl7.org/CodeSystem/comorbidities-elixhauser",
+             :code "PERIVASC"}}}}}},
+      "chronicPulmonaryDisease"
+      {:schema
+       {:type zen/vector,
+        :maxItems 1,
+        :every
+        {:type zen/map,
+         :keys
+         {:extension #:fhir{:flags #{:MS}},
+          :code
+          {:match
+           {:coding
+            #{{:system
+               "http://terminology.hl7.org/CodeSystem/comorbidities-elixhauser",
+               :code "LUNG_CHRONIC"}}},
+           :confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+           :fhir/flags #{:MS}},
+          :value #:fhir{:polymorphic true, :flags #{:MS}},
+          :dataAbsentReason
+          {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+           :fhir/flags #{:MS}}}}},
+       :filter
+       {:engine :match,
+        :match
+        {:code
+         {:coding
+          #{{:system
+             "http://terminology.hl7.org/CodeSystem/comorbidities-elixhauser",
+             :code "LUNG_CHRONIC"}}}}}},
+      "cancerLeukemia"
+      {:schema
+       {:type zen/vector,
+        :maxItems 1,
+        :every
+        {:type zen/map,
+         :keys
+         {:extension #:fhir{:flags #{:MS}},
+          :code
+          {:match
+           {:coding
+            #{{:system
+               "http://terminology.hl7.org/CodeSystem/comorbidities-elixhauser",
+               :code "CANCER_LEUK"}}},
+           :confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+           :fhir/flags #{:MS}},
+          :value #:fhir{:polymorphic true, :flags #{:MS}},
+          :dataAbsentReason
+          {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+           :fhir/flags #{:MS}}}}},
+       :filter
+       {:engine :match,
+        :match
+        {:code
+         {:coding
+          #{{:system
+             "http://terminology.hl7.org/CodeSystem/comorbidities-elixhauser",
+             :code "CANCER_LEUK"}}}}}},
+      "liverDiseaseMild"
+      {:schema
+       {:type zen/vector,
+        :maxItems 1,
+        :every
+        {:type zen/map,
+         :keys
+         {:extension #:fhir{:flags #{:MS}},
+          :code
+          {:match
+           {:coding
+            #{{:system
+               "http://terminology.hl7.org/CodeSystem/comorbidities-elixhauser",
+               :code "LIVER_MLD"}}},
+           :confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+           :fhir/flags #{:MS}},
+          :value #:fhir{:polymorphic true, :flags #{:MS}},
+          :dataAbsentReason
+          {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+           :fhir/flags #{:MS}}}}},
+       :filter
+       {:engine :match,
+        :match
+        {:code
+         {:coding
+          #{{:system
+             "http://terminology.hl7.org/CodeSystem/comorbidities-elixhauser",
+             :code "LIVER_MLD"}}}}}},
+      "arthropathy"
+      {:schema
+       {:type zen/vector,
+        :maxItems 1,
+        :every
+        {:type zen/map,
+         :keys
+         {:extension #:fhir{:flags #{:MS}},
+          :code
+          {:match
+           {:coding
+            #{{:system
+               "http://terminology.hl7.org/CodeSystem/comorbidities-elixhauser",
+               :code "ARTH"}}},
+           :confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+           :fhir/flags #{:MS}},
+          :value #:fhir{:polymorphic true, :flags #{:MS}},
+          :dataAbsentReason
+          {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+           :fhir/flags #{:MS}}}}},
+       :filter
+       {:engine :match,
+        :match
+        {:code
+         {:coding
+          #{{:system
+             "http://terminology.hl7.org/CodeSystem/comorbidities-elixhauser",
+             :code "ARTH"}}}}}},
+      "cancerSolidMalignant"
+      {:schema
+       {:type zen/vector,
+        :maxItems 1,
+        :every
+        {:type zen/map,
+         :keys
+         {:extension #:fhir{:flags #{:MS}},
+          :code
+          {:match
+           {:coding
+            #{{:system
+               "http://terminology.hl7.org/CodeSystem/comorbidities-elixhauser",
+               :code "CANCER_SOLID"}}},
+           :confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+           :fhir/flags #{:MS}},
+          :value #:fhir{:polymorphic true, :flags #{:MS}},
+          :dataAbsentReason
+          {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+           :fhir/flags #{:MS}}}}},
+       :filter
+       {:engine :match,
+        :match
+        {:code
+         {:coding
+          #{{:system
+             "http://terminology.hl7.org/CodeSystem/comorbidities-elixhauser",
+             :code "CANCER_SOLID"}}}}}},
+      "coagulopathy"
+      {:schema
+       {:type zen/vector,
+        :maxItems 1,
+        :every
+        {:type zen/map,
+         :keys
+         {:extension #:fhir{:flags #{:MS}},
+          :code
+          {:match
+           {:coding
+            #{{:system
+               "http://terminology.hl7.org/CodeSystem/comorbidities-elixhauser",
+               :code "COAG"}}},
+           :confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+           :fhir/flags #{:MS}},
+          :value #:fhir{:polymorphic true, :flags #{:MS}},
+          :dataAbsentReason
+          {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+           :fhir/flags #{:MS}}}}},
+       :filter
+       {:engine :match,
+        :match
+        {:code
+         {:coding
+          #{{:system
+             "http://terminology.hl7.org/CodeSystem/comorbidities-elixhauser",
+             :code "COAG"}}}}}},
+      "weightLoss"
+      {:schema
+       {:type zen/vector,
+        :maxItems 1,
+        :every
+        {:type zen/map,
+         :keys
+         {:extension #:fhir{:flags #{:MS}},
+          :code
+          {:match
+           {:coding
+            #{{:system
+               "http://terminology.hl7.org/CodeSystem/comorbidities-elixhauser",
+               :code "WGHTLOSS"}}},
+           :confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+           :fhir/flags #{:MS}},
+          :value #:fhir{:polymorphic true, :flags #{:MS}},
+          :dataAbsentReason
+          {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+           :fhir/flags #{:MS}}}}},
+       :filter
+       {:engine :match,
+        :match
+        {:code
+         {:coding
+          #{{:system
+             "http://terminology.hl7.org/CodeSystem/comorbidities-elixhauser",
+             :code "WGHTLOSS"}}}}}},
+      "congestiveHeartFailure"
+      {:schema
+       {:type zen/vector,
+        :maxItems 1,
+        :every
+        {:type zen/map,
+         :keys
+         {:extension #:fhir{:flags #{:MS}},
+          :code
+          {:match
+           {:coding
+            #{{:system
+               "http://terminology.hl7.org/CodeSystem/comorbidities-elixhauser",
+               :code "CHF"}}},
+           :confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+           :fhir/flags #{:MS}},
+          :value #:fhir{:polymorphic true, :flags #{:MS}},
+          :dataAbsentReason
+          {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+           :fhir/flags #{:MS}}}}},
+       :filter
+       {:engine :match,
+        :match
+        {:code
+         {:coding
+          #{{:system
+             "http://terminology.hl7.org/CodeSystem/comorbidities-elixhauser",
+             :code "CHF"}}}}}},
+      "hypothyroidism"
+      {:schema
+       {:type zen/vector,
+        :maxItems 1,
+        :every
+        {:type zen/map,
+         :keys
+         {:extension #:fhir{:flags #{:MS}},
+          :code
+          {:match
+           {:coding
+            #{{:system
+               "http://terminology.hl7.org/CodeSystem/comorbidities-elixhauser",
+               :code "THYROID_HYPO"}}},
+           :confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+           :fhir/flags #{:MS}},
+          :value #:fhir{:polymorphic true, :flags #{:MS}},
+          :dataAbsentReason
+          {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+           :fhir/flags #{:MS}}}}},
+       :filter
+       {:engine :match,
+        :match
+        {:code
+         {:coding
+          #{{:system
+             "http://terminology.hl7.org/CodeSystem/comorbidities-elixhauser",
+             :code "THYROID_HYPO"}}}}}},
+      "bloodLossAnemia"
+      {:schema
+       {:type zen/vector,
+        :maxItems 1,
+        :every
+        {:type zen/map,
+         :keys
+         {:extension #:fhir{:flags #{:MS}},
+          :code
+          {:match
+           {:coding
+            #{{:system
+               "http://terminology.hl7.org/CodeSystem/comorbidities-elixhauser",
+               :code "BLDLOSS"}}},
+           :confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+           :fhir/flags #{:MS}},
+          :value #:fhir{:polymorphic true, :flags #{:MS}},
+          :dataAbsentReason
+          {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+           :fhir/flags #{:MS}}}}},
+       :filter
+       {:engine :match,
+        :match
+        {:code
+         {:coding
+          #{{:system
+             "http://terminology.hl7.org/CodeSystem/comorbidities-elixhauser",
+             :code "BLDLOSS"}}}}}},
+      "drugAbuse"
+      {:schema
+       {:type zen/vector,
+        :maxItems 1,
+        :every
+        {:type zen/map,
+         :keys
+         {:extension #:fhir{:flags #{:MS}},
+          :code
+          {:match
+           {:coding
+            #{{:system
+               "http://terminology.hl7.org/CodeSystem/comorbidities-elixhauser",
+               :code "DRUG_ABUSE"}}},
+           :confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+           :fhir/flags #{:MS}},
+          :value #:fhir{:polymorphic true, :flags #{:MS}},
+          :dataAbsentReason
+          {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+           :fhir/flags #{:MS}}}}},
+       :filter
+       {:engine :match,
+        :match
+        {:code
+         {:coding
+          #{{:system
+             "http://terminology.hl7.org/CodeSystem/comorbidities-elixhauser",
+             :code "DRUG_ABUSE"}}}}}},
+      "diabetesComplicated"
+      {:schema
+       {:type zen/vector,
+        :maxItems 1,
+        :every
+        {:type zen/map,
+         :keys
+         {:extension #:fhir{:flags #{:MS}},
+          :code
+          {:match
+           {:coding
+            #{{:system
+               "http://terminology.hl7.org/CodeSystem/comorbidities-elixhauser",
+               :code "DIAB_UNCX"}}},
+           :confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+           :fhir/flags #{:MS}},
+          :value #:fhir{:polymorphic true, :flags #{:MS}},
+          :dataAbsentReason
+          {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+           :fhir/flags #{:MS}}}}},
+       :filter
+       {:engine :match,
+        :match
+        {:code
+         {:coding
+          #{{:system
+             "http://terminology.hl7.org/CodeSystem/comorbidities-elixhauser",
+             :code "DIAB_UNCX"}}}}}},
+      "ulcer"
+      {:schema
+       {:type zen/vector,
+        :maxItems 1,
+        :every
+        {:type zen/map,
+         :keys
+         {:extension #:fhir{:flags #{:MS}},
+          :code
+          {:match
+           {:coding
+            #{{:system
+               "http://terminology.hl7.org/CodeSystem/comorbidities-elixhauser",
+               :code "ULCER_PEPTIC"}}},
+           :confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+           :fhir/flags #{:MS}},
+          :value #:fhir{:polymorphic true, :flags #{:MS}},
+          :dataAbsentReason
+          {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+           :fhir/flags #{:MS}}}}},
+       :filter
+       {:engine :match,
+        :match
+        {:code
+         {:coding
+          #{{:system
+             "http://terminology.hl7.org/CodeSystem/comorbidities-elixhauser",
+             :code "ULCER_PEPTIC"}}}}}},
+      "diabetesUncomplicated"
+      {:schema
+       {:type zen/vector,
+        :maxItems 1,
+        :every
+        {:type zen/map,
+         :keys
+         {:extension #:fhir{:flags #{:MS}},
+          :code
+          {:match
+           {:coding
+            #{{:system
+               "http://terminology.hl7.org/CodeSystem/comorbidities-elixhauser",
+               :code "DIAB_CX"}}},
+           :confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+           :fhir/flags #{:MS}},
+          :value #:fhir{:polymorphic true, :flags #{:MS}},
+          :dataAbsentReason
+          {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+           :fhir/flags #{:MS}}}}},
+       :filter
+       {:engine :match,
+        :match
+        {:code
+         {:coding
+          #{{:system
+             "http://terminology.hl7.org/CodeSystem/comorbidities-elixhauser",
+             :code "DIAB_CX"}}}}}},
+      "aids"
+      {:schema
+       {:type zen/vector,
+        :maxItems 1,
+        :every
+        {:type zen/map,
+         :keys
+         {:extension #:fhir{:flags #{:MS}},
+          :code
+          {:match
+           {:coding
+            #{{:system
+               "http://terminology.hl7.org/CodeSystem/comorbidities-elixhauser",
+               :code "AIDS"}}},
+           :confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+           :fhir/flags #{:MS}},
+          :value #:fhir{:polymorphic true, :flags #{:MS}},
+          :dataAbsentReason
+          {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+           :fhir/flags #{:MS}}}}},
+       :filter
+       {:engine :match,
+        :match
+        {:code
+         {:coding
+          #{{:system
+             "http://terminology.hl7.org/CodeSystem/comorbidities-elixhauser",
+             :code "AIDS"}}}}}},
+      "neurologicalMovement"
+      {:schema
+       {:type zen/vector,
+        :maxItems 1,
+        :every
+        {:type zen/map,
+         :keys
+         {:extension #:fhir{:flags #{:MS}},
+          :code
+          {:match
+           {:coding
+            #{{:system
+               "http://terminology.hl7.org/CodeSystem/comorbidities-elixhauser",
+               :code "NEURO_MOVT"}}},
+           :confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+           :fhir/flags #{:MS}},
+          :value #:fhir{:polymorphic true, :flags #{:MS}},
+          :dataAbsentReason
+          {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+           :fhir/flags #{:MS}}}}},
+       :filter
+       {:engine :match,
+        :match
+        {:code
+         {:coding
+          #{{:system
+             "http://terminology.hl7.org/CodeSystem/comorbidities-elixhauser",
+             :code "NEURO_MOVT"}}}}}}}},
+    :type zen/vector,
+    :every
+    {:confirms #{hl7-fhir-r4-core.BackboneElement/schema},
+     :type zen/map,
+     :keys
+     {:value
+      {:fhir/polymorphic true,
+       :zen.fhir/value-set
+       {:symbol
+        hl7-fhir-us-mcode.value-set.mcode-present-absent-unknown/value-set,
+        :strength :required}}},
+     :fhir/flags #{:MS}}}}}}

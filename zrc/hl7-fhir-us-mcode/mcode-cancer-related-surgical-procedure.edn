@@ -1,0 +1,72 @@
+{ns hl7-fhir-us-mcode.mcode-cancer-related-surgical-procedure,
+ import
+ #{hl7-fhir-us-mcode.value-set.mcode-cancer-disorder-vs
+   zen.fhir
+   hl7-fhir-us-mcode.value-set.mcode-cancer-related-surgical-procedure-vs
+   hl7-fhir-us-mcode.mcode-primary-cancer-condition
+   hl7-fhir-us-core.us-core-procedure
+   hl7-fhir-r4-core.Reference
+   hl7-fhir-us-mcode.mcode-location-qualifier
+   hl7-fhir-r4-core.CodeableConcept
+   hl7-fhir-us-mcode.mcode-treatment-intent
+   hl7-fhir-us-mcode.mcode-secondary-cancer-condition},
+ schema
+ {:zen.fhir/version "0.5.21-6",
+  :confirms
+  #{zen.fhir/Resource hl7-fhir-us-core.us-core-procedure/schema},
+  :zen/tags #{zen.fhir/profile-schema zen/schema},
+  :zen.fhir/profileUri
+  "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-cancer-related-surgical-procedure",
+  :require #{:category},
+  :type zen/map,
+  :zen/desc
+  "A surgical action addressing a cancer condition. The scope of this profile has been narrowed to cancer-related procedures by constraining the reasonReference and reasonCode to cancer conditions, one of which is required.",
+  :keys
+  {:treatmentIntent
+   {:confirms #{hl7-fhir-us-mcode.mcode-treatment-intent/schema},
+    :fhir/extensionUri
+    "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-treatment-intent",
+    :fhir/flags #{:MS}},
+   :category
+   {:match
+    {:coding #{{:system "http://snomed.info/sct", :code "387713003"}}},
+    :confirms #{hl7-fhir-r4-core.CodeableConcept/schema}},
+   :code
+   {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+    :zen.fhir/value-set
+    {:symbol
+     hl7-fhir-us-mcode.value-set.mcode-cancer-related-surgical-procedure-vs/value-set,
+     :strength :extensible}},
+   :reasonCode
+   {:type zen/vector,
+    :every
+    {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+     :fhir/flags #{:MS},
+     :zen.fhir/value-set
+     {:symbol
+      hl7-fhir-us-mcode.value-set.mcode-cancer-disorder-vs/value-set,
+      :strength :required}}},
+   :reasonReference
+   {:type zen/vector,
+    :every
+    {:confirms #{hl7-fhir-r4-core.Reference/schema zen.fhir/Reference},
+     :fhir/flags #{:MS},
+     :zen.fhir/reference
+     {:refers
+      #{hl7-fhir-us-mcode.mcode-primary-cancer-condition/schema
+        hl7-fhir-us-mcode.mcode-secondary-cancer-condition/schema}}}},
+   :bodySite
+   {:type zen/vector,
+    :every
+    {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+     :type zen/map,
+     :keys
+     {:locationQualifier
+      {:type zen/vector,
+       :every
+       {:confirms #{hl7-fhir-us-mcode.mcode-location-qualifier/schema},
+        :fhir/extensionUri
+        "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-location-qualifier",
+        :fhir/flags #{:MS}}}},
+     :fhir/flags #{:MS}}}},
+  :zen.fhir/type "Procedure"}}

@@ -1,0 +1,73 @@
+{ns hl7-fhir-us-mcode.mcode-comorbidities-parent,
+ import
+ #{hl7-fhir-r4-core.Observation
+   hl7-fhir-r4-core.BackboneElement
+   hl7-fhir-r4-core.Condition
+   zen.fhir
+   hl7-fhir-us-mcode.mcode-comorbid-condition-reference
+   hl7-fhir-us-mcode.mcode-comorbid-condition-code
+   hl7-fhir-r4-core.Extension
+   hl7-fhir-r4-core.Reference
+   hl7-fhir-r4-core.CodeableConcept},
+ schema
+ {:zen/tags #{zen/schema zen.fhir/structure-schema},
+  :zen/desc
+  "General structure for capturing comorbid conditions with respect to a primary ('index') condition. The specific set of comorbidities of interest in a given context are defined by slicing the components array. The same general approach can be applied to any comorbidity category checklist.",
+  :zen.fhir/type "Observation",
+  :zen.fhir/profileUri
+  "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-comorbidities-parent",
+  :zen.fhir/version "0.5.21-6",
+  :confirms #{hl7-fhir-r4-core.Observation/schema zen.fhir/Resource},
+  :type zen/map,
+  :keys
+  {:focus
+   {:type zen/vector,
+    :every
+    {:confirms #{hl7-fhir-r4-core.Reference/schema zen.fhir/Reference},
+     :zen.fhir/reference
+     {:refers #{hl7-fhir-r4-core.Condition/schema}},
+     :zen/desc "The Index Condition"}},
+   :bodySite
+   {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+    :zen/desc "Not used in this profile"},
+   :specimen
+   {:confirms #{hl7-fhir-r4-core.Reference/schema zen.fhir/Reference},
+    :zen.fhir/reference {:refers #{}},
+    :zen/desc "Not used in this profile"},
+   :device
+   {:confirms #{hl7-fhir-r4-core.Reference/schema zen.fhir/Reference},
+    :zen.fhir/reference {:refers #{}},
+    :zen/desc "Not used in this profile"},
+   :component
+   {:type zen/vector,
+    :every
+    {:confirms #{hl7-fhir-r4-core.BackboneElement/schema},
+     :type zen/map,
+     :keys
+     {:conditionCode
+      {:type zen/vector,
+       :every
+       {:confirms
+        #{hl7-fhir-us-mcode.mcode-comorbid-condition-code/schema},
+        :fhir/extensionUri
+        "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-comorbid-condition-code"}},
+      :conditionReference
+      {:type zen/vector,
+       :every
+       {:confirms
+        #{hl7-fhir-us-mcode.mcode-comorbid-condition-reference/schema},
+        :fhir/extensionUri
+        "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-comorbid-condition-reference"}},
+      :modifierExtension
+      {:type zen/vector,
+       :every {:confirms #{hl7-fhir-r4-core.Extension/schema}},
+       :maxItems 0},
+      :code
+      {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+       :zen/desc "Code representing the comorbidity category"},
+      :value
+      {:fhir/polymorphic true,
+       :type zen/map,
+       :keys
+       {:CodeableConcept
+        {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema}}}}}}}}}}

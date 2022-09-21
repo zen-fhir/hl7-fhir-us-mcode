@@ -1,0 +1,121 @@
+{ns hl7-fhir-us-mcode.mcode-radiotherapy-course-summary,
+ import
+ #{hl7-fhir-r4-core.Period
+   hl7-fhir-us-mcode.mcode-radiotherapy-modality
+   zen.fhir
+   hl7-fhir-us-mcode.value-set.mcode-radiotherapy-technique-vs
+   hl7-fhir-us-mcode.mcode-treatment-termination-reason
+   hl7-fhir-us-core.us-core-procedure
+   hl7-fhir-us-mcode.mcode-radiotherapy-sessions
+   hl7-fhir-us-mcode.value-set.mcode-radiotherapy-modality-vs
+   hl7-fhir-r4-core.Reference
+   hl7-fhir-us-mcode.mcode-radiotherapy-dose-delivered-to-volume
+   hl7-fhir-us-mcode.value-set.mcode-radiotherapy-treatment-location-vs
+   hl7-fhir-us-mcode.mcode-radiotherapy-technique
+   hl7-fhir-r4-core.CodeableConcept
+   hl7-fhir-us-mcode.mcode-treatment-intent},
+ schema
+ {:zen.fhir/version "0.5.21-6",
+  :confirms
+  #{zen.fhir/Resource hl7-fhir-us-core.us-core-procedure/schema},
+  :zen/tags #{zen.fhir/profile-schema zen/schema},
+  :zen.fhir/profileUri
+  "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-radiotherapy-course-summary",
+  :require #{:category},
+  :type zen/map,
+  :zen/desc
+  "A summary of a course of radiotherapy delivered to a patient. It records the treatment intent, termination reason, modalities, techniques, number of sessions, and doses delivered to one or more body volumes. To describe the treatment in more detail, use either TeleradiotherapyTreatmentPhase or BrachytherapyTreatmentPhase, which should reference this summary through their partOf elements. Whether the course has been fully delivered or stopped is indicated in the status element.",
+  :keys
+  {:category
+   {:match
+    {:coding #{{:system "http://snomed.info/sct", :code "108290001"}}},
+    :confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+    :fhir/flags #{:MS}},
+   :terminationReason
+   {:confirms
+    #{hl7-fhir-us-mcode.mcode-treatment-termination-reason/schema},
+    :fhir/extensionUri
+    "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-treatment-termination-reason",
+    :fhir/flags #{:MS}},
+   :reasonCode
+   {:type zen/vector,
+    :every
+    {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+     :fhir/flags #{:MS}}},
+   :modality
+   {:type zen/vector,
+    :every
+    {:confirms #{hl7-fhir-us-mcode.mcode-radiotherapy-modality/schema},
+     :fhir/extensionUri
+     "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-radiotherapy-modality",
+     :type zen/map,
+     :keys
+     {:value
+      {:fhir/polymorphic true,
+       :zen.fhir/value-set
+       {:symbol
+        hl7-fhir-us-mcode.value-set.mcode-radiotherapy-modality-vs/value-set,
+        :strength :required}}},
+     :fhir/flags #{:MS}}},
+   :performed
+   {:fhir/polymorphic true,
+    :type zen/map,
+    :keys {:Period {:confirms #{hl7-fhir-r4-core.Period/schema}}}},
+   :treatmentIntent
+   {:confirms #{hl7-fhir-us-mcode.mcode-treatment-intent/schema},
+    :fhir/extensionUri
+    "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-treatment-intent",
+    :fhir/flags #{:MS}},
+   :doseDeliveredToVolume
+   {:type zen/vector,
+    :every
+    {:confirms
+     #{hl7-fhir-us-mcode.mcode-radiotherapy-dose-delivered-to-volume/schema},
+     :fhir/extensionUri
+     "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-radiotherapy-dose-delivered-to-volume",
+     :fhir/flags #{:MS}}},
+   :technique
+   {:type zen/vector,
+    :every
+    {:confirms
+     #{hl7-fhir-us-mcode.mcode-radiotherapy-technique/schema},
+     :fhir/extensionUri
+     "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-radiotherapy-technique",
+     :type zen/map,
+     :keys
+     {:value
+      {:fhir/polymorphic true,
+       :zen.fhir/value-set
+       {:symbol
+        hl7-fhir-us-mcode.value-set.mcode-radiotherapy-technique-vs/value-set,
+        :strength :required}}},
+     :fhir/flags #{:MS}}},
+   :code
+   {:match
+    {:coding
+     #{{:system
+        "http://hl7.org/fhir/us/mcode/CodeSystem/mcode-resource-identifier-cs",
+        :code "mcode-radiotherapy-course-summary"}}},
+    :confirms #{hl7-fhir-r4-core.CodeableConcept/schema}},
+   :bodySite
+   {:type zen/vector,
+    :every
+    {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+     :fhir/flags #{:MS},
+     :zen.fhir/value-set
+     {:symbol
+      hl7-fhir-us-mcode.value-set.mcode-radiotherapy-treatment-location-vs/value-set,
+      :strength :required},
+     :zen/desc "All body structure(s) treated"}},
+   :reasonReference
+   {:type zen/vector,
+    :every
+    {:confirms #{hl7-fhir-r4-core.Reference/schema zen.fhir/Reference},
+     :fhir/flags #{:MS},
+     :zen.fhir/reference {:refers #{}}}},
+   :actualNumberOfSessions
+   {:confirms #{hl7-fhir-us-mcode.mcode-radiotherapy-sessions/schema},
+    :fhir/extensionUri
+    "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-radiotherapy-sessions",
+    :fhir/flags #{:MS}}},
+  :zen.fhir/type "Procedure"}}

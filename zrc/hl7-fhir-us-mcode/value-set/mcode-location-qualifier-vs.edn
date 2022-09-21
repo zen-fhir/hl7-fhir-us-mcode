@@ -1,0 +1,13 @@
+{ns hl7-fhir-us-mcode.value-set.mcode-location-qualifier-vs,
+ import #{zen.fhir},
+ value-set
+ {:zen/tags #{zen.fhir/value-set},
+  :zen/desc
+  "Qualifiers to refine a body structure or location. These include qualifiers for laterality, relative location, directionality, number, and plane.",
+  :zen.fhir/version "0.5.21-6",
+  :fhir/code-systems
+  #{{:fhir/url "http://snomed.info/sct",
+     :zen.fhir/content :not-present}},
+  :uri
+  "http://hl7.org/fhir/us/mcode/ValueSet/mcode-location-qualifier-vs",
+  :version "1.16.0"}}

@@ -1,0 +1,87 @@
+{ns hl7-fhir-us-mcode.mcode-tnm-primary-tumor-category,
+ import
+ #{hl7-fhir-r4-core.Observation
+   hl7-fhir-r4-core.BackboneElement
+   hl7-fhir-us-mcode.value-set.mcode-tnm-primary-tumor-category-vs
+   hl7-fhir-us-mcode.value-set.mcode-observation-codes-primary-tumor-vs
+   hl7-fhir-r4-core.code
+   zen.fhir
+   hl7-fhir-us-mcode.value-set.mcode-cancer-staging-system-vs
+   hl7-fhir-us-mcode.mcode-primary-cancer-condition
+   hl7-fhir-us-mcode.mcode-cancer-patient
+   hl7-fhir-r4-core.Reference
+   hl7-fhir-r4-core.Element
+   hl7-fhir-r4-core.CodeableConcept},
+ schema
+ {:zen/tags #{zen.fhir/profile-schema zen/schema},
+  :zen/desc
+  "Category of the primary tumor, based on its size and extent, based on evidence such as physical examination, imaging, and/or biopsy.",
+  :zen.fhir/type "Observation",
+  :zen.fhir/profileUri
+  "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-tnm-primary-tumor-category",
+  :zen.fhir/version "0.5.21-6",
+  :confirms #{hl7-fhir-r4-core.Observation/schema zen.fhir/Resource},
+  :type zen/map,
+  :keys
+  {:referenceRange
+   {:type zen/vector,
+    :every
+    {:confirms #{hl7-fhir-r4-core.BackboneElement/schema},
+     :zen/desc "Not used in this profile"}},
+   :hasMember
+   {:type zen/vector,
+    :every
+    {:confirms #{hl7-fhir-r4-core.Reference/schema zen.fhir/Reference},
+     :zen.fhir/reference {:refers #{}},
+     :zen/desc "Not used in this profile"}},
+   :method
+   {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+    :fhir/flags #{:MS},
+    :zen.fhir/value-set
+    {:symbol
+     hl7-fhir-us-mcode.value-set.mcode-cancer-staging-system-vs/value-set,
+     :strength :extensible}},
+   :value
+   {:fhir/polymorphic true,
+    :type zen/map,
+    :keys
+    {:CodeableConcept
+     {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema}}},
+    :fhir/flags #{:MS},
+    :zen.fhir/value-set
+    {:symbol
+     hl7-fhir-us-mcode.value-set.mcode-tnm-primary-tumor-category-vs/value-set,
+     :strength :preferred}},
+   :_status {:confirms #{hl7-fhir-r4-core.Element/schema}},
+   :component
+   {:type zen/vector,
+    :every
+    {:confirms #{hl7-fhir-r4-core.BackboneElement/schema},
+     :zen/desc "Not used in this profile"}},
+   :status
+   {:confirms #{hl7-fhir-r4-core.code/schema}, :fhir/flags #{:MS}},
+   :effective #:fhir{:polymorphic true, :flags #{:MS}},
+   :code
+   {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+    :fhir/flags #{:MS},
+    :zen.fhir/value-set
+    {:symbol
+     hl7-fhir-us-mcode.value-set.mcode-observation-codes-primary-tumor-vs/value-set,
+     :strength :required}},
+   :focus
+   {:type zen/vector,
+    :every
+    {:confirms #{hl7-fhir-r4-core.Reference/schema zen.fhir/Reference},
+     :fhir/flags #{:MS},
+     :zen.fhir/reference
+     {:refers
+      #{hl7-fhir-us-mcode.mcode-primary-cancer-condition/schema}}}},
+   :device
+   {:confirms #{hl7-fhir-r4-core.Reference/schema zen.fhir/Reference},
+    :zen.fhir/reference {:refers #{}},
+    :zen/desc "Not used in this profile"},
+   :subject
+   {:confirms #{hl7-fhir-r4-core.Reference/schema zen.fhir/Reference},
+    :fhir/flags #{:MS},
+    :zen.fhir/reference
+    {:refers #{hl7-fhir-us-mcode.mcode-cancer-patient/schema}}}}}}
