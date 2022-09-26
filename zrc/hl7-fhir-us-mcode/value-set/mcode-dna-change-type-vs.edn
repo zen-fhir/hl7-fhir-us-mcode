@@ -3,7 +3,7 @@
  value-set
  {:zen/tags #{zen.fhir/value-set},
   :zen/desc "DNA Change Type of a variant",
-  :zen.fhir/version "0.5.21-9",
+  :zen.fhir/version "0.5.21-10",
   :fhir/code-systems
   #{{:fhir/url "http://sequenceontology.org",
      :zen.fhir/content :not-present}},
