@@ -4,7 +4,7 @@
  {:zen/tags #{zen.fhir/value-set},
   :zen/desc
   "Codes describing the modalities of external beam and brachytherapy radiation procedures, for use with radiotherapy summaries. This value set is the union of the EBRT and brachytherapy modality value sets.",
-  :zen.fhir/version "0.5.21-10",
+  :zen.fhir/version "0.5.21-11",
   :fhir/code-systems
   #{{:fhir/url "http://terminology.hl7.org/CodeSystem/umls",
      :zen.fhir/content :bundled}
