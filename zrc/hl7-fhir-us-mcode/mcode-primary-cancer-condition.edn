@@ -1,15 +1,12 @@
 {ns hl7-fhir-us-mcode.mcode-primary-cancer-condition,
  import
- #{hl7-fhir-us-core.us-core-condition
-   hl7-fhir-r4-core.BackboneElement
-   hl7-fhir-us-mcode.value-set.mcode-cancer-body-location-vs
+ #{hl7-fhir-us-mcode.value-set.mcode-cancer-body-location-vs
    zen.fhir
    hl7-fhir-us-mcode.value-set.mcode-observation-codes-stage-group-vs
    hl7-fhir-r4-core.Reference
    hl7-fhir-us-mcode.value-set.mcode-primary-or-uncertain-behavior-cancer-disorder-vs
    hl7-fhir-us-mcode.mcode-histology-morphology-behavior
    hl7-fhir-us-mcode.mcode-location-qualifier
-   hl7-fhir-r4-core.CodeableConcept
    hl7-fhir-r4-core.condition-assertedDate
    hl7-fhir-us-mcode.mcode-cancer-stage-group},
  schema
@@ -19,9 +16,8 @@
   :zen.fhir/type "Condition",
   :zen.fhir/profileUri
   "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-primary-cancer-condition",
-  :zen.fhir/version "0.5.21-14",
-  :confirms
-  #{zen.fhir/Resource hl7-fhir-us-core.us-core-condition/schema},
+  :zen.fhir/version "0.5.22",
+  :confirms #{zen.fhir/Resource},
   :type zen/map,
   :keys
   {:assertedDate
@@ -36,52 +32,39 @@
     "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-histology-morphology-behavior",
     :fhir/flags #{:MS}},
    :code
-   {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+   #:zen.fhir{:value-set
+              {:symbol
+               hl7-fhir-us-mcode.value-set.mcode-primary-or-uncertain-behavior-cancer-disorder-vs/value-set,
+               :strength :required}},
+   :bodySite
+   {:type zen/map,
+    :keys
+    {:locationQualifier
+     {:type zen/vector,
+      :every
+      {:confirms #{hl7-fhir-us-mcode.mcode-location-qualifier/schema},
+       :fhir/extensionUri
+       "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-location-qualifier",
+       :fhir/flags #{:MS}}}},
+    :fhir/flags #{:MS},
     :zen.fhir/value-set
     {:symbol
-     hl7-fhir-us-mcode.value-set.mcode-primary-or-uncertain-behavior-cancer-disorder-vs/value-set,
-     :strength :required}},
-   :bodySite
-   {:type zen/vector,
-    :every
-    {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
-     :type zen/map,
-     :keys
-     {:locationQualifier
-      {:type zen/vector,
-       :every
-       {:confirms #{hl7-fhir-us-mcode.mcode-location-qualifier/schema},
-        :fhir/extensionUri
-        "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-location-qualifier",
-        :fhir/flags #{:MS}}}},
-     :fhir/flags #{:MS},
-     :zen.fhir/value-set
-     {:symbol
-      hl7-fhir-us-mcode.value-set.mcode-cancer-body-location-vs/value-set,
-      :strength :extensible}}},
+     hl7-fhir-us-mcode.value-set.mcode-cancer-body-location-vs/value-set,
+     :strength :extensible}},
    :stage
-   {:type zen/vector,
-    :every
-    {:confirms #{hl7-fhir-r4-core.BackboneElement/schema},
-     :type zen/map,
-     :keys
-     {:summary
-      {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
-       :zen/desc "Most recent Stage Group"},
-      :assessment
-      {:type zen/vector,
-       :every
-       {:confirms
-        #{hl7-fhir-r4-core.Reference/schema zen.fhir/Reference},
-        :fhir/flags #{:MS},
-        :zen.fhir/reference
-        {:refers
-         #{hl7-fhir-us-mcode.mcode-cancer-stage-group/schema}}}},
-      :type
-      {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
-       :zen.fhir/value-set
-       {:symbol
-        hl7-fhir-us-mcode.value-set.mcode-observation-codes-stage-group-vs/value-set,
-        :strength :required},
-       :zen/desc "Staging system used."}},
-     :fhir/flags #{:MS}}}}}}
+   {:type zen/map,
+    :keys
+    {:summary #:zen{:desc "Most recent Stage Group"},
+     :assessment
+     {:confirms
+      #{hl7-fhir-r4-core.Reference/schema zen.fhir/Reference},
+      :fhir/flags #{:MS},
+      :zen.fhir/reference
+      {:refers #{hl7-fhir-us-mcode.mcode-cancer-stage-group/schema}}},
+     :type
+     {:zen.fhir/value-set
+      {:symbol
+       hl7-fhir-us-mcode.value-set.mcode-observation-codes-stage-group-vs/value-set,
+       :strength :required},
+      :zen/desc "Staging system used."}},
+    :fhir/flags #{:MS}}}}}

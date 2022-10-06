@@ -3,7 +3,6 @@
  #{hl7-fhir-us-mcode.value-set.mcode-cancer-disorder-vs
    hl7-fhir-r4-core.code
    zen.fhir
-   hl7-fhir-us-core.value-set.us-core-medication-codes
    hl7-fhir-r4-core.MedicationAdministration
    hl7-fhir-us-mcode.mcode-treatment-termination-reason
    hl7-fhir-us-mcode.mcode-primary-cancer-condition
@@ -20,7 +19,7 @@
   :zen.fhir/type "MedicationAdministration",
   :zen.fhir/profileUri
   "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-cancer-related-medication-administration",
-  :zen.fhir/version "0.5.21-14",
+  :zen.fhir/version "0.5.22",
   :confirms
   #{hl7-fhir-r4-core.MedicationAdministration/schema
     zen.fhir/Resource},
@@ -57,13 +56,7 @@
     :fhir/flags #{:MS},
     :zen.fhir/reference
     {:refers #{hl7-fhir-us-mcode.mcode-cancer-patient/schema}}},
-   :medication
-   {:fhir/polymorphic true,
-    :fhir/flags #{:MS},
-    :zen.fhir/value-set
-    {:symbol
-     hl7-fhir-us-core.value-set.us-core-medication-codes/value-set,
-     :strength :extensible}},
+   :medication #:fhir{:polymorphic true, :flags #{:MS}},
    :reasonReference
    {:type zen/vector,
     :every
