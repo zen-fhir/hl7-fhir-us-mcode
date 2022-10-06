@@ -3,18 +3,19 @@
  #{hl7-fhir-r4-core.BackboneElement
    hl7-fhir-r4-core.code
    zen.fhir
+   hl7-fhir-us-mcode.mcode-laterality-qualifier
    hl7-fhir-r4-core.Specimen
    hl7-fhir-us-mcode.mcode-primary-cancer-condition
    hl7-fhir-us-mcode.mcode-cancer-patient
+   hl7-fhir-us-mcode.mcode-related-condition
+   hl7-fhir-us-mcode.mcode-body-location-qualifier
    hl7-fhir-r4-core.Reference
    hl7-fhir-r4-core.Element
-   hl7-fhir-us-mcode.mcode-location-qualifier
    hl7-fhir-r4-core.CodeableConcept
    hl7-fhir-r4-core.Identifier
-   hl7-fhir-us-mcode.mcode-secondary-cancer-condition
-   hl7-fhir-us-mcode.mcode-condition-related},
+   hl7-fhir-us-mcode.mcode-secondary-cancer-condition},
  schema
- {:zen.fhir/version "0.5.22",
+ {:zen.fhir/version "0.5.22-1",
   :confirms #{zen.fhir/Resource hl7-fhir-r4-core.Specimen/schema},
   :zen/tags #{zen.fhir/profile-schema zen/schema},
   :zen.fhir/profileUri
@@ -22,12 +23,12 @@
   :require #{:type},
   :type zen/map,
   :zen/desc
-  "Represents a tumor after it has been removed from the body. Prior to excision, use [Tumor](StructureDefinition-mcode-tumor.html) (a BodyStructure) instead. If this tumor was represented by [Tumor](StructureDefinition-mcode-tumor.html) while still in the body, use `identifier` to associate with that resource.",
+  "Represents a tumor after it has been removed from the body. If there is a Tumor resource representing the tumor before it was removed from the body, use `identifier` to associate this TumorSpecimen with that Tumor resource.",
   :keys
   {:relatedCondition
-   {:confirms #{hl7-fhir-us-mcode.mcode-condition-related/schema},
+   {:confirms #{hl7-fhir-us-mcode.mcode-related-condition/schema},
     :fhir/extensionUri
-    "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-condition-related",
+    "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-related-condition",
     :type zen/map,
     :keys
     {:value
@@ -42,7 +43,7 @@
          #{hl7-fhir-us-mcode.mcode-primary-cancer-condition/schema
            hl7-fhir-us-mcode.mcode-secondary-cancer-condition/schema}}}}}},
     :fhir/flags #{:MS},
-    :zen/desc "Cancer condition associated with this sample."},
+    :zen/desc "Cancer condition associated with this specimen."},
    :identifier
    {:slicing {:slices {}},
     :type zen/vector,
@@ -76,10 +77,16 @@
        {:type zen/vector,
         :every
         {:confirms
-         #{hl7-fhir-us-mcode.mcode-location-qualifier/schema},
+         #{hl7-fhir-us-mcode.mcode-body-location-qualifier/schema},
          :fhir/extensionUri
-         "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-location-qualifier",
-         :fhir/flags #{:MS}}}},
+         "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-body-location-qualifier",
+         :fhir/flags #{:MS}}},
+       :lateralityQualifier
+       {:confirms
+        #{hl7-fhir-us-mcode.mcode-laterality-qualifier/schema},
+        :fhir/extensionUri
+        "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-laterality-qualifier",
+        :fhir/flags #{:MS}}},
       :fhir/flags #{:MS}}},
     :fhir/flags #{:MS}}},
   :zen.fhir/type "Specimen"}}

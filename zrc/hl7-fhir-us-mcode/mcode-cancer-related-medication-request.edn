@@ -3,13 +3,13 @@
  #{hl7-fhir-us-mcode.value-set.mcode-cancer-disorder-vs
    zen.fhir
    hl7-fhir-us-core.us-core-practitioner
+   hl7-fhir-us-mcode.mcode-procedure-intent
    hl7-fhir-us-mcode.mcode-treatment-termination-reason
    hl7-fhir-us-core.us-core-organization
    hl7-fhir-us-mcode.mcode-primary-cancer-condition
    hl7-fhir-us-mcode.mcode-cancer-patient
    hl7-fhir-r4-core.Reference
    hl7-fhir-r4-core.CodeableConcept
-   hl7-fhir-us-mcode.mcode-treatment-intent
    hl7-fhir-us-mcode.mcode-secondary-cancer-condition
    hl7-fhir-us-core.us-core-medicationrequest},
  schema
@@ -19,16 +19,16 @@
   :zen.fhir/type "MedicationRequest",
   :zen.fhir/profileUri
   "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-cancer-related-medication-request",
-  :zen.fhir/version "0.5.22",
+  :zen.fhir/version "0.5.22-1",
   :confirms
   #{hl7-fhir-us-core.us-core-medicationrequest/schema
     zen.fhir/Resource},
   :type zen/map,
   :keys
   {:treatmentIntent
-   {:confirms #{hl7-fhir-us-mcode.mcode-treatment-intent/schema},
+   {:confirms #{hl7-fhir-us-mcode.mcode-procedure-intent/schema},
     :fhir/extensionUri
-    "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-treatment-intent",
+    "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-procedure-intent",
     :fhir/flags #{:MS}},
    :terminationReason
    {:type zen/vector,
@@ -57,7 +57,7 @@
      :zen.fhir/value-set
      {:symbol
       hl7-fhir-us-mcode.value-set.mcode-cancer-disorder-vs/value-set,
-      :strength :required}}},
+      :strength :extensible}}},
    :reasonReference
    {:type zen/vector,
     :every

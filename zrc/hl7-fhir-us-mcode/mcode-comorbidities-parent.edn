@@ -6,6 +6,7 @@
    zen.fhir
    hl7-fhir-us-mcode.mcode-comorbid-condition-reference
    hl7-fhir-us-mcode.mcode-comorbid-condition-code
+   hl7-fhir-us-mcode.mcode-cancer-patient
    hl7-fhir-r4-core.Extension
    hl7-fhir-r4-core.Reference
    hl7-fhir-r4-core.CodeableConcept},
@@ -16,11 +17,15 @@
   :zen.fhir/type "Observation",
   :zen.fhir/profileUri
   "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-comorbidities-parent",
-  :zen.fhir/version "0.5.22",
+  :zen.fhir/version "0.5.22-1",
   :confirms #{hl7-fhir-r4-core.Observation/schema zen.fhir/Resource},
   :type zen/map,
   :keys
-  {:focus
+  {:subject
+   {:confirms #{hl7-fhir-r4-core.Reference/schema zen.fhir/Reference},
+    :zen.fhir/reference
+    {:refers #{hl7-fhir-us-mcode.mcode-cancer-patient/schema}}},
+   :focus
    {:type zen/vector,
     :every
     {:confirms #{hl7-fhir-r4-core.Reference/schema zen.fhir/Reference},

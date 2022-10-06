@@ -6,7 +6,6 @@
    zen.fhir
    hl7-fhir-us-core.us-core-practitioner
    hl7-fhir-r4-core.dateTime
-   hl7-fhir-us-mcode.mcode-evidence-type
    hl7-fhir-us-mcode.mcode-primary-cancer-condition
    hl7-fhir-us-mcode.mcode-cancer-patient
    hl7-fhir-us-mcode.mcode-tumor
@@ -14,9 +13,10 @@
    hl7-fhir-r4-core.Element
    hl7-fhir-r4-core.CodeableConcept
    hl7-fhir-us-mcode.value-set.mcode-condition-status-trend-vs
+   hl7-fhir-us-mcode.mcode-cancer-disease-status-evidence-type
    hl7-fhir-us-mcode.mcode-secondary-cancer-condition},
  schema
- {:zen.fhir/version "0.5.22",
+ {:zen.fhir/version "0.5.22-1",
   :confirms #{hl7-fhir-r4-core.Observation/schema zen.fhir/Resource},
   :zen/tags #{zen.fhir/profile-schema zen/schema},
   :zen.fhir/profileUri
@@ -63,9 +63,10 @@
    :evidenceType
    {:type zen/vector,
     :every
-    {:confirms #{hl7-fhir-us-mcode.mcode-evidence-type/schema},
+    {:confirms
+     #{hl7-fhir-us-mcode.mcode-cancer-disease-status-evidence-type/schema},
      :fhir/extensionUri
-     "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-evidence-type",
+     "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-cancer-disease-status-evidence-type",
      :fhir/flags #{:MS}}},
    :effective
    {:fhir/polymorphic true,
@@ -75,7 +76,7 @@
      :_dateTime {:confirms #{hl7-fhir-r4-core.Element/schema}}},
     :fhir/flags #{:MS}},
    :code
-   {:match {:coding #{{:system "http://loinc.org", :code "88040-1"}}},
+   {:match {:coding #{{:system "http://loinc.org", :code "97509-4"}}},
     :confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
     :fhir/flags #{:MS}},
    :focus
@@ -102,8 +103,5 @@
     :every
     {:confirms #{hl7-fhir-r4-core.Reference/schema zen.fhir/Reference},
      :zen.fhir/reference
-     {:refers #{hl7-fhir-us-core.us-core-practitioner/schema}}}},
-   :dataAbsentReason
-   {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
-    :fhir/flags #{:MS}}},
+     {:refers #{hl7-fhir-us-core.us-core-practitioner/schema}}}}},
   :zen.fhir/type "Observation"}}

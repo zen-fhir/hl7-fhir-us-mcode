@@ -6,13 +6,13 @@
    hl7-fhir-r4-core.unsignedInt
    hl7-fhir-r4-core.Reference},
  schema
- {:zen.fhir/version "0.5.22",
+ {:zen.fhir/version "0.5.22-1",
   :zen/tags #{zen/schema zen.fhir/structure-schema},
   :zen.fhir/profileUri
   "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-radiotherapy-dose-delivered-to-volume",
   :require #{:volume},
   :type zen/map,
-  :zen/desc "Dose parameters for one radiotherapy volume.",
+  :zen/desc "Dose delivered to a given radiotherapy volume.",
   :keys
   {:volume
    {:confirms #{hl7-fhir-r4-core.Reference/schema zen.fhir/Reference},

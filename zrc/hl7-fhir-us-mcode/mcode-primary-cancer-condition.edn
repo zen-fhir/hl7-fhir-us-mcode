@@ -1,12 +1,13 @@
 {ns hl7-fhir-us-mcode.mcode-primary-cancer-condition,
  import
- #{hl7-fhir-us-mcode.value-set.mcode-cancer-body-location-vs
+ #{hl7-fhir-us-mcode.value-set.mcode-primary-cancer-disorder-vs
+   hl7-fhir-us-mcode.value-set.mcode-cancer-body-location-vs
    zen.fhir
+   hl7-fhir-us-mcode.mcode-laterality-qualifier
    hl7-fhir-us-mcode.value-set.mcode-observation-codes-stage-group-vs
+   hl7-fhir-us-mcode.mcode-body-location-qualifier
    hl7-fhir-r4-core.Reference
-   hl7-fhir-us-mcode.value-set.mcode-primary-or-uncertain-behavior-cancer-disorder-vs
    hl7-fhir-us-mcode.mcode-histology-morphology-behavior
-   hl7-fhir-us-mcode.mcode-location-qualifier
    hl7-fhir-r4-core.condition-assertedDate
    hl7-fhir-us-mcode.mcode-cancer-stage-group},
  schema
@@ -16,7 +17,7 @@
   :zen.fhir/type "Condition",
   :zen.fhir/profileUri
   "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-primary-cancer-condition",
-  :zen.fhir/version "0.5.22",
+  :zen.fhir/version "0.5.22-1",
   :confirms #{zen.fhir/Resource},
   :type zen/map,
   :keys
@@ -34,18 +35,24 @@
    :code
    #:zen.fhir{:value-set
               {:symbol
-               hl7-fhir-us-mcode.value-set.mcode-primary-or-uncertain-behavior-cancer-disorder-vs/value-set,
-               :strength :required}},
+               hl7-fhir-us-mcode.value-set.mcode-primary-cancer-disorder-vs/value-set,
+               :strength :extensible}},
    :bodySite
    {:type zen/map,
     :keys
     {:locationQualifier
      {:type zen/vector,
       :every
-      {:confirms #{hl7-fhir-us-mcode.mcode-location-qualifier/schema},
+      {:confirms
+       #{hl7-fhir-us-mcode.mcode-body-location-qualifier/schema},
        :fhir/extensionUri
-       "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-location-qualifier",
-       :fhir/flags #{:MS}}}},
+       "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-body-location-qualifier",
+       :fhir/flags #{:MS}}},
+     :lateralityQualifier
+     {:confirms #{hl7-fhir-us-mcode.mcode-laterality-qualifier/schema},
+      :fhir/extensionUri
+      "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-laterality-qualifier",
+      :fhir/flags #{:MS}}},
     :fhir/flags #{:MS},
     :zen.fhir/value-set
     {:symbol

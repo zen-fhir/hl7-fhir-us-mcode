@@ -1,0 +1,17 @@
+{ns hl7-fhir-us-mcode.mcode-laterality-qualifier,
+ import
+ #{zen.fhir
+   hl7-fhir-us-mcode.value-set.mcode-laterality-qualifier-vs
+   hl7-fhir-r4-core.CodeableConcept},
+ schema
+ {:zen/tags #{zen/schema zen.fhir/structure-schema},
+  :zen/desc "Qualifier to specify laterality.",
+  :zen.fhir/type "CodeableConcept",
+  :zen.fhir/profileUri
+  "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-laterality-qualifier",
+  :zen.fhir/version "0.5.22-1",
+  :confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+  :zen.fhir/value-set
+  {:symbol
+   hl7-fhir-us-mcode.value-set.mcode-laterality-qualifier-vs/value-set,
+   :strength :required}}}

@@ -3,6 +3,7 @@
  #{zen.fhir
    hl7-fhir-r4-core.string
    hl7-fhir-us-mcode.value-set.mcode-radiotherapy-volume-type-vs
+   hl7-fhir-us-mcode.mcode-cancer-patient
    hl7-fhir-r4-core.Reference
    hl7-fhir-r4-core.BodyStructure
    hl7-fhir-r4-core.Element
@@ -17,12 +18,13 @@
   :zen.fhir/type "BodyStructure",
   :zen.fhir/profileUri
   "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-radiotherapy-volume",
-  :zen.fhir/version "0.5.22",
+  :zen.fhir/version "0.5.22-1",
   :confirms #{hl7-fhir-r4-core.BodyStructure/schema zen.fhir/Resource},
   :type zen/map,
   :keys
   {:identifier
-   {:type zen/vector,
+   {:slicing {:slices {}},
+    :type zen/vector,
     :every
     {:confirms #{hl7-fhir-r4-core.Identifier/schema},
      :fhir/flags #{:MS},
@@ -51,7 +53,9 @@
      :zen.fhir/value-set
      {:symbol
       hl7-fhir-us-mcode.value-set.mcode-radiotherapy-treatment-location-qualifier-vs/value-set,
-      :strength :extensible}}},
+      :strength :required},
+     :zen/desc
+     "Qualifiers on location used to specify a TG263 body structure comprising the irradiated volume."}},
    :description
    {:confirms #{hl7-fhir-r4-core.string/schema},
     :fhir/flags #{:MS},
@@ -60,4 +64,5 @@
    :patient
    {:confirms #{hl7-fhir-r4-core.Reference/schema zen.fhir/Reference},
     :fhir/flags #{:MS},
-    :zen.fhir/reference {:refers #{}}}}}}
+    :zen.fhir/reference
+    {:refers #{hl7-fhir-us-mcode.mcode-cancer-patient/schema}}}}}}

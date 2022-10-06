@@ -4,11 +4,12 @@
  {:zen/tags #{zen.fhir/value-set},
   :zen/desc
   "Codes describing the types of body volumes used in radiotherapy planning and treatment. The value set includes the most common codes from DICOM CID 9534 Radiotherapy Targets (UID 1.2.840.10008.6.1.1244) and adds a code for Organs at Risk (OAR).",
-  :zen.fhir/version "0.5.22",
+  :zen.fhir/version "0.5.22-1",
   :fhir/code-systems
-  #{{:fhir/url "http://terminology.hl7.org/CodeSystem/umls",
+  #{{:fhir/url
+     "http://hl7.org/fhir/us/mcode/CodeSystem/snomed-requested-cs",
      :zen.fhir/content :bundled}
     {:fhir/url "http://snomed.info/sct", :zen.fhir/content :bundled}},
   :uri
   "http://hl7.org/fhir/us/mcode/ValueSet/mcode-radiotherapy-volume-type-vs",
-  :version "1.16.0"}}
+  :version "2.0.0"}}

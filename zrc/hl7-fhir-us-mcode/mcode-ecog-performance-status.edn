@@ -8,14 +8,14 @@
    hl7-fhir-r4-core.code
    zen.fhir
    hl7-fhir-r4-core.dateTime
-   hl7-fhir-us-core.us-core-patient
+   hl7-fhir-us-mcode.mcode-cancer-patient
    hl7-fhir-r4-core.Reference
    hl7-fhir-r4-core.ServiceRequest
    hl7-fhir-r4-core.Element
    hl7-fhir-r4-core.Procedure
    hl7-fhir-r4-core.CodeableConcept},
  schema
- {:zen.fhir/version "0.5.22",
+ {:zen.fhir/version "0.5.22-1",
   :confirms #{hl7-fhir-r4-core.Observation/schema zen.fhir/Resource},
   :zen/tags #{zen.fhir/profile-schema zen/schema},
   :zen.fhir/profileUri
@@ -102,5 +102,5 @@
    {:confirms #{hl7-fhir-r4-core.Reference/schema zen.fhir/Reference},
     :fhir/flags #{:MS},
     :zen.fhir/reference
-    {:refers #{hl7-fhir-us-core.us-core-patient/schema}}}},
+    {:refers #{hl7-fhir-us-mcode.mcode-cancer-patient/schema}}}},
   :zen.fhir/type "Observation"}}

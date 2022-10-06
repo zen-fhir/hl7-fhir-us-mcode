@@ -3,14 +3,15 @@
  #{hl7-fhir-us-mcode.value-set.mcode-cancer-disorder-vs
    hl7-fhir-r4-core.code
    zen.fhir
+   hl7-fhir-us-mcode.mcode-procedure-intent
    hl7-fhir-r4-core.MedicationAdministration
    hl7-fhir-us-mcode.mcode-treatment-termination-reason
+   us-nlm-vsac.value-set.2.16.840.1.113762.1.4.1010.4
    hl7-fhir-us-mcode.mcode-primary-cancer-condition
    hl7-fhir-us-mcode.mcode-cancer-patient
    hl7-fhir-r4-core.Reference
    hl7-fhir-r4-core.Element
    hl7-fhir-r4-core.CodeableConcept
-   hl7-fhir-us-mcode.mcode-treatment-intent
    hl7-fhir-us-mcode.mcode-secondary-cancer-condition},
  schema
  {:zen/tags #{zen.fhir/profile-schema zen/schema},
@@ -19,7 +20,7 @@
   :zen.fhir/type "MedicationAdministration",
   :zen.fhir/profileUri
   "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-cancer-related-medication-administration",
-  :zen.fhir/version "0.5.22",
+  :zen.fhir/version "0.5.22-1",
   :confirms
   #{hl7-fhir-r4-core.MedicationAdministration/schema
     zen.fhir/Resource},
@@ -42,11 +43,11 @@
      :zen.fhir/value-set
      {:symbol
       hl7-fhir-us-mcode.value-set.mcode-cancer-disorder-vs/value-set,
-      :strength :required}}},
+      :strength :extensible}}},
    :treatmentIntent
-   {:confirms #{hl7-fhir-us-mcode.mcode-treatment-intent/schema},
+   {:confirms #{hl7-fhir-us-mcode.mcode-procedure-intent/schema},
     :fhir/extensionUri
-    "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-treatment-intent",
+    "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-procedure-intent",
     :fhir/flags #{:MS}},
    :status
    {:confirms #{hl7-fhir-r4-core.code/schema}, :fhir/flags #{:MS}},
@@ -56,7 +57,13 @@
     :fhir/flags #{:MS},
     :zen.fhir/reference
     {:refers #{hl7-fhir-us-mcode.mcode-cancer-patient/schema}}},
-   :medication #:fhir{:polymorphic true, :flags #{:MS}},
+   :medication
+   {:fhir/polymorphic true,
+    :fhir/flags #{:MS},
+    :zen.fhir/value-set
+    {:symbol
+     us-nlm-vsac.value-set.2.16.840.1.113762.1.4.1010.4/value-set,
+     :strength :extensible}},
    :reasonReference
    {:type zen/vector,
     :every

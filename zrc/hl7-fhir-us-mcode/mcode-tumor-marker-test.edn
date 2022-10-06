@@ -1,7 +1,9 @@
 {ns hl7-fhir-us-mcode.mcode-tumor-marker-test,
  import
- #{hl7-fhir-r4-core.Ratio
+ #{hl7-fhir-r4-core.Period
+   hl7-fhir-r4-core.Ratio
    zen.fhir
+   hl7-fhir-r4-core.dateTime
    hl7-fhir-r4-core.string
    hl7-fhir-us-mcode.mcode-cancer-patient
    hl7-fhir-r4-core.Quantity
@@ -17,7 +19,7 @@
   :zen.fhir/type "Observation",
   :zen.fhir/profileUri
   "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-tumor-marker-test",
-  :zen.fhir/version "0.5.22",
+  :zen.fhir/version "0.5.22-1",
   :confirms
   #{hl7-fhir-us-core.us-core-observation-lab/schema zen.fhir/Resource},
   :type zen/map,
@@ -27,11 +29,19 @@
     :zen.fhir/value-set
     {:symbol
      hl7-fhir-us-mcode.value-set.mcode-tumor-marker-test-vs/value-set,
-     :strength :required}},
+     :strength :extensible}},
    :subject
    {:confirms #{hl7-fhir-r4-core.Reference/schema zen.fhir/Reference},
     :zen.fhir/reference
     {:refers #{hl7-fhir-us-mcode.mcode-cancer-patient/schema}}},
+   :effective
+   {:fhir/polymorphic true,
+    :exclusive-keys #{#{:dateTime :Period}},
+    :type zen/map,
+    :keys
+    {:dateTime {:confirms #{hl7-fhir-r4-core.dateTime/schema}},
+     :_dateTime {:confirms #{hl7-fhir-r4-core.Element/schema}},
+     :Period {:confirms #{hl7-fhir-r4-core.Period/schema}}}},
    :value
    {:fhir/polymorphic true,
     :exclusive-keys #{#{:string :Ratio :CodeableConcept :Quantity}},

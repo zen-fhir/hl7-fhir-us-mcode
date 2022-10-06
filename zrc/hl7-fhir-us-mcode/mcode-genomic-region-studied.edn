@@ -12,11 +12,11 @@
  schema
  {:zen/tags #{zen.fhir/profile-schema zen/schema},
   :zen/desc
-  "The area of the genome region referenced in testing for variants.",
+  "A subset of genes or genomic regions of interest in a targeted resequencing study.",
   :zen.fhir/type "Observation",
   :zen.fhir/profileUri
   "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-genomic-region-studied",
-  :zen.fhir/version "0.5.22",
+  :zen.fhir/version "0.5.22-1",
   :confirms
   #{hl7-fhir-us-core.us-core-observation-lab/schema zen.fhir/Resource},
   :type zen/map,
@@ -49,10 +49,7 @@
            :zen.fhir/value-set
            {:symbol
             hl7-fhir-us-mcode.value-set.mcode-hgvs-vs/value-set,
-            :strength :required}},
-          :dataAbsentReason
-          {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
-           :fhir/flags #{:MS}}}}},
+            :strength :required}}}}},
        :filter
        {:engine :match,
         :match
@@ -79,10 +76,7 @@
            :zen.fhir/value-set
            {:symbol
             hl7-fhir-us-mcode.value-set.mcode-hgnc-vs/value-set,
-            :strength :extensible}},
-          :dataAbsentReason
-          {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
-           :fhir/flags #{:MS}}}}},
+            :strength :extensible}}}}},
        :filter
        {:engine :match,
         :match
@@ -105,9 +99,6 @@
            :keys
            {:string {:confirms #{hl7-fhir-r4-core.string/schema}},
             :_string {:confirms #{hl7-fhir-r4-core.Element/schema}}},
-           :fhir/flags #{:MS}},
-          :dataAbsentReason
-          {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
            :fhir/flags #{:MS}}}}},
        :filter
        {:engine :match,
@@ -129,9 +120,6 @@
           {:fhir/polymorphic true,
            :type zen/map,
            :keys {:Range {:confirms #{hl7-fhir-r4-core.Range/schema}}},
-           :fhir/flags #{:MS}},
-          :dataAbsentReason
-          {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
            :fhir/flags #{:MS}}}}},
        :filter
        {:engine :match,
@@ -156,9 +144,6 @@
            :keys
            {:CodeableConcept
             {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema}}},
-           :fhir/flags #{:MS}},
-          :dataAbsentReason
-          {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
            :fhir/flags #{:MS}}}}},
        :filter
        {:engine :match,
@@ -177,10 +162,7 @@
            {:coding #{{:system "http://loinc.org", :code "48013-7"}}},
            :confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
            :fhir/flags #{:MS}},
-          :value #:fhir{:polymorphic true, :flags #{:MS}},
-          :dataAbsentReason
-          {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
-           :fhir/flags #{:MS}}}}},
+          :value #:fhir{:polymorphic true, :flags #{:MS}}}}},
        :filter
        {:engine :match,
         :match
@@ -195,8 +177,5 @@
      {:code
       {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
        :fhir/flags #{:MS}},
-      :value #:fhir{:polymorphic true, :flags #{:MS}},
-      :dataAbsentReason
-      {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
-       :fhir/flags #{:MS}}},
+      :value #:fhir{:polymorphic true, :flags #{:MS}}},
      :fhir/flags #{:MS}}}}}}

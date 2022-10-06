@@ -2,17 +2,17 @@
  import
  #{hl7-fhir-us-mcode.value-set.mcode-cancer-body-location-vs
    zen.fhir
-   hl7-fhir-us-mcode.value-set.mcode-location-qualifier-vs
    hl7-fhir-us-mcode.mcode-primary-cancer-condition
    hl7-fhir-us-mcode.mcode-cancer-patient
+   hl7-fhir-us-mcode.mcode-related-condition
    hl7-fhir-r4-core.Reference
    hl7-fhir-r4-core.BodyStructure
+   hl7-fhir-us-mcode.value-set.mcode-body-location-and-laterality-qualifier-vs
    hl7-fhir-r4-core.CodeableConcept
    hl7-fhir-r4-core.Identifier
-   hl7-fhir-us-mcode.mcode-secondary-cancer-condition
-   hl7-fhir-us-mcode.mcode-condition-related},
+   hl7-fhir-us-mcode.mcode-secondary-cancer-condition},
  schema
- {:zen.fhir/version "0.5.22",
+ {:zen.fhir/version "0.5.22-1",
   :confirms #{hl7-fhir-r4-core.BodyStructure/schema zen.fhir/Resource},
   :zen/tags #{zen.fhir/profile-schema zen/schema},
   :zen.fhir/profileUri
@@ -20,12 +20,12 @@
   :require #{:identifier :location},
   :type zen/map,
   :zen/desc
-  "Identifies a tumor that has not been removed from the body. Whenever possible, a single resource conforming to this profile will be used to track a tumor over time (as opposed to creating new Tumor-conforming BodyStructure resources each time that tumor is measured). Use [TumorSpecimen](StructureDefinition-mcode-tumor-specimen.html) to represent the tumor after removal from the body.",
+  "Identifies a tumor that has not been removed from the body. Whenever possible, a single resource conforming to this profile will be used to track a tumor over time (as opposed to creating new Tumor-conforming BodyStructure resources each time that tumor is measured). Use TumorSpecimen to represent the tumor after removal from the body.",
   :keys
   {:relatedCondition
-   {:confirms #{hl7-fhir-us-mcode.mcode-condition-related/schema},
+   {:confirms #{hl7-fhir-us-mcode.mcode-related-condition/schema},
     :fhir/extensionUri
-    "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-condition-related",
+    "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-related-condition",
     :type zen/map,
     :keys
     {:value
@@ -74,7 +74,7 @@
      :fhir/flags #{:MS},
      :zen.fhir/value-set
      {:symbol
-      hl7-fhir-us-mcode.value-set.mcode-location-qualifier-vs/value-set,
+      hl7-fhir-us-mcode.value-set.mcode-body-location-and-laterality-qualifier-vs/value-set,
       :strength :required}}},
    :patient
    {:confirms #{hl7-fhir-r4-core.Reference/schema zen.fhir/Reference},
