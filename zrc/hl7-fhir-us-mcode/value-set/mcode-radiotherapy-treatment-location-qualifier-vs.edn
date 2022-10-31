@@ -5,7 +5,7 @@
  {:zen/tags #{zen.fhir/value-set},
   :zen/desc
   "Various modifiers that can be applied to body locations where radiotherapy treatments can be directed.",
-  :zen.fhir/version "0.5.26-5",
+  :zen.fhir/version "0.5.27",
   :fhir/code-systems
   #{{:fhir/url
      "http://hl7.org/fhir/us/mcode/CodeSystem/snomed-requested-cs",
@@ -21,5 +21,4 @@
    :source-url "node_modules/hl7.fhir.us.mcode",
    :source-type :ig,
    :ftr-path "ftr",
-   :zen/package-name "hl7-fhir-us-mcode",
    :tag "init"}}}

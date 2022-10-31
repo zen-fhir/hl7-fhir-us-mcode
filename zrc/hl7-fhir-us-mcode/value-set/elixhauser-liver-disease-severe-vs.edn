@@ -4,7 +4,7 @@
  {:zen/tags #{zen.fhir/value-set},
   :zen/desc
   "Elixhauser Comorbid Condition Value Set for Moderate to Severe Liver Disease. ICD-10 codes are drawn from https://www.hcup-us.ahrq.gov/toolssoftware/comorbidityicd10/comorbidity_icd10.jsp, version 2021.1",
-  :zen.fhir/version "0.5.26-5",
+  :zen.fhir/version "0.5.27",
   :fhir/code-systems
   #{{:fhir/url "http://hl7.org/fhir/sid/icd-10-cm",
      :zen.fhir/content :bundled}},
@@ -16,5 +16,4 @@
    :source-url "node_modules/hl7.fhir.us.mcode",
    :source-type :ig,
    :ftr-path "ftr",
-   :zen/package-name "hl7-fhir-us-mcode",
    :tag "init"}}}
