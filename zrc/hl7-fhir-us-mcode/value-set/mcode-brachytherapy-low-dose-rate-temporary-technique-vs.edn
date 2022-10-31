@@ -5,7 +5,7 @@
  {:zen/tags #{zen.fhir/value-set},
   :zen/desc
   "Allowed techniques for brachytherapy modality Low Dose Rate using temporary radiation source",
-  :zen.fhir/version "0.5.27-1",
+  :zen.fhir/version "0.5.28",
   :fhir/code-systems
   #{{:fhir/url "http://snomed.info/sct", :zen.fhir/content :bundled}},
   :uri
