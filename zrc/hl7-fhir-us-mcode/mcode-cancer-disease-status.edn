@@ -16,7 +16,7 @@
    hl7-fhir-us-mcode.mcode-cancer-disease-status-evidence-type
    hl7-fhir-us-mcode.mcode-secondary-cancer-condition},
  schema
- {:zen.fhir/version "0.5.28",
+ {:zen.fhir/version "0.5.30-1",
   :confirms #{hl7-fhir-r4-core.Observation/schema zen.fhir/Resource},
   :zen/tags #{zen.fhir/profile-schema zen/schema},
   :zen.fhir/profileUri
