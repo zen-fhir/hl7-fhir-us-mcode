@@ -4,7 +4,7 @@
  {:zen/tags #{zen.fhir/value-set},
   :zen/desc
   "This value set is intended to contain allowable values for Stage Group, according to TNM staging rules. AJCC codes (preferably, version 8 for current cancers) SHOULD be used.",
-  :zen.fhir/version "0.5.31",
+  :zen.fhir/version "0.5.31-1",
   :fhir/code-systems
   #{{:fhir/url "http://cancerstaging.org",
      :zen.fhir/content :not-present}},

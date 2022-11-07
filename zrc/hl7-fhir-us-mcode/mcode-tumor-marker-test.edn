@@ -19,7 +19,7 @@
   :zen.fhir/type "Observation",
   :zen.fhir/profileUri
   "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-tumor-marker-test",
-  :zen.fhir/version "0.5.31",
+  :zen.fhir/version "0.5.31-1",
   :confirms
   #{hl7-fhir-us-core.us-core-observation-lab/schema zen.fhir/Resource},
   :type zen/map,
