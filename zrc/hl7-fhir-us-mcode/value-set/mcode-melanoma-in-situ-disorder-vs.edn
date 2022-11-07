@@ -4,7 +4,7 @@
  {:zen/tags #{zen.fhir/value-set},
   :zen/desc
   "Types of melanoma in-situ, coded in SNOMED CT or ICD-10-CM.",
-  :zen.fhir/version "0.5.30-1",
+  :zen.fhir/version "0.5.31",
   :fhir/code-systems
   #{{:fhir/url "http://hl7.org/fhir/sid/icd-10-cm",
      :zen.fhir/content :bundled}
@@ -15,7 +15,7 @@
   :version "2.0.0",
   :ftr
   {:module "ig",
-   :source-url "node_modules/hl7.fhir.us.mcode",
-   :source-type :ig,
+   :source-urls ["node_modules/hl7.fhir.us.mcode"],
+   :source-type :igs,
    :ftr-path "ftr",
    :tag "init"}}}

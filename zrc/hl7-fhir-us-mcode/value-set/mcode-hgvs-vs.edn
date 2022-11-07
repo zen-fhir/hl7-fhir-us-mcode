@@ -4,7 +4,7 @@
  {:zen/tags #{zen.fhir/value-set},
   :zen/desc
   "HGVS nomenclature is used to report and exchange information regarding variants found in DNA, RNA, and protein sequences.",
-  :zen.fhir/version "0.5.30-1",
+  :zen.fhir/version "0.5.31",
   :fhir/code-systems
   #{{:fhir/url "http://varnomen.hgvs.org",
      :zen.fhir/content :not-present}},
@@ -12,7 +12,7 @@
   :version "2.0.0",
   :ftr
   {:module "ig",
-   :source-url "node_modules/hl7.fhir.us.mcode",
-   :source-type :ig,
+   :source-urls ["node_modules/hl7.fhir.us.mcode"],
+   :source-type :igs,
    :ftr-path "ftr",
    :tag "init"}}}

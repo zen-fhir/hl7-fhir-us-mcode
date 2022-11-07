@@ -4,7 +4,7 @@
  value-set
  {:zen/tags #{zen.fhir/value-set},
   :zen/desc "Allowed techniques for photon beam modality",
-  :zen.fhir/version "0.5.30-1",
+  :zen.fhir/version "0.5.31",
   :fhir/code-systems
   #{{:fhir/url
      "http://hl7.org/fhir/us/mcode/CodeSystem/snomed-requested-cs",
@@ -15,7 +15,7 @@
   :version "2.0.0",
   :ftr
   {:module "ig",
-   :source-url "node_modules/hl7.fhir.us.mcode",
-   :source-type :ig,
+   :source-urls ["node_modules/hl7.fhir.us.mcode"],
+   :source-type :igs,
    :ftr-path "ftr",
    :tag "init"}}}
