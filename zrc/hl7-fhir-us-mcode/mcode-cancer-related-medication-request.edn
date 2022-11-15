@@ -19,7 +19,7 @@
   :zen.fhir/type "MedicationRequest",
   :zen.fhir/profileUri
   "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-cancer-related-medication-request",
-  :zen.fhir/version "0.5.32-2",
+  :zen.fhir/version "0.5.33",
   :confirms
   #{hl7-fhir-us-core.us-core-medicationrequest/schema
     zen.fhir/Resource},
