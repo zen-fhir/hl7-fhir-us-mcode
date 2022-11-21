@@ -1,142 +1,307 @@
 {ns hl7-fhir-us-mcode,
- import
- #{hl7-fhir-us-mcode.value-set.elixhauser-neurological-seizure-disorder-vs
-   hl7-fhir-us-mcode.value-set.mcode-primary-cancer-disorder-vs
-   hl7-fhir-us-mcode.value-set.mcode-cancer-disorder-vs
-   hl7-fhir-us-mcode.value-set.mcode-brachytherapy-technique-vs
-   hl7-fhir-us-mcode.mcode-patient-group
-   hl7-fhir-us-mcode.value-set.elixhauser-deficiency-anemia-vs
-   hl7-fhir-us-mcode.value-set.mcode-genomic-molecular-consequence-vs
-   hl7-fhir-us-mcode.value-set.mcode-teleradiotherapy-modality-vs
-   hl7-fhir-us-mcode.value-set.mcode-tnm-primary-tumor-category-vs
-   hl7-fhir-us-mcode.value-set.mcode-observation-codes-primary-tumor-vs
-   hl7-fhir-us-mcode.value-set.mcode-cancer-body-location-vs
-   hl7-fhir-us-mcode.mcode-radiotherapy-modality
-   hl7-fhir-us-mcode.value-set.elixhauser-blood-loss-anemia-vs
-   hl7-fhir-us-mcode.mcode-tumor-marker-test
-   hl7-fhir-us-mcode.value-set.mcode-melanoma-in-situ-disorder-vs
-   hl7-fhir-us-mcode.mcode-radiotherapy-course-summary
-   hl7-fhir-us-mcode.value-set.mcode-clinvar-vs
-   hl7-fhir-us-mcode.value-set.elixhauser-hypothyroidism-vs
-   hl7-fhir-us-mcode.value-set.mcode-dna-change-type-vs
-   hl7-fhir-us-core
-   hl7-fhir-us-mcode.mcode-laterality-qualifier
-   hl7-fhir-us-mcode.mcode-procedure-intent
-   hl7-fhir-us-mcode.value-set.mcode-observation-codes-stage-group-vs
-   hl7-fhir-us-mcode.value-set.mcode-cancer-related-surgical-procedure-vs
-   hl7-fhir-us-mcode.value-set.mcode-teleradiotherapy-electron-beam-technique-vs
-   hl7-fhir-us-mcode.mcode-comorbid-condition-reference
-   hl7-fhir-us-mcode.value-set.mcode-cancer-staging-system-vs
-   hl7-fhir-us-mcode.mcode-cancer-related-medication-request
-   hl7-fhir-r4-core
-   hl7-fhir-us-mcode.value-set.elixhauser-cancer-solid-tumor-in-situ-vs
-   hl7-fhir-us-mcode.value-set.mcode-radiotherapy-technique-vs
-   hl7-fhir-us-mcode.value-set.elixhauser-neurological-movement-disorder-vs
-   hl7-fhir-us-mcode.value-set.elixhauser-diabetes-complicated-vs
-   hl7-fhir-us-mcode.value-set.elixhauser-cancer-metastatic-vs
-   hl7-fhir-us-mcode.value-set.elixhauser-paralysis-vs
-   hl7-fhir-us-mcode.value-set.mcode-brachytherapy-high-dose-rate-technique-vs
-   hl7-fhir-us-mcode.mcode-cancer-disease-status
-   hl7-fhir-us-mcode.value-set.mcode-body-location-qualifier-vs
-   hl7-fhir-us-mcode.value-set.elixhauser-cerebrovascular-disease-vs
-   hl7-fhir-us-mcode.mcode-comorbid-condition-code
-   hl7-fhir-us-mcode.mcode-comorbidities-elixhauser
-   hl7-fhir-us-mcode.value-set.elixhauser-hypertension-uncomplicated-vs
-   hl7-fhir-us-mcode.value-set.elixhauser-peripheral-vascular-disease-vs
-   hl7-fhir-us-mcode.mcode-cancer-related-surgical-procedure
-   hl7-fhir-us-mcode.value-set.elixhauser-coagulation-deficiency-vs
-   hl7-fhir-us-mcode.value-set.elixhauser-dementia-vs
-   hl7-fhir-us-mcode.value-set.mcode-observation-codes-distant-metastases-vs
-   hl7-fhir-us-mcode.mcode-tumor-specimen
-   hl7-fhir-us-mcode.value-set.mcode-cancer-disease-status-evidence-type-vs
-   hl7-fhir-us-mcode.value-set.elixhauser-ulcer-vs
-   hl7-fhir-us-mcode.value-set.elixhauser-valvular-disease-vs
-   hl7-fhir-us-mcode.value-set.elixhauser-alcohol-abuse-vs
-   hl7-fhir-us-mcode.mcode-radiotherapy-modality-and-technique
-   hl7-fhir-us-mcode.mcode-treatment-termination-reason
-   hl7-fhir-us-mcode.value-set.mcode-brachytherapy-modality-vs
-   hl7-fhir-us-mcode.value-set.mcode-radiotherapy-volume-type-vs
-   hl7-fhir-us-mcode.value-set.mcode-present-absent
-   hl7-fhir-us-mcode.mcode-primary-cancer-condition
-   hl7-fhir-us-mcode.mcode-cancer-patient
-   hl7-fhir-us-mcode.mcode-radiotherapy-volume
-   hl7-fhir-us-mcode.mcode-patient-bundle
-   hl7-fhir-us-mcode.mcode-related-condition
-   hl7-fhir-us-mcode.value-set.mcode-tnm-distant-metastases-category-vs
-   hl7-fhir-us-mcode.value-set.mcode-teleradiotherapy-technique-vs
-   hl7-fhir-us-mcode.value-set.mcode-brachytherapy-radiopharmaceutical-technique-vs
-   hl7-fhir-us-mcode.value-set.mcode-benign-uncertain-neoplasm-brain-cns-disorder-vs
-   hl7-fhir-us-mcode.value-set.elixhauser-drug-abuse-vs
-   hl7-fhir-us-mcode.value-set.mcode-laterality-qualifier-vs
-   hl7-fhir-us-mcode.mcode-radiotherapy-sessions
-   hl7-fhir-us-mcode.value-set.elixhauser-aids-vs
-   hl7-fhir-us-mcode.mcode-cancer-related-medication-administration
-   hl7-fhir-us-mcode.mcode-tumor
-   hl7-fhir-us-mcode.value-set.mcode-carcinoma-in-situ-disorder-vs
-   hl7-fhir-us-mcode.value-set.mcode-genomic-specimen-type-vs
-   hl7-fhir-us-mcode.mcode-body-location-qualifier
-   hl7-fhir-us-mcode.value-set.mcode-hypereosinophilic-syndrome-disorder-vs
-   hl7-fhir-us-mcode.value-set.mcode-procedure-intent-vs
-   hl7-fhir-us-mcode.value-set.elixhauser-other-neurological-vs
-   hl7-fhir-us-mcode.value-set.elixhauser-diabetes-uncomplicated-vs
-   hl7-fhir-us-mcode.value-set.mcode-brachytherapy-high-dose-rate-electronic-technique-vs
-   hl7-fhir-us-mcode.value-set.mcode-tnm-regional-nodes-category-vs
-   hl7-fhir-us-mcode.value-set.elixhauser-depression-vs
-   hl7-fhir-us-mcode.value-set.mcode-tumor-size-units-vs
-   hl7-fhir-us-mcode.mcode-comorbidities-parent
-   hl7-fhir-us-mcode.value-set.mcode-observation-codes-regional-nodes-vs
-   hl7-fhir-us-mcode.value-set.mcode-radiotherapy-modality-vs
-   hl7-fhir-us-mcode.value-set.mcode-secondary-cancer-disorder-vs
-   hl7-fhir-us-mcode.value-set.mcode-teleradiotherapy-neutron-beam-technique-vs
-   hl7-fhir-us-mcode.value-set.elixhauser-psychosis-vs
-   hl7-fhir-us-mcode.value-set.elixhauser-cancer-lymphoma-vs
-   hl7-fhir-us-mcode.value-set.elixhauser-chronic-pulmonary-disease-vs
-   hl7-fhir-us-mcode.mcode-radiotherapy-dose-delivered-to-volume
-   hl7-fhir-us-mcode.mcode-ecog-performance-status
-   hl7-fhir-us-mcode.mcode-tnm-regional-nodes-category
-   hl7-fhir-us-mcode.value-set.mcode-primary-malignant-neoplasm-disorder-vs
-   hl7-fhir-us-mcode.value-set.mcode-tumor-size-method-vs
-   hl7-fhir-us-mcode.value-set.mcode-cancer-stage-group-vs
-   hl7-fhir-us-mcode.value-set.mcode-radiotherapy-treatment-location-vs
-   hl7-fhir-us-mcode.value-set.mcode-hgvs-vs
-   hl7-fhir-us-mcode.value-set.mcode-tumor-marker-test-vs
-   hl7-fhir-us-mcode.value-set.elixhauser-cancer-solid-tumor-malignant-vs
-   hl7-fhir-us-mcode.value-set.mcode-brachytherapy-permanent-seeds-technique-vs
-   hl7-fhir-us-mcode.value-set.mcode-body-location-and-laterality-qualifier-vs
-   hl7-fhir-us-mcode.value-set.mcode-brachytherapy-pulsed-dose-rate-technique-vs
-   hl7-fhir-us-mcode.value-set.elixhauser-obesity-vs
-   hl7-fhir-us-mcode.mcode-histology-morphology-behavior
-   hl7-fhir-us-mcode.mcode-radiotherapy-technique
-   hl7-fhir-us-mcode.value-set.mcode-brachytherapy-low-dose-rate-temporary-technique-vs
-   hl7-fhir-us-mcode.value-set.elixhauser-weight-loss-vs
-   hl7-fhir-us-mcode.mcode-genomic-specimen
-   hl7-fhir-us-mcode.value-set.elixhauser-liver-disease-mild-vs
-   hl7-fhir-us-mcode.value-set.elixhauser-rheumatoid-arthritis-vs
-   hl7-fhir-us-mcode.value-set.mcode-cytologic-evidence-malignancy-vs
-   hl7-fhir-us-mcode.value-set.mcode-teleradiotherapy-carbon-ion-beam-technique-vs
-   hl7-fhir-us-mcode.value-set.mcode-condition-status-trend-vs
-   hl7-fhir-us-mcode.mcode-tnm-primary-tumor-category
-   hl7-fhir-us-mcode.mcode-tumor-size
-   hl7-fhir-us-mcode.value-set.elixhauser-congestive-heart-failure-vs
-   hl7-fhir-us-mcode.value-set.elixhauser-pulmonary-circulation-disorder-vs
-   hl7-fhir-us-mcode.mcode-genomic-region-studied
-   hl7-fhir-us-mcode.mcode-cancer-disease-status-evidence-type
-   hl7-fhir-us-mcode.value-set.mcode-teleradiotherapy-photon-beam-technique-vs
-   hl7-fhir-us-mcode.mcode-body-structure-identifier
-   hl7-fhir-us-mcode.value-set.mcode-hgnc-vs
-   hl7-fhir-us-mcode.value-set.elixhauser-other-thyroid-disorder-vs
-   hl7-fhir-us-mcode.value-set.elixhauser-renal-failure-moderate-vs
-   hl7-fhir-us-mcode.mcode-genomic-variant
-   hl7-fhir-us-mcode.value-set.elixhauser-cancer-leukemia-vs
-   hl7-fhir-us-mcode.mcode-secondary-cancer-condition
-   hl7-fhir-us-mcode.mcode-genomics-report
-   hl7-fhir-us-mcode.value-set.mcode-teleradiotherapy-proton-beam-technique-vs
-   hl7-fhir-us-mcode.value-set.elixhauser-hypertension-complicated-vs
-   hl7-fhir-us-mcode.value-set.mcode-treatment-termination-reason-vs
-   hl7-fhir-us-mcode.value-set.mcode-radiotherapy-treatment-location-qualifier-vs
-   hl7-fhir-us-mcode.value-set.elixhauser-liver-disease-severe-vs
-   hl7-fhir-us-mcode.mcode-cancer-stage-group
-   hl7-fhir-us-mcode.value-set.elixhauser-renal-failure-severe-vs
-   hl7-fhir-us-mcode.mcode-karnofsky-performance-status
-   hl7-fhir-us-mcode.value-set.mcode-histology-morphology-behavior-vs
-   hl7-fhir-us-mcode.mcode-tnm-distant-metastases-category}}
+ import #{zen.fhir hl7-fhir-us-core hl7-fhir-r4-core},
+ extensions
+ {:zen/tags #{zen.fhir/extensions},
+  :schemas
+  {"http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-radiotherapy-modality-and-technique"
+   #zen/quote hl7-fhir-us-mcode.mcode-radiotherapy-modality-and-technique/schema,
+   "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-radiotherapy-dose-delivered-to-volume"
+   #zen/quote hl7-fhir-us-mcode.mcode-radiotherapy-dose-delivered-to-volume/schema}},
+ ig
+ {:zen/tags #{zen.fhir/ig},
+  :profiles profiles,
+  :extensions extensions,
+  :structures structures,
+  :value-sets value-sets},
+ profiles
+ {:zen/tags #{zen.fhir/profiles},
+  :schemas
+  {"Procedure"
+   {"http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-radiotherapy-course-summary"
+    #zen/quote hl7-fhir-us-mcode.mcode-radiotherapy-course-summary/schema,
+    "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-cancer-related-surgical-procedure"
+    #zen/quote hl7-fhir-us-mcode.mcode-cancer-related-surgical-procedure/schema},
+   "DiagnosticReport"
+   {"http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-genomics-report"
+    #zen/quote hl7-fhir-us-mcode.mcode-genomics-report/schema},
+   "MedicationAdministration"
+   {"http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-cancer-related-medication-administration"
+    #zen/quote hl7-fhir-us-mcode.mcode-cancer-related-medication-administration/schema},
+   "Specimen"
+   {"http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-genomic-specimen"
+    #zen/quote hl7-fhir-us-mcode.mcode-genomic-specimen/schema,
+    "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-tumor-specimen"
+    #zen/quote hl7-fhir-us-mcode.mcode-tumor-specimen/schema},
+   "Bundle"
+   {"http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-patient-bundle"
+    #zen/quote hl7-fhir-us-mcode.mcode-patient-bundle/schema},
+   "BodyStructure"
+   {"http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-radiotherapy-volume"
+    #zen/quote hl7-fhir-us-mcode.mcode-radiotherapy-volume/schema,
+    "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-tumor"
+    #zen/quote hl7-fhir-us-mcode.mcode-tumor/schema},
+   "Patient"
+   {"http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-cancer-patient"
+    #zen/quote hl7-fhir-us-mcode.mcode-cancer-patient/schema},
+   "MedicationRequest"
+   {"http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-cancer-related-medication-request"
+    #zen/quote hl7-fhir-us-mcode.mcode-cancer-related-medication-request/schema},
+   "Condition"
+   {"http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-secondary-cancer-condition"
+    #zen/quote hl7-fhir-us-mcode.mcode-secondary-cancer-condition/schema,
+    "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-primary-cancer-condition"
+    #zen/quote hl7-fhir-us-mcode.mcode-primary-cancer-condition/schema},
+   "Group"
+   {"http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-patient-group"
+    #zen/quote hl7-fhir-us-mcode.mcode-patient-group/schema},
+   "Observation"
+   {"http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-cancer-stage-group"
+    #zen/quote hl7-fhir-us-mcode.mcode-cancer-stage-group/schema,
+    "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-tnm-regional-nodes-category"
+    #zen/quote hl7-fhir-us-mcode.mcode-tnm-regional-nodes-category/schema,
+    "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-tumor-size"
+    #zen/quote hl7-fhir-us-mcode.mcode-tumor-size/schema,
+    "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-tnm-distant-metastases-category"
+    #zen/quote hl7-fhir-us-mcode.mcode-tnm-distant-metastases-category/schema,
+    "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-ecog-performance-status"
+    #zen/quote hl7-fhir-us-mcode.mcode-ecog-performance-status/schema,
+    "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-genomic-variant"
+    #zen/quote hl7-fhir-us-mcode.mcode-genomic-variant/schema,
+    "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-tnm-primary-tumor-category"
+    #zen/quote hl7-fhir-us-mcode.mcode-tnm-primary-tumor-category/schema,
+    "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-comorbidities-parent"
+    #zen/quote hl7-fhir-us-mcode.mcode-comorbidities-parent/schema,
+    "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-karnofsky-performance-status"
+    #zen/quote hl7-fhir-us-mcode.mcode-karnofsky-performance-status/schema,
+    "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-tumor-marker-test"
+    #zen/quote hl7-fhir-us-mcode.mcode-tumor-marker-test/schema,
+    "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-genomic-region-studied"
+    #zen/quote hl7-fhir-us-mcode.mcode-genomic-region-studied/schema,
+    "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-cancer-disease-status"
+    #zen/quote hl7-fhir-us-mcode.mcode-cancer-disease-status/schema,
+    "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-comorbidities-elixhauser"
+    #zen/quote hl7-fhir-us-mcode.mcode-comorbidities-elixhauser/schema}}},
+ structures
+ {:zen/tags #{zen.fhir/structures},
+  :schemas
+  {"http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-radiotherapy-modality"
+   #zen/quote hl7-fhir-us-mcode.mcode-radiotherapy-modality/schema,
+   "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-body-structure-identifier"
+   #zen/quote hl7-fhir-us-mcode.mcode-body-structure-identifier/schema,
+   "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-cancer-disease-status-evidence-type"
+   #zen/quote hl7-fhir-us-mcode.mcode-cancer-disease-status-evidence-type/schema,
+   "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-procedure-intent"
+   #zen/quote hl7-fhir-us-mcode.mcode-procedure-intent/schema,
+   "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-histology-morphology-behavior"
+   #zen/quote hl7-fhir-us-mcode.mcode-histology-morphology-behavior/schema,
+   "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-comorbid-condition-code"
+   #zen/quote hl7-fhir-us-mcode.mcode-comorbid-condition-code/schema,
+   "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-body-location-qualifier"
+   #zen/quote hl7-fhir-us-mcode.mcode-body-location-qualifier/schema,
+   "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-treatment-termination-reason"
+   #zen/quote hl7-fhir-us-mcode.mcode-treatment-termination-reason/schema,
+   "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-comorbid-condition-reference"
+   #zen/quote hl7-fhir-us-mcode.mcode-comorbid-condition-reference/schema,
+   "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-related-condition"
+   #zen/quote hl7-fhir-us-mcode.mcode-related-condition/schema,
+   "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-laterality-qualifier"
+   #zen/quote hl7-fhir-us-mcode.mcode-laterality-qualifier/schema,
+   "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-radiotherapy-technique"
+   #zen/quote hl7-fhir-us-mcode.mcode-radiotherapy-technique/schema,
+   "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-radiotherapy-sessions"
+   #zen/quote hl7-fhir-us-mcode.mcode-radiotherapy-sessions/schema}},
+ value-sets
+ {:zen/tags #{zen.fhir/value-sets},
+  :value-sets
+  {"http://hl7.org/fhir/us/mcode/ValueSet/mcode-cancer-staging-system-vs"
+   #zen/quote hl7-fhir-us-mcode.value-set.mcode-cancer-staging-system-vs/value-set,
+   "http://hl7.org/fhir/us/mcode/ValueSet/mcode-genomic-molecular-consequence-vs"
+   #zen/quote hl7-fhir-us-mcode.value-set.mcode-genomic-molecular-consequence-vs/value-set,
+   "http://hl7.org/fhir/us/mcode/ValueSet/mcode-observation-codes-stage-group-vs"
+   #zen/quote hl7-fhir-us-mcode.value-set.mcode-observation-codes-stage-group-vs/value-set,
+   "http://hl7.org/fhir/us/mcode/ValueSet/mcode-tumor-size-units-vs"
+   #zen/quote hl7-fhir-us-mcode.value-set.mcode-tumor-size-units-vs/value-set,
+   "http://hl7.org/fhir/us/mcode/ValueSet/elixhauser-obesity-vs"
+   #zen/quote hl7-fhir-us-mcode.value-set.elixhauser-obesity-vs/value-set,
+   "http://hl7.org/fhir/us/mcode/ValueSet/mcode-hgvs-vs"
+   #zen/quote hl7-fhir-us-mcode.value-set.mcode-hgvs-vs/value-set,
+   "http://hl7.org/fhir/us/mcode/ValueSet/mcode-radiotherapy-volume-type-vs"
+   #zen/quote hl7-fhir-us-mcode.value-set.mcode-radiotherapy-volume-type-vs/value-set,
+   "http://hl7.org/fhir/us/mcode/ValueSet/mcode-observation-codes-primary-tumor-vs"
+   #zen/quote hl7-fhir-us-mcode.value-set.mcode-observation-codes-primary-tumor-vs/value-set,
+   "http://hl7.org/fhir/us/mcode/ValueSet/mcode-cancer-stage-group-vs"
+   #zen/quote hl7-fhir-us-mcode.value-set.mcode-cancer-stage-group-vs/value-set,
+   "http://hl7.org/fhir/us/mcode/ValueSet/mcode-procedure-intent-vs"
+   #zen/quote hl7-fhir-us-mcode.value-set.mcode-procedure-intent-vs/value-set,
+   "http://hl7.org/fhir/us/mcode/ValueSet/mcode-tnm-distant-metastases-category-vs"
+   #zen/quote hl7-fhir-us-mcode.value-set.mcode-tnm-distant-metastases-category-vs/value-set,
+   "http://hl7.org/fhir/us/mcode/ValueSet/elixhauser-deficiency-anemia-vs"
+   #zen/quote hl7-fhir-us-mcode.value-set.elixhauser-deficiency-anemia-vs/value-set,
+   "http://hl7.org/fhir/us/mcode/ValueSet/mcode-primary-malignant-neoplasm-disorder-vs"
+   #zen/quote hl7-fhir-us-mcode.value-set.mcode-primary-malignant-neoplasm-disorder-vs/value-set,
+   "http://hl7.org/fhir/us/mcode/ValueSet/mcode-brachytherapy-pulsed-dose-rate-technique-vs"
+   #zen/quote hl7-fhir-us-mcode.value-set.mcode-brachytherapy-pulsed-dose-rate-technique-vs/value-set,
+   "http://hl7.org/fhir/us/mcode/ValueSet/mcode-body-location-and-laterality-qualifier-vs"
+   #zen/quote hl7-fhir-us-mcode.value-set.mcode-body-location-and-laterality-qualifier-vs/value-set,
+   "http://hl7.org/fhir/us/mcode/ValueSet/mcode-melanoma-in-situ-disorder-vs"
+   #zen/quote hl7-fhir-us-mcode.value-set.mcode-melanoma-in-situ-disorder-vs/value-set,
+   "http://hl7.org/fhir/us/mcode/ValueSet/mcode-teleradiotherapy-technique-vs"
+   #zen/quote hl7-fhir-us-mcode.value-set.mcode-teleradiotherapy-technique-vs/value-set,
+   "http://hl7.org/fhir/us/mcode/ValueSet/mcode-hgnc-vs"
+   #zen/quote hl7-fhir-us-mcode.value-set.mcode-hgnc-vs/value-set,
+   "http://hl7.org/fhir/us/mcode/ValueSet/elixhauser-pulmonary-circulation-disorder-vs"
+   #zen/quote hl7-fhir-us-mcode.value-set.elixhauser-pulmonary-circulation-disorder-vs/value-set,
+   "http://hl7.org/fhir/us/mcode/ValueSet/elixhauser-rheumatoid-arthritis-vs"
+   #zen/quote hl7-fhir-us-mcode.value-set.elixhauser-rheumatoid-arthritis-vs/value-set,
+   "http://hl7.org/fhir/us/mcode/ValueSet/mcode-teleradiotherapy-carbon-ion-beam-technique-vs"
+   #zen/quote hl7-fhir-us-mcode.value-set.mcode-teleradiotherapy-carbon-ion-beam-technique-vs/value-set,
+   "http://hl7.org/fhir/us/mcode/ValueSet/mcode-tumor-size-method-vs"
+   #zen/quote hl7-fhir-us-mcode.value-set.mcode-tumor-size-method-vs/value-set,
+   "http://hl7.org/fhir/us/mcode/ValueSet/elixhauser-congestive-heart-failure-vs"
+   #zen/quote hl7-fhir-us-mcode.value-set.elixhauser-congestive-heart-failure-vs/value-set,
+   "http://hl7.org/fhir/us/mcode/ValueSet/elixhauser-diabetes-complicated-vs"
+   #zen/quote hl7-fhir-us-mcode.value-set.elixhauser-diabetes-complicated-vs/value-set,
+   "http://hl7.org/fhir/us/mcode/ValueSet/elixhauser-paralysis-vs"
+   #zen/quote hl7-fhir-us-mcode.value-set.elixhauser-paralysis-vs/value-set,
+   "http://hl7.org/fhir/us/mcode/ValueSet/elixhauser-cancer-leukemia-vs"
+   #zen/quote hl7-fhir-us-mcode.value-set.elixhauser-cancer-leukemia-vs/value-set,
+   "http://hl7.org/fhir/us/mcode/ValueSet/mcode-observation-codes-distant-metastases-vs"
+   #zen/quote hl7-fhir-us-mcode.value-set.mcode-observation-codes-distant-metastases-vs/value-set,
+   "http://hl7.org/fhir/us/mcode/ValueSet/elixhauser-coagulation-deficiency-vs"
+   #zen/quote hl7-fhir-us-mcode.value-set.elixhauser-coagulation-deficiency-vs/value-set,
+   "http://hl7.org/fhir/us/mcode/ValueSet/elixhauser-hypothyroidism-vs"
+   #zen/quote hl7-fhir-us-mcode.value-set.elixhauser-hypothyroidism-vs/value-set,
+   "http://hl7.org/fhir/us/mcode/ValueSet/mcode-condition-status-trend-vs"
+   #zen/quote hl7-fhir-us-mcode.value-set.mcode-condition-status-trend-vs/value-set,
+   "http://hl7.org/fhir/us/mcode/ValueSet/mcode-radiotherapy-treatment-location-vs"
+   #zen/quote hl7-fhir-us-mcode.value-set.mcode-radiotherapy-treatment-location-vs/value-set,
+   "http://hl7.org/fhir/us/mcode/ValueSet/elixhauser-liver-disease-severe-vs"
+   #zen/quote hl7-fhir-us-mcode.value-set.elixhauser-liver-disease-severe-vs/value-set,
+   "http://hl7.org/fhir/us/mcode/ValueSet/mcode-teleradiotherapy-proton-beam-technique-vs"
+   #zen/quote hl7-fhir-us-mcode.value-set.mcode-teleradiotherapy-proton-beam-technique-vs/value-set,
+   "http://hl7.org/fhir/us/mcode/ValueSet/mcode-hypereosinophilic-syndrome-disorder-vs"
+   #zen/quote hl7-fhir-us-mcode.value-set.mcode-hypereosinophilic-syndrome-disorder-vs/value-set,
+   "http://hl7.org/fhir/us/mcode/ValueSet/elixhauser-neurological-seizure-disorder-vs"
+   #zen/quote hl7-fhir-us-mcode.value-set.elixhauser-neurological-seizure-disorder-vs/value-set,
+   "http://hl7.org/fhir/us/mcode/ValueSet/mcode-radiotherapy-modality-vs"
+   #zen/quote hl7-fhir-us-mcode.value-set.mcode-radiotherapy-modality-vs/value-set,
+   "http://hl7.org/fhir/us/mcode/ValueSet/mcode-genomic-specimen-type-vs"
+   #zen/quote hl7-fhir-us-mcode.value-set.mcode-genomic-specimen-type-vs/value-set,
+   "http://hl7.org/fhir/us/mcode/ValueSet/mcode-teleradiotherapy-photon-beam-technique-vs"
+   #zen/quote hl7-fhir-us-mcode.value-set.mcode-teleradiotherapy-photon-beam-technique-vs/value-set,
+   "http://hl7.org/fhir/us/mcode/ValueSet/mcode-brachytherapy-technique-vs"
+   #zen/quote hl7-fhir-us-mcode.value-set.mcode-brachytherapy-technique-vs/value-set,
+   "http://hl7.org/fhir/us/mcode/ValueSet/elixhauser-neurological-movement-disorder-vs"
+   #zen/quote hl7-fhir-us-mcode.value-set.elixhauser-neurological-movement-disorder-vs/value-set,
+   "http://hl7.org/fhir/us/mcode/ValueSet/elixhauser-chronic-pulmonary-disease-vs"
+   #zen/quote hl7-fhir-us-mcode.value-set.elixhauser-chronic-pulmonary-disease-vs/value-set,
+   "http://hl7.org/fhir/us/mcode/ValueSet/elixhauser-depression-vs"
+   #zen/quote hl7-fhir-us-mcode.value-set.elixhauser-depression-vs/value-set,
+   "http://hl7.org/fhir/us/mcode/ValueSet/mcode-cytologic-evidence-malignancy-vs"
+   #zen/quote hl7-fhir-us-mcode.value-set.mcode-cytologic-evidence-malignancy-vs/value-set,
+   "http://hl7.org/fhir/us/mcode/ValueSet/mcode-brachytherapy-high-dose-rate-electronic-technique-vs"
+   #zen/quote hl7-fhir-us-mcode.value-set.mcode-brachytherapy-high-dose-rate-electronic-technique-vs/value-set,
+   "http://hl7.org/fhir/us/mcode/ValueSet/mcode-tnm-primary-tumor-category-vs"
+   #zen/quote hl7-fhir-us-mcode.value-set.mcode-tnm-primary-tumor-category-vs/value-set,
+   "http://hl7.org/fhir/us/mcode/ValueSet/mcode-present-absent"
+   #zen/quote hl7-fhir-us-mcode.value-set.mcode-present-absent/value-set,
+   "http://hl7.org/fhir/us/mcode/ValueSet/mcode-radiotherapy-treatment-location-qualifier-vs"
+   #zen/quote hl7-fhir-us-mcode.value-set.mcode-radiotherapy-treatment-location-qualifier-vs/value-set,
+   "http://hl7.org/fhir/us/mcode/ValueSet/elixhauser-psychosis-vs"
+   #zen/quote hl7-fhir-us-mcode.value-set.elixhauser-psychosis-vs/value-set,
+   "http://hl7.org/fhir/us/mcode/ValueSet/mcode-clinvar-vs"
+   #zen/quote hl7-fhir-us-mcode.value-set.mcode-clinvar-vs/value-set,
+   "http://hl7.org/fhir/us/mcode/ValueSet/elixhauser-aids-vs"
+   #zen/quote hl7-fhir-us-mcode.value-set.elixhauser-aids-vs/value-set,
+   "http://hl7.org/fhir/us/mcode/ValueSet/mcode-tnm-regional-nodes-category-vs"
+   #zen/quote hl7-fhir-us-mcode.value-set.mcode-tnm-regional-nodes-category-vs/value-set,
+   "http://hl7.org/fhir/us/mcode/ValueSet/mcode-body-location-qualifier-vs"
+   #zen/quote hl7-fhir-us-mcode.value-set.mcode-body-location-qualifier-vs/value-set,
+   "http://hl7.org/fhir/us/mcode/ValueSet/elixhauser-cerebrovascular-disease-vs"
+   #zen/quote hl7-fhir-us-mcode.value-set.elixhauser-cerebrovascular-disease-vs/value-set,
+   "http://hl7.org/fhir/us/mcode/ValueSet/elixhauser-weight-loss-vs"
+   #zen/quote hl7-fhir-us-mcode.value-set.elixhauser-weight-loss-vs/value-set,
+   "http://hl7.org/fhir/us/mcode/ValueSet/elixhauser-dementia-vs"
+   #zen/quote hl7-fhir-us-mcode.value-set.elixhauser-dementia-vs/value-set,
+   "http://hl7.org/fhir/us/mcode/ValueSet/mcode-laterality-qualifier-vs"
+   #zen/quote hl7-fhir-us-mcode.value-set.mcode-laterality-qualifier-vs/value-set,
+   "http://hl7.org/fhir/us/mcode/ValueSet/mcode-cancer-disease-status-evidence-type-vs"
+   #zen/quote hl7-fhir-us-mcode.value-set.mcode-cancer-disease-status-evidence-type-vs/value-set,
+   "http://hl7.org/fhir/us/mcode/ValueSet/elixhauser-cancer-metastatic-vs"
+   #zen/quote hl7-fhir-us-mcode.value-set.elixhauser-cancer-metastatic-vs/value-set,
+   "http://hl7.org/fhir/us/mcode/ValueSet/elixhauser-peripheral-vascular-disease-vs"
+   #zen/quote hl7-fhir-us-mcode.value-set.elixhauser-peripheral-vascular-disease-vs/value-set,
+   "http://hl7.org/fhir/us/mcode/ValueSet/elixhauser-other-neurological-vs"
+   #zen/quote hl7-fhir-us-mcode.value-set.elixhauser-other-neurological-vs/value-set,
+   "http://hl7.org/fhir/us/mcode/ValueSet/mcode-brachytherapy-radiopharmaceutical-technique-vs"
+   #zen/quote hl7-fhir-us-mcode.value-set.mcode-brachytherapy-radiopharmaceutical-technique-vs/value-set,
+   "http://hl7.org/fhir/us/mcode/ValueSet/elixhauser-hypertension-complicated-vs"
+   #zen/quote hl7-fhir-us-mcode.value-set.elixhauser-hypertension-complicated-vs/value-set,
+   "http://hl7.org/fhir/us/mcode/ValueSet/mcode-brachytherapy-high-dose-rate-technique-vs"
+   #zen/quote hl7-fhir-us-mcode.value-set.mcode-brachytherapy-high-dose-rate-technique-vs/value-set,
+   "http://hl7.org/fhir/us/mcode/ValueSet/elixhauser-blood-loss-anemia-vs"
+   #zen/quote hl7-fhir-us-mcode.value-set.elixhauser-blood-loss-anemia-vs/value-set,
+   "http://hl7.org/fhir/us/mcode/ValueSet/elixhauser-valvular-disease-vs"
+   #zen/quote hl7-fhir-us-mcode.value-set.elixhauser-valvular-disease-vs/value-set,
+   "http://hl7.org/fhir/us/mcode/ValueSet/elixhauser-alcohol-abuse-vs"
+   #zen/quote hl7-fhir-us-mcode.value-set.elixhauser-alcohol-abuse-vs/value-set,
+   "http://hl7.org/fhir/us/mcode/ValueSet/mcode-secondary-cancer-disorder-vs"
+   #zen/quote hl7-fhir-us-mcode.value-set.mcode-secondary-cancer-disorder-vs/value-set,
+   "http://hl7.org/fhir/us/mcode/ValueSet/mcode-tumor-marker-test-vs"
+   #zen/quote hl7-fhir-us-mcode.value-set.mcode-tumor-marker-test-vs/value-set,
+   "http://hl7.org/fhir/us/mcode/ValueSet/mcode-benign-uncertain-neoplasm-brain-cns-disorder-vs"
+   #zen/quote hl7-fhir-us-mcode.value-set.mcode-benign-uncertain-neoplasm-brain-cns-disorder-vs/value-set,
+   "http://hl7.org/fhir/us/mcode/ValueSet/mcode-teleradiotherapy-electron-beam-technique-vs"
+   #zen/quote hl7-fhir-us-mcode.value-set.mcode-teleradiotherapy-electron-beam-technique-vs/value-set,
+   "http://hl7.org/fhir/us/mcode/ValueSet/mcode-cancer-body-location-vs"
+   #zen/quote hl7-fhir-us-mcode.value-set.mcode-cancer-body-location-vs/value-set,
+   "http://hl7.org/fhir/us/mcode/ValueSet/mcode-radiotherapy-technique-vs"
+   #zen/quote hl7-fhir-us-mcode.value-set.mcode-radiotherapy-technique-vs/value-set,
+   "http://hl7.org/fhir/us/mcode/ValueSet/elixhauser-cancer-lymphoma-vs"
+   #zen/quote hl7-fhir-us-mcode.value-set.elixhauser-cancer-lymphoma-vs/value-set,
+   "http://hl7.org/fhir/us/mcode/ValueSet/elixhauser-drug-abuse-vs"
+   #zen/quote hl7-fhir-us-mcode.value-set.elixhauser-drug-abuse-vs/value-set,
+   "http://hl7.org/fhir/us/mcode/ValueSet/mcode-primary-cancer-disorder-vs"
+   #zen/quote hl7-fhir-us-mcode.value-set.mcode-primary-cancer-disorder-vs/value-set,
+   "http://hl7.org/fhir/us/mcode/ValueSet/mcode-teleradiotherapy-neutron-beam-technique-vs"
+   #zen/quote hl7-fhir-us-mcode.value-set.mcode-teleradiotherapy-neutron-beam-technique-vs/value-set,
+   "http://hl7.org/fhir/us/mcode/ValueSet/mcode-cancer-disorder-vs"
+   #zen/quote hl7-fhir-us-mcode.value-set.mcode-cancer-disorder-vs/value-set,
+   "http://hl7.org/fhir/us/mcode/ValueSet/elixhauser-ulcer-vs"
+   #zen/quote hl7-fhir-us-mcode.value-set.elixhauser-ulcer-vs/value-set,
+   "http://hl7.org/fhir/us/mcode/ValueSet/mcode-teleradiotherapy-modality-vs"
+   #zen/quote hl7-fhir-us-mcode.value-set.mcode-teleradiotherapy-modality-vs/value-set,
+   "http://hl7.org/fhir/us/mcode/ValueSet/elixhauser-diabetes-uncomplicated-vs"
+   #zen/quote hl7-fhir-us-mcode.value-set.elixhauser-diabetes-uncomplicated-vs/value-set,
+   "http://hl7.org/fhir/us/mcode/ValueSet/elixhauser-hypertension-uncomplicated-vs"
+   #zen/quote hl7-fhir-us-mcode.value-set.elixhauser-hypertension-uncomplicated-vs/value-set,
+   "http://hl7.org/fhir/us/mcode/ValueSet/mcode-brachytherapy-permanent-seeds-technique-vs"
+   #zen/quote hl7-fhir-us-mcode.value-set.mcode-brachytherapy-permanent-seeds-technique-vs/value-set,
+   "http://hl7.org/fhir/us/mcode/ValueSet/mcode-cancer-related-surgical-procedure-vs"
+   #zen/quote hl7-fhir-us-mcode.value-set.mcode-cancer-related-surgical-procedure-vs/value-set,
+   "http://hl7.org/fhir/us/mcode/ValueSet/mcode-brachytherapy-modality-vs"
+   #zen/quote hl7-fhir-us-mcode.value-set.mcode-brachytherapy-modality-vs/value-set,
+   "http://hl7.org/fhir/us/mcode/ValueSet/mcode-dna-change-type-vs"
+   #zen/quote hl7-fhir-us-mcode.value-set.mcode-dna-change-type-vs/value-set,
+   "http://hl7.org/fhir/us/mcode/ValueSet/elixhauser-cancer-solid-tumor-malignant-vs"
+   #zen/quote hl7-fhir-us-mcode.value-set.elixhauser-cancer-solid-tumor-malignant-vs/value-set,
+   "http://hl7.org/fhir/us/mcode/ValueSet/elixhauser-other-thyroid-disorder-vs"
+   #zen/quote hl7-fhir-us-mcode.value-set.elixhauser-other-thyroid-disorder-vs/value-set,
+   "http://hl7.org/fhir/us/mcode/ValueSet/mcode-histology-morphology-behavior-vs"
+   #zen/quote hl7-fhir-us-mcode.value-set.mcode-histology-morphology-behavior-vs/value-set,
+   "http://hl7.org/fhir/us/mcode/ValueSet/mcode-carcinoma-in-situ-disorder-vs"
+   #zen/quote hl7-fhir-us-mcode.value-set.mcode-carcinoma-in-situ-disorder-vs/value-set,
+   "http://hl7.org/fhir/us/mcode/ValueSet/elixhauser-renal-failure-severe-vs"
+   #zen/quote hl7-fhir-us-mcode.value-set.elixhauser-renal-failure-severe-vs/value-set,
+   "http://hl7.org/fhir/us/mcode/ValueSet/mcode-observation-codes-regional-nodes-vs"
+   #zen/quote hl7-fhir-us-mcode.value-set.mcode-observation-codes-regional-nodes-vs/value-set,
+   "http://hl7.org/fhir/us/mcode/ValueSet/elixhauser-liver-disease-mild-vs"
+   #zen/quote hl7-fhir-us-mcode.value-set.elixhauser-liver-disease-mild-vs/value-set,
+   "http://hl7.org/fhir/us/mcode/ValueSet/elixhauser-renal-failure-moderate-vs"
+   #zen/quote hl7-fhir-us-mcode.value-set.elixhauser-renal-failure-moderate-vs/value-set,
+   "http://hl7.org/fhir/us/mcode/ValueSet/mcode-treatment-termination-reason-vs"
+   #zen/quote hl7-fhir-us-mcode.value-set.mcode-treatment-termination-reason-vs/value-set,
+   "http://hl7.org/fhir/us/mcode/ValueSet/mcode-brachytherapy-low-dose-rate-temporary-technique-vs"
+   #zen/quote hl7-fhir-us-mcode.value-set.mcode-brachytherapy-low-dose-rate-temporary-technique-vs/value-set,
+   "http://hl7.org/fhir/us/mcode/ValueSet/elixhauser-cancer-solid-tumor-in-situ-vs"
+   #zen/quote hl7-fhir-us-mcode.value-set.elixhauser-cancer-solid-tumor-in-situ-vs/value-set}}}
