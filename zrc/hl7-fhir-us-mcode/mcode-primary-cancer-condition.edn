@@ -17,7 +17,7 @@
   :zen.fhir/type "Condition",
   :zen.fhir/profileUri
   "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-primary-cancer-condition",
-  :zen.fhir/version "0.6.0",
+  :zen.fhir/version "0.6.1",
   :confirms #{zen.fhir/Resource},
   :type zen/map,
   :keys

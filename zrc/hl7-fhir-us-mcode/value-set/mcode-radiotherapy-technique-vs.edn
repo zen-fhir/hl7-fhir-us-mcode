@@ -4,7 +4,7 @@
  {:zen/tags #{zen.fhir/value-set},
   :zen/desc
   "Codes describing the techniques of external beam and brachytherapy radiation procedures, for use with radiotherapy summaries. This is the union of the EBRT and brachytherapy technique value sets.",
-  :zen.fhir/version "0.6.0",
+  :zen.fhir/version "0.6.1",
   :fhir/code-systems
   #{{:fhir/url
      "http://hl7.org/fhir/us/mcode/CodeSystem/snomed-requested-cs",

@@ -6,7 +6,7 @@
    hl7-fhir-us-mcode.mcode-genomic-specimen
    hl7-fhir-r4-core.CodeableConcept},
  schema
- {:zen.fhir/version "0.6.0",
+ {:zen.fhir/version "0.6.1",
   :confirms
   #{hl7-fhir-us-core.us-core-diagnosticreport-lab/schema
     zen.fhir/Resource},
