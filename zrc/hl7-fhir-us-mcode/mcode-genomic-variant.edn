@@ -19,7 +19,7 @@
   :zen.fhir/type "Observation",
   :zen.fhir/profileUri
   "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-genomic-variant",
-  :zen.fhir/version "0.6.1",
+  :zen.fhir/version "0.6.2",
   :confirms
   #{hl7-fhir-us-core.us-core-observation-lab/schema zen.fhir/Resource},
   :type zen/map,

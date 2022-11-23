@@ -18,7 +18,7 @@
   :zen.fhir/type "BodyStructure",
   :zen.fhir/profileUri
   "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-radiotherapy-volume",
-  :zen.fhir/version "0.6.1",
+  :zen.fhir/version "0.6.2",
   :confirms #{hl7-fhir-r4-core.BodyStructure/schema zen.fhir/Resource},
   :type zen/map,
   :keys
