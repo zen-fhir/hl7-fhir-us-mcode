@@ -1,16 +1,12 @@
 {ns hl7-fhir-us-mcode.mcode-genomic-variant,
  import
- #{hl7-fhir-r4-core.BackboneElement
-   hl7-fhir-us-mcode.value-set.mcode-genomic-molecular-consequence-vs
+ #{hl7-fhir-us-mcode.value-set.mcode-genomic-molecular-consequence-vs
    hl7-fhir-us-mcode.value-set.mcode-clinvar-vs
    zen.fhir
    hl7-fhir-us-mcode.value-set.mcode-dna-change-type-vs
-   hl7-fhir-r4-core.Quantity
    hl7-fhir-us-core.us-core-observation-lab
-   hl7-fhir-r4-core.Reference
    hl7-fhir-us-mcode.value-set.mcode-hgvs-vs
    hl7-fhir-us-mcode.mcode-genomic-specimen
-   hl7-fhir-r4-core.CodeableConcept
    hl7-fhir-us-mcode.value-set.mcode-hgnc-vs},
  schema
  {:zen/tags #{zen.fhir/profile-schema zen/schema},
@@ -19,41 +15,31 @@
   :zen.fhir/type "Observation",
   :zen.fhir/profileUri
   "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-genomic-variant",
-  :zen.fhir/version "0.6.3",
+  :zen.fhir/version "0.6.4",
   :confirms
   #{hl7-fhir-us-core.us-core-observation-lab/schema zen.fhir/Resource},
   :type zen/map,
   :keys
   {:code
-   {:match {:coding #{{:system "http://loinc.org", :code "69548-6"}}},
-    :confirms #{hl7-fhir-r4-core.CodeableConcept/schema}},
+   {:match {:coding #{{:system "http://loinc.org", :code "69548-6"}}}},
    :value
    {:fhir/polymorphic true,
     :type zen/map,
-    :keys
-    {:CodeableConcept
-     {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema}}},
+    :keys {},
     :zen/desc "Whether the variant is present"},
-   :bodySite
-   {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
-    :zen/desc "Not used in this profile"},
-   :method
-   {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
-    :fhir/flags #{:MS}},
+   :bodySite #:zen{:desc "Not used in this profile"},
+   :method #:fhir{:flags #{:MS}},
    :specimen
-   {:confirms #{hl7-fhir-r4-core.Reference/schema zen.fhir/Reference},
-    :fhir/flags #{:MS},
+   {:fhir/flags #{:MS},
+    :confirms #{zen.fhir/Reference},
     :zen.fhir/reference
     {:refers #{hl7-fhir-us-mcode.mcode-genomic-specimen/schema}}},
    :referenceRange
-   {:type zen/vector,
-    :every
-    {:confirms #{hl7-fhir-r4-core.BackboneElement/schema},
-     :zen/desc "Not used in this profile"}},
+   {:type zen/vector, :every #:zen{:desc "Not used in this profile"}},
    :hasMember
    {:type zen/vector,
     :every
-    {:confirms #{hl7-fhir-r4-core.Reference/schema zen.fhir/Reference},
+    {:confirms #{zen.fhir/Reference},
      :zen.fhir/reference {:refers #{}},
      :zen/desc "Not used in this profile"}},
    :component
@@ -69,14 +55,11 @@
          {:code
           {:match
            {:coding #{{:system "http://loinc.org", :code "48019-4"}}},
-           :confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
            :fhir/flags #{:MS}},
           :value
           {:fhir/polymorphic true,
            :type zen/map,
-           :keys
-           {:CodeableConcept
-            {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema}}},
+           :keys {},
            :fhir/flags #{:MS},
            :zen.fhir/value-set
            {:symbol
@@ -96,7 +79,6 @@
          {:code
           {:match
            {:coding #{{:system "http://loinc.org", :code "81291-7"}}},
-           :confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
            :fhir/flags #{:MS}},
           :value #:fhir{:polymorphic true, :flags #{:MS}}}}},
        :filter
@@ -114,14 +96,11 @@
          {:code
           {:match
            {:coding #{{:system "http://loinc.org", :code "81290-9"}}},
-           :confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
            :fhir/flags #{:MS}},
           :value
           {:fhir/polymorphic true,
            :type zen/map,
-           :keys
-           {:CodeableConcept
-            {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema}}},
+           :keys {},
            :fhir/flags #{:MS},
            :zen.fhir/value-set
            {:symbol
@@ -142,14 +121,11 @@
          {:code
           {:match
            {:coding #{{:system "http://loinc.org", :code "53037-8"}}},
-           :confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
            :fhir/flags #{:MS}},
           :value
           {:fhir/polymorphic true,
            :type zen/map,
-           :keys
-           {:CodeableConcept
-            {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema}}},
+           :keys {},
            :fhir/flags #{:MS}}}}},
        :filter
        {:engine :match,
@@ -169,14 +145,11 @@
             #{{:system
                "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
                :code "molecular-consequence"}}},
-           :confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
            :fhir/flags #{:MS}},
           :value
           {:fhir/polymorphic true,
            :type zen/map,
-           :keys
-           {:CodeableConcept
-            {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema}}},
+           :keys {},
            :fhir/flags #{:MS},
            :zen.fhir/value-set
            {:symbol
@@ -200,14 +173,11 @@
          {:code
           {:match
            {:coding #{{:system "http://loinc.org", :code "48005-3"}}},
-           :confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
            :fhir/flags #{:MS}},
           :value
           {:fhir/polymorphic true,
            :type zen/map,
-           :keys
-           {:CodeableConcept
-            {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema}}},
+           :keys {},
            :fhir/flags #{:MS},
            :zen.fhir/value-set
            {:symbol
@@ -228,14 +198,11 @@
          {:code
           {:match
            {:coding #{{:system "http://loinc.org", :code "48006-1"}}},
-           :confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
            :fhir/flags #{:MS}},
           :value
           {:fhir/polymorphic true,
            :type zen/map,
-           :keys
-           {:CodeableConcept
-            {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema}}},
+           :keys {},
            :fhir/flags #{:MS}}}}},
        :filter
        {:engine :match,
@@ -252,14 +219,11 @@
          {:code
           {:match
            {:coding #{{:system "http://loinc.org", :code "53034-5"}}},
-           :confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
            :fhir/flags #{:MS}},
           :value
           {:fhir/polymorphic true,
            :type zen/map,
-           :keys
-           {:CodeableConcept
-            {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema}}},
+           :keys {},
            :fhir/flags #{:MS}}}}},
        :filter
        {:engine :match,
@@ -275,7 +239,6 @@
          {:code
           {:match
            {:coding #{{:system "http://loinc.org", :code "48001-2"}}},
-           :confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
            :fhir/flags #{:MS}},
           :value #:fhir{:polymorphic true, :flags #{:MS}}}}},
        :filter
@@ -293,13 +256,11 @@
          {:code
           {:match
            {:coding #{{:system "http://loinc.org", :code "82155-3"}}},
-           :confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
            :fhir/flags #{:MS}},
           :value
           {:fhir/polymorphic true,
            :type zen/map,
-           :keys
-           {:Quantity {:confirms #{hl7-fhir-r4-core.Quantity/schema}}},
+           :keys {},
            :fhir/flags #{:MS}}}}},
        :filter
        {:engine :match,
@@ -316,13 +277,11 @@
          {:code
           {:match
            {:coding #{{:system "http://loinc.org", :code "81258-6"}}},
-           :confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
            :fhir/flags #{:MS}},
           :value
           {:fhir/polymorphic true,
            :type zen/map,
-           :keys
-           {:Quantity {:confirms #{hl7-fhir-r4-core.Quantity/schema}}},
+           :keys {},
            :fhir/flags #{:MS}}}}},
        :filter
        {:engine :match,
@@ -338,14 +297,11 @@
          {:code
           {:match
            {:coding #{{:system "http://loinc.org", :code "48018-6"}}},
-           :confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
            :fhir/flags #{:MS}},
           :value
           {:fhir/polymorphic true,
            :type zen/map,
-           :keys
-           {:CodeableConcept
-            {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema}}},
+           :keys {},
            :fhir/flags #{:MS},
            :zen.fhir/value-set
            {:symbol
@@ -366,14 +322,11 @@
          {:code
           {:match
            {:coding #{{:system "http://loinc.org", :code "81252-9"}}},
-           :confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
            :fhir/flags #{:MS}},
           :value
           {:fhir/polymorphic true,
            :type zen/map,
-           :keys
-           {:CodeableConcept
-            {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema}}},
+           :keys {},
            :fhir/flags #{:MS},
            :zen.fhir/value-set
            {:symbol
@@ -394,14 +347,11 @@
          {:code
           {:match
            {:coding #{{:system "http://loinc.org", :code "48002-0"}}},
-           :confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
            :fhir/flags #{:MS}},
           :value
           {:fhir/polymorphic true,
            :type zen/map,
-           :keys
-           {:CodeableConcept
-            {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema}}},
+           :keys {},
            :fhir/flags #{:MS}}}}},
        :filter
        {:engine :match,
@@ -411,11 +361,8 @@
           #{{:system "http://loinc.org", :code "48002-0"}}}}}}}},
     :type zen/vector,
     :every
-    {:confirms #{hl7-fhir-r4-core.BackboneElement/schema},
-     :type zen/map,
+    {:type zen/map,
      :keys
-     {:code
-      {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
-       :fhir/flags #{:MS}},
+     {:code #:fhir{:flags #{:MS}},
       :value #:fhir{:polymorphic true, :flags #{:MS}}},
      :fhir/flags #{:MS}}}}}}

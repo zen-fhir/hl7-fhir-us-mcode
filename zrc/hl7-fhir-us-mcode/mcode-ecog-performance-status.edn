@@ -1,21 +1,13 @@
 {ns hl7-fhir-us-mcode.mcode-ecog-performance-status,
  import
- #{hl7-fhir-r4-core.integer
-   hl7-fhir-r4-core.Period
-   hl7-fhir-r4-core.Observation
-   hl7-fhir-r4-core.BackboneElement
+ #{hl7-fhir-r4-core.Observation
    hl7-fhir-r4-core.CarePlan
-   hl7-fhir-r4-core.code
    zen.fhir
-   hl7-fhir-r4-core.dateTime
    hl7-fhir-us-mcode.mcode-cancer-patient
-   hl7-fhir-r4-core.Reference
    hl7-fhir-r4-core.ServiceRequest
-   hl7-fhir-r4-core.Element
-   hl7-fhir-r4-core.Procedure
-   hl7-fhir-r4-core.CodeableConcept},
+   hl7-fhir-r4-core.Procedure},
  schema
- {:zen.fhir/version "0.6.3",
+ {:zen.fhir/version "0.6.4",
   :confirms #{hl7-fhir-r4-core.Observation/schema zen.fhir/Resource},
   :zen/tags #{zen.fhir/profile-schema zen/schema},
   :zen.fhir/profileUri
@@ -32,62 +24,44 @@
      {:coding
       #{{:system
          "http://terminology.hl7.org/CodeSystem/observation-category",
-         :code "survey"}}},
-     :confirms #{hl7-fhir-r4-core.CodeableConcept/schema}}},
+         :code "survey"}}}}},
    :hasMember
    {:type zen/vector,
     :every
-    {:confirms #{hl7-fhir-r4-core.Reference/schema zen.fhir/Reference},
+    {:confirms #{zen.fhir/Reference},
      :zen.fhir/reference {:refers #{}},
      :zen/desc "Not used in this profile"}},
-   :interpretation
-   {:type zen/vector,
-    :every
-    {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
-     :fhir/flags #{:MS}}},
+   :interpretation {:type zen/vector, :every #:fhir{:flags #{:MS}}},
    :specimen
-   {:confirms #{hl7-fhir-r4-core.Reference/schema zen.fhir/Reference},
+   {:confirms #{zen.fhir/Reference},
     :zen.fhir/reference {:refers #{}},
     :zen/desc "Not used in this profile"},
    :value
    {:fhir/polymorphic true,
     :type zen/map,
-    :keys
-    {:integer {:confirms #{hl7-fhir-r4-core.integer/schema}},
-     :_integer {:confirms #{hl7-fhir-r4-core.Element/schema}}},
+    :keys {},
     :fhir/flags #{:MS}},
-   :_status {:confirms #{hl7-fhir-r4-core.Element/schema}},
    :component
-   {:type zen/vector,
-    :every
-    {:confirms #{hl7-fhir-r4-core.BackboneElement/schema},
-     :zen/desc "Not used in this profile"}},
-   :status
-   {:confirms #{hl7-fhir-r4-core.code/schema}, :fhir/flags #{:MS}},
+   {:type zen/vector, :every #:zen{:desc "Not used in this profile"}},
+   :status #:fhir{:flags #{:MS}},
    :effective
    {:fhir/polymorphic true,
     :exclusive-keys #{#{:dateTime :Period}},
     :type zen/map,
-    :keys
-    {:dateTime {:confirms #{hl7-fhir-r4-core.dateTime/schema}},
-     :_dateTime {:confirms #{hl7-fhir-r4-core.Element/schema}},
-     :Period {:confirms #{hl7-fhir-r4-core.Period/schema}}},
+    :keys {},
     :fhir/flags #{:MS}},
    :code
    {:match {:coding #{{:system "http://loinc.org", :code "89247-1"}}},
-    :confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
     :fhir/flags #{:MS}},
-   :bodySite
-   {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
-    :zen/desc "Not used in this profile"},
+   :bodySite #:zen{:desc "Not used in this profile"},
    :device
-   {:confirms #{hl7-fhir-r4-core.Reference/schema zen.fhir/Reference},
+   {:confirms #{zen.fhir/Reference},
     :zen.fhir/reference {:refers #{}},
     :zen/desc "Not used in this profile"},
    :basedOn
    {:type zen/vector,
     :every
-    {:confirms #{hl7-fhir-r4-core.Reference/schema zen.fhir/Reference},
+    {:confirms #{zen.fhir/Reference},
      :zen.fhir/reference
      {:refers
       #{hl7-fhir-r4-core.ServiceRequest/schema
@@ -95,12 +69,12 @@
    :partOf
    {:type zen/vector,
     :every
-    {:confirms #{hl7-fhir-r4-core.Reference/schema zen.fhir/Reference},
+    {:confirms #{zen.fhir/Reference},
      :zen.fhir/reference
      {:refers #{hl7-fhir-r4-core.Procedure/schema}}}},
    :subject
-   {:confirms #{hl7-fhir-r4-core.Reference/schema zen.fhir/Reference},
-    :fhir/flags #{:MS},
+   {:fhir/flags #{:MS},
+    :confirms #{zen.fhir/Reference},
     :zen.fhir/reference
     {:refers #{hl7-fhir-us-mcode.mcode-cancer-patient/schema}}}},
   :zen.fhir/type "Observation"}}

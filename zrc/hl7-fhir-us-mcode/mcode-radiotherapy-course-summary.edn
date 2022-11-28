@@ -1,7 +1,6 @@
 {ns hl7-fhir-us-mcode.mcode-radiotherapy-course-summary,
  import
- #{hl7-fhir-r4-core.Period
-   hl7-fhir-us-mcode.value-set.mcode-cancer-disorder-vs
+ #{hl7-fhir-us-mcode.value-set.mcode-cancer-disorder-vs
    zen.fhir
    hl7-fhir-us-mcode.mcode-procedure-intent
    hl7-fhir-us-mcode.mcode-radiotherapy-modality-and-technique
@@ -10,13 +9,11 @@
    hl7-fhir-us-mcode.mcode-cancer-patient
    hl7-fhir-us-core.us-core-procedure
    hl7-fhir-us-mcode.mcode-radiotherapy-sessions
-   hl7-fhir-r4-core.Reference
    hl7-fhir-us-mcode.mcode-radiotherapy-dose-delivered-to-volume
    hl7-fhir-us-mcode.value-set.mcode-radiotherapy-treatment-location-vs
-   hl7-fhir-r4-core.CodeableConcept
    hl7-fhir-us-mcode.mcode-secondary-cancer-condition},
  schema
- {:zen.fhir/version "0.6.3",
+ {:zen.fhir/version "0.6.4",
   :confirms
   #{zen.fhir/Resource hl7-fhir-us-core.us-core-procedure/schema},
   :zen/tags #{zen.fhir/profile-schema zen/schema},
@@ -30,7 +27,6 @@
   {:category
    {:match
     {:coding #{{:system "http://snomed.info/sct", :code "108290001"}}},
-    :confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
     :fhir/flags #{:MS}},
    :modalityAndTechnique
    {:type zen/vector,
@@ -49,16 +45,12 @@
    :reasonCode
    {:type zen/vector,
     :every
-    {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
-     :fhir/flags #{:MS},
+    {:fhir/flags #{:MS},
      :zen.fhir/value-set
      {:symbol
       hl7-fhir-us-mcode.value-set.mcode-cancer-disorder-vs/value-set,
       :strength :extensible}}},
-   :performed
-   {:fhir/polymorphic true,
-    :type zen/map,
-    :keys {:Period {:confirms #{hl7-fhir-r4-core.Period/schema}}}},
+   :performed {:fhir/polymorphic true, :type zen/map, :keys {}},
    :treatmentIntent
    {:confirms #{hl7-fhir-us-mcode.mcode-procedure-intent/schema},
     :fhir/extensionUri
@@ -77,27 +69,25 @@
     {:coding
      #{{:system
         "http://hl7.org/fhir/us/mcode/CodeSystem/snomed-requested-cs",
-        :code "USCRS-33529"}}},
-    :confirms #{hl7-fhir-r4-core.CodeableConcept/schema}},
+        :code "USCRS-33529"}}}},
    :bodySite
    {:type zen/vector,
     :every
-    {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
-     :fhir/flags #{:MS},
+    {:fhir/flags #{:MS},
      :zen.fhir/value-set
      {:symbol
       hl7-fhir-us-mcode.value-set.mcode-radiotherapy-treatment-location-vs/value-set,
       :strength :required},
      :zen/desc "All body structure(s) treated"}},
    :subject
-   {:confirms #{hl7-fhir-r4-core.Reference/schema zen.fhir/Reference},
+   {:confirms #{zen.fhir/Reference},
     :zen.fhir/reference
     {:refers #{hl7-fhir-us-mcode.mcode-cancer-patient/schema}}},
    :reasonReference
    {:type zen/vector,
     :every
-    {:confirms #{hl7-fhir-r4-core.Reference/schema zen.fhir/Reference},
-     :fhir/flags #{:MS},
+    {:fhir/flags #{:MS},
+     :confirms #{zen.fhir/Reference},
      :zen.fhir/reference
      {:refers
       #{hl7-fhir-us-mcode.mcode-primary-cancer-condition/schema

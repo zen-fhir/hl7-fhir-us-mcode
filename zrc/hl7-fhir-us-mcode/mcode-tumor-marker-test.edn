@@ -1,17 +1,9 @@
 {ns hl7-fhir-us-mcode.mcode-tumor-marker-test,
  import
- #{hl7-fhir-r4-core.Period
-   hl7-fhir-r4-core.Ratio
-   zen.fhir
-   hl7-fhir-r4-core.dateTime
-   hl7-fhir-r4-core.string
+ #{zen.fhir
    hl7-fhir-us-mcode.mcode-cancer-patient
-   hl7-fhir-r4-core.Quantity
    hl7-fhir-us-core.us-core-observation-lab
-   hl7-fhir-r4-core.Reference
-   hl7-fhir-r4-core.Element
-   hl7-fhir-us-mcode.value-set.mcode-tumor-marker-test-vs
-   hl7-fhir-r4-core.CodeableConcept},
+   hl7-fhir-us-mcode.value-set.mcode-tumor-marker-test-vs},
  schema
  {:zen/tags #{zen.fhir/profile-schema zen/schema},
   :zen/desc
@@ -19,41 +11,31 @@
   :zen.fhir/type "Observation",
   :zen.fhir/profileUri
   "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-tumor-marker-test",
-  :zen.fhir/version "0.6.3",
+  :zen.fhir/version "0.6.4",
   :confirms
   #{hl7-fhir-us-core.us-core-observation-lab/schema zen.fhir/Resource},
   :type zen/map,
   :keys
   {:code
-   {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
-    :zen.fhir/value-set
-    {:symbol
-     hl7-fhir-us-mcode.value-set.mcode-tumor-marker-test-vs/value-set,
-     :strength :extensible}},
+   #:zen.fhir{:value-set
+              {:symbol
+               hl7-fhir-us-mcode.value-set.mcode-tumor-marker-test-vs/value-set,
+               :strength :extensible}},
    :subject
-   {:confirms #{hl7-fhir-r4-core.Reference/schema zen.fhir/Reference},
+   {:confirms #{zen.fhir/Reference},
     :zen.fhir/reference
     {:refers #{hl7-fhir-us-mcode.mcode-cancer-patient/schema}}},
    :effective
    {:fhir/polymorphic true,
     :exclusive-keys #{#{:dateTime :Period}},
     :type zen/map,
-    :keys
-    {:dateTime {:confirms #{hl7-fhir-r4-core.dateTime/schema}},
-     :_dateTime {:confirms #{hl7-fhir-r4-core.Element/schema}},
-     :Period {:confirms #{hl7-fhir-r4-core.Period/schema}}}},
+    :keys {}},
    :value
    {:fhir/polymorphic true,
     :exclusive-keys #{#{:string :Ratio :CodeableConcept :Quantity}},
     :type zen/map,
-    :keys
-    {:Quantity {:confirms #{hl7-fhir-r4-core.Quantity/schema}},
-     :CodeableConcept
-     {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema}},
-     :string {:confirms #{hl7-fhir-r4-core.string/schema}},
-     :_string {:confirms #{hl7-fhir-r4-core.Element/schema}},
-     :Ratio {:confirms #{hl7-fhir-r4-core.Ratio/schema}}}},
+    :keys {}},
    :specimen
-   {:confirms #{hl7-fhir-r4-core.Reference/schema zen.fhir/Reference},
-    :fhir/flags #{:MS},
+   {:fhir/flags #{:MS},
+    :confirms #{zen.fhir/Reference},
     :zen.fhir/reference {:refers #{}}}}}}

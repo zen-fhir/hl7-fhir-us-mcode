@@ -8,8 +8,6 @@
    hl7-fhir-us-core.us-core-organization
    hl7-fhir-us-mcode.mcode-primary-cancer-condition
    hl7-fhir-us-mcode.mcode-cancer-patient
-   hl7-fhir-r4-core.Reference
-   hl7-fhir-r4-core.CodeableConcept
    hl7-fhir-us-mcode.mcode-secondary-cancer-condition
    hl7-fhir-us-core.us-core-medicationrequest},
  schema
@@ -19,7 +17,7 @@
   :zen.fhir/type "MedicationRequest",
   :zen.fhir/profileUri
   "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-cancer-related-medication-request",
-  :zen.fhir/version "0.6.3",
+  :zen.fhir/version "0.6.4",
   :confirms
   #{hl7-fhir-us-core.us-core-medicationrequest/schema
     zen.fhir/Resource},
@@ -39,11 +37,11 @@
      "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-treatment-termination-reason",
      :fhir/flags #{:MS}}},
    :subject
-   {:confirms #{hl7-fhir-r4-core.Reference/schema zen.fhir/Reference},
+   {:confirms #{zen.fhir/Reference},
     :zen.fhir/reference
     {:refers #{hl7-fhir-us-mcode.mcode-cancer-patient/schema}}},
    :requester
-   {:confirms #{hl7-fhir-r4-core.Reference/schema zen.fhir/Reference},
+   {:confirms #{zen.fhir/Reference},
     :zen.fhir/reference
     {:refers
      #{hl7-fhir-us-core.us-core-organization/schema
@@ -52,8 +50,7 @@
    :reasonCode
    {:type zen/vector,
     :every
-    {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
-     :fhir/flags #{:MS},
+    {:fhir/flags #{:MS},
      :zen.fhir/value-set
      {:symbol
       hl7-fhir-us-mcode.value-set.mcode-cancer-disorder-vs/value-set,
@@ -61,8 +58,8 @@
    :reasonReference
    {:type zen/vector,
     :every
-    {:confirms #{hl7-fhir-r4-core.Reference/schema zen.fhir/Reference},
-     :fhir/flags #{:MS},
+    {:fhir/flags #{:MS},
+     :confirms #{zen.fhir/Reference},
      :zen.fhir/reference
      {:refers
       #{hl7-fhir-us-mcode.mcode-primary-cancer-condition/schema

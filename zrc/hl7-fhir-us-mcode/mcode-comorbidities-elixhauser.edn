@@ -1,15 +1,9 @@
 {ns hl7-fhir-us-mcode.mcode-comorbidities-elixhauser,
  import
- #{hl7-fhir-r4-core.integer
-   hl7-fhir-r4-core.BackboneElement
-   hl7-fhir-r4-core.code
-   zen.fhir
+ #{zen.fhir
    hl7-fhir-us-mcode.value-set.mcode-present-absent
    hl7-fhir-us-mcode.mcode-primary-cancer-condition
-   hl7-fhir-us-mcode.mcode-comorbidities-parent
-   hl7-fhir-r4-core.Reference
-   hl7-fhir-r4-core.Element
-   hl7-fhir-r4-core.CodeableConcept},
+   hl7-fhir-us-mcode.mcode-comorbidities-parent},
  schema
  {:zen/tags #{zen.fhir/profile-schema zen/schema},
   :zen/desc
@@ -17,15 +11,13 @@
   :zen.fhir/type "Observation",
   :zen.fhir/profileUri
   "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-comorbidities-elixhauser",
-  :zen.fhir/version "0.6.3",
+  :zen.fhir/version "0.6.4",
   :confirms
   #{zen.fhir/Resource
     hl7-fhir-us-mcode.mcode-comorbidities-parent/schema},
   :type zen/map,
   :keys
-  {:status
-   {:confirms #{hl7-fhir-r4-core.code/schema}, :fhir/flags #{:MS}},
-   :_status {:confirms #{hl7-fhir-r4-core.Element/schema}},
+  {:status #:fhir{:flags #{:MS}},
    :code
    {:match
     {:coding
@@ -33,17 +25,16 @@
         "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
         :code "comorbidities-elixhauser",
         :display "Elixhauser Comorbidity Panel"}}},
-    :confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
     :fhir/flags #{:MS}},
    :subject
-   {:confirms #{hl7-fhir-r4-core.Reference/schema zen.fhir/Reference},
-    :fhir/flags #{:MS},
+   {:fhir/flags #{:MS},
+    :confirms #{zen.fhir/Reference},
     :zen.fhir/reference {:refers #{}}},
    :focus
    {:type zen/vector,
     :every
-    {:confirms #{hl7-fhir-r4-core.Reference/schema zen.fhir/Reference},
-     :fhir/flags #{:MS},
+    {:fhir/flags #{:MS},
+     :confirms #{zen.fhir/Reference},
      :zen.fhir/reference
      {:refers
       #{hl7-fhir-us-mcode.mcode-primary-cancer-condition/schema}}}},
@@ -51,9 +42,7 @@
    :value
    {:fhir/polymorphic true,
     :type zen/map,
-    :keys
-    {:integer {:confirms #{hl7-fhir-r4-core.integer/schema}},
-     :_integer {:confirms #{hl7-fhir-r4-core.Element/schema}}},
+    :keys {},
     :fhir/flags #{:MS}},
    :component
    {:slicing
@@ -72,7 +61,6 @@
             #{{:system
                "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
                :code "VALVE"}}},
-           :confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
            :fhir/flags #{:MS}},
           :value #:fhir{:polymorphic true, :flags #{:MS}}}}},
        :filter
@@ -97,7 +85,6 @@
             #{{:system
                "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
                :code "PULMCIRC"}}},
-           :confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
            :fhir/flags #{:MS}},
           :value #:fhir{:polymorphic true, :flags #{:MS}}}}},
        :filter
@@ -122,7 +109,6 @@
             #{{:system
                "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
                :code "CBVD"}}},
-           :confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
            :fhir/flags #{:MS}},
           :value #:fhir{:polymorphic true, :flags #{:MS}}}}},
        :filter
@@ -147,7 +133,6 @@
             #{{:system
                "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
                :code "PSYCHOSIS"}}},
-           :confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
            :fhir/flags #{:MS}},
           :value #:fhir{:polymorphic true, :flags #{:MS}}}}},
        :filter
@@ -172,7 +157,6 @@
             #{{:system
                "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
                :code "CANCER_LYMPH"}}},
-           :confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
            :fhir/flags #{:MS}},
           :value #:fhir{:polymorphic true, :flags #{:MS}}}}},
        :filter
@@ -197,7 +181,6 @@
             #{{:system
                "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
                :code "HTN_CX"}}},
-           :confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
            :fhir/flags #{:MS}},
           :value #:fhir{:polymorphic true, :flags #{:MS}}}}},
        :filter
@@ -222,7 +205,6 @@
             #{{:system
                "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
                :code "ANEMDF"}}},
-           :confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
            :fhir/flags #{:MS}},
           :value #:fhir{:polymorphic true, :flags #{:MS}}}}},
        :filter
@@ -247,7 +229,6 @@
             #{{:system
                "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
                :code "PARALYSIS"}}},
-           :confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
            :fhir/flags #{:MS}},
           :value #:fhir{:polymorphic true, :flags #{:MS}}}}},
        :filter
@@ -272,7 +253,6 @@
             #{{:system
                "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
                :code "RENLFL_MOD"}}},
-           :confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
            :fhir/flags #{:MS}},
           :value #:fhir{:polymorphic true, :flags #{:MS}}}}},
        :filter
@@ -297,7 +277,6 @@
             #{{:system
                "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
                :code "NEURO_OTH"}}},
-           :confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
            :fhir/flags #{:MS}},
           :value #:fhir{:polymorphic true, :flags #{:MS}}}}},
        :filter
@@ -322,7 +301,6 @@
             #{{:system
                "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
                :code "CANCER_NSITU"}}},
-           :confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
            :fhir/flags #{:MS}},
           :value #:fhir{:polymorphic true, :flags #{:MS}}}}},
        :filter
@@ -347,7 +325,6 @@
             #{{:system
                "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
                :code "DEPRESS"}}},
-           :confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
            :fhir/flags #{:MS}},
           :value #:fhir{:polymorphic true, :flags #{:MS}}}}},
        :filter
@@ -372,7 +349,6 @@
             #{{:system
                "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
                :code "THYROID_OTH"}}},
-           :confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
            :fhir/flags #{:MS}},
           :value #:fhir{:polymorphic true, :flags #{:MS}}}}},
        :filter
@@ -397,7 +373,6 @@
             #{{:system
                "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
                :code "DEMENTIA"}}},
-           :confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
            :fhir/flags #{:MS}},
           :value #:fhir{:polymorphic true, :flags #{:MS}}}}},
        :filter
@@ -422,7 +397,6 @@
             #{{:system
                "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
                :code "ALCOHOL"}}},
-           :confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
            :fhir/flags #{:MS}},
           :value #:fhir{:polymorphic true, :flags #{:MS}}}}},
        :filter
@@ -447,7 +421,6 @@
             #{{:system
                "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
                :code "NEURO_SEIZ"}}},
-           :confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
            :fhir/flags #{:MS}},
           :value #:fhir{:polymorphic true, :flags #{:MS}}}}},
        :filter
@@ -472,7 +445,6 @@
             #{{:system
                "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
                :code "RENLFL_SEV"}}},
-           :confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
            :fhir/flags #{:MS}},
           :value #:fhir{:polymorphic true, :flags #{:MS}}}}},
        :filter
@@ -497,7 +469,6 @@
             #{{:system
                "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
                :code "HTN_UNCX"}}},
-           :confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
            :fhir/flags #{:MS}},
           :value #:fhir{:polymorphic true, :flags #{:MS}}}}},
        :filter
@@ -522,7 +493,6 @@
             #{{:system
                "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
                :code "OBESE"}}},
-           :confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
            :fhir/flags #{:MS}},
           :value #:fhir{:polymorphic true, :flags #{:MS}}}}},
        :filter
@@ -547,7 +517,6 @@
             #{{:system
                "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
                :code "CANCER_METS"}}},
-           :confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
            :fhir/flags #{:MS}},
           :value #:fhir{:polymorphic true, :flags #{:MS}}}}},
        :filter
@@ -572,7 +541,6 @@
             #{{:system
                "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
                :code "LIVER_SEV"}}},
-           :confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
            :fhir/flags #{:MS}},
           :value #:fhir{:polymorphic true, :flags #{:MS}}}}},
        :filter
@@ -597,7 +565,6 @@
             #{{:system
                "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
                :code "PERIVASC"}}},
-           :confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
            :fhir/flags #{:MS}},
           :value #:fhir{:polymorphic true, :flags #{:MS}}}}},
        :filter
@@ -622,7 +589,6 @@
             #{{:system
                "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
                :code "LUNG_CHRONIC"}}},
-           :confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
            :fhir/flags #{:MS}},
           :value #:fhir{:polymorphic true, :flags #{:MS}}}}},
        :filter
@@ -647,7 +613,6 @@
             #{{:system
                "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
                :code "CANCER_LEUK"}}},
-           :confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
            :fhir/flags #{:MS}},
           :value #:fhir{:polymorphic true, :flags #{:MS}}}}},
        :filter
@@ -672,7 +637,6 @@
             #{{:system
                "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
                :code "LIVER_MLD"}}},
-           :confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
            :fhir/flags #{:MS}},
           :value #:fhir{:polymorphic true, :flags #{:MS}}}}},
        :filter
@@ -697,7 +661,6 @@
             #{{:system
                "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
                :code "ARTH"}}},
-           :confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
            :fhir/flags #{:MS}},
           :value #:fhir{:polymorphic true, :flags #{:MS}}}}},
        :filter
@@ -722,7 +685,6 @@
             #{{:system
                "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
                :code "CANCER_SOLID"}}},
-           :confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
            :fhir/flags #{:MS}},
           :value #:fhir{:polymorphic true, :flags #{:MS}}}}},
        :filter
@@ -747,7 +709,6 @@
             #{{:system
                "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
                :code "COAG"}}},
-           :confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
            :fhir/flags #{:MS}},
           :value #:fhir{:polymorphic true, :flags #{:MS}}}}},
        :filter
@@ -772,7 +733,6 @@
             #{{:system
                "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
                :code "WGHTLOSS"}}},
-           :confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
            :fhir/flags #{:MS}},
           :value #:fhir{:polymorphic true, :flags #{:MS}}}}},
        :filter
@@ -797,7 +757,6 @@
             #{{:system
                "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
                :code "CHF"}}},
-           :confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
            :fhir/flags #{:MS}},
           :value #:fhir{:polymorphic true, :flags #{:MS}}}}},
        :filter
@@ -822,7 +781,6 @@
             #{{:system
                "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
                :code "THYROID_HYPO"}}},
-           :confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
            :fhir/flags #{:MS}},
           :value #:fhir{:polymorphic true, :flags #{:MS}}}}},
        :filter
@@ -847,7 +805,6 @@
             #{{:system
                "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
                :code "BLDLOSS"}}},
-           :confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
            :fhir/flags #{:MS}},
           :value #:fhir{:polymorphic true, :flags #{:MS}}}}},
        :filter
@@ -872,7 +829,6 @@
             #{{:system
                "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
                :code "DRUG_ABUSE"}}},
-           :confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
            :fhir/flags #{:MS}},
           :value #:fhir{:polymorphic true, :flags #{:MS}}}}},
        :filter
@@ -897,7 +853,6 @@
             #{{:system
                "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
                :code "DIAB_CX"}}},
-           :confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
            :fhir/flags #{:MS}},
           :value #:fhir{:polymorphic true, :flags #{:MS}}}}},
        :filter
@@ -922,7 +877,6 @@
             #{{:system
                "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
                :code "ULCER_PEPTIC"}}},
-           :confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
            :fhir/flags #{:MS}},
           :value #:fhir{:polymorphic true, :flags #{:MS}}}}},
        :filter
@@ -947,7 +901,6 @@
             #{{:system
                "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
                :code "DIAB_UNCX"}}},
-           :confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
            :fhir/flags #{:MS}},
           :value #:fhir{:polymorphic true, :flags #{:MS}}}}},
        :filter
@@ -972,7 +925,6 @@
             #{{:system
                "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
                :code "AIDS"}}},
-           :confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
            :fhir/flags #{:MS}},
           :value #:fhir{:polymorphic true, :flags #{:MS}}}}},
        :filter
@@ -997,7 +949,6 @@
             #{{:system
                "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
                :code "NEURO_MOVT"}}},
-           :confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
            :fhir/flags #{:MS}},
           :value #:fhir{:polymorphic true, :flags #{:MS}}}}},
        :filter
@@ -1010,8 +961,7 @@
              :code "NEURO_MOVT"}}}}}}}},
     :type zen/vector,
     :every
-    {:confirms #{hl7-fhir-r4-core.BackboneElement/schema},
-     :type zen/map,
+    {:type zen/map,
      :keys
      {:value
       {:fhir/polymorphic true,

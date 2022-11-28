@@ -5,14 +5,11 @@
    hl7-fhir-us-mcode.mcode-primary-cancer-condition
    hl7-fhir-us-mcode.mcode-cancer-patient
    hl7-fhir-us-mcode.mcode-related-condition
-   hl7-fhir-r4-core.Reference
    hl7-fhir-r4-core.BodyStructure
    hl7-fhir-us-mcode.value-set.mcode-body-location-and-laterality-qualifier-vs
-   hl7-fhir-r4-core.CodeableConcept
-   hl7-fhir-r4-core.Identifier
    hl7-fhir-us-mcode.mcode-secondary-cancer-condition},
  schema
- {:zen.fhir/version "0.6.3",
+ {:zen.fhir/version "0.6.4",
   :confirms #{hl7-fhir-r4-core.BodyStructure/schema zen.fhir/Resource},
   :zen/tags #{zen.fhir/profile-schema zen/schema},
   :zen.fhir/profileUri
@@ -33,8 +30,7 @@
       :type zen/map,
       :keys
       {:Reference
-       {:confirms
-        #{hl7-fhir-r4-core.Reference/schema zen.fhir/Reference},
+       {:confirms #{zen.fhir/Reference},
         :zen.fhir/reference
         {:refers
          #{hl7-fhir-us-mcode.mcode-primary-cancer-condition/schema
@@ -47,8 +43,7 @@
    {:slicing {:slices {}},
     :type zen/vector,
     :every
-    {:confirms #{hl7-fhir-r4-core.Identifier/schema},
-     :fhir/flags #{:MS},
+    {:fhir/flags #{:MS},
      :zen/desc "Stable identifier(s) for this tumor"},
     :minItems 1},
    :morphology
@@ -58,11 +53,9 @@
         :code "367651003",
         :display
         "Malignant neoplasm of primary, secondary, or uncertain origin (morphologic abnormality)"}}},
-    :confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
     :fhir/flags #{:MS}},
    :location
-   {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
-    :fhir/flags #{:MS},
+   {:fhir/flags #{:MS},
     :zen.fhir/value-set
     {:symbol
      hl7-fhir-us-mcode.value-set.mcode-cancer-body-location-vs/value-set,
@@ -70,15 +63,14 @@
    :locationQualifier
    {:type zen/vector,
     :every
-    {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
-     :fhir/flags #{:MS},
+    {:fhir/flags #{:MS},
      :zen.fhir/value-set
      {:symbol
       hl7-fhir-us-mcode.value-set.mcode-body-location-and-laterality-qualifier-vs/value-set,
       :strength :required}}},
    :patient
-   {:confirms #{hl7-fhir-r4-core.Reference/schema zen.fhir/Reference},
-    :fhir/flags #{:MS},
+   {:fhir/flags #{:MS},
+    :confirms #{zen.fhir/Reference},
     :zen.fhir/reference
     {:refers #{hl7-fhir-us-mcode.mcode-cancer-patient/schema}}}},
   :zen.fhir/type "BodyStructure"}}

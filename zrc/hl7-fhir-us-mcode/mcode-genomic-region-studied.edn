@@ -1,13 +1,8 @@
 {ns hl7-fhir-us-mcode.mcode-genomic-region-studied,
  import
- #{hl7-fhir-r4-core.BackboneElement
-   zen.fhir
-   hl7-fhir-r4-core.Range
-   hl7-fhir-r4-core.string
+ #{zen.fhir
    hl7-fhir-us-core.us-core-observation-lab
-   hl7-fhir-r4-core.Element
    hl7-fhir-us-mcode.value-set.mcode-hgvs-vs
-   hl7-fhir-r4-core.CodeableConcept
    hl7-fhir-us-mcode.value-set.mcode-hgnc-vs},
  schema
  {:zen/tags #{zen.fhir/profile-schema zen/schema},
@@ -16,14 +11,13 @@
   :zen.fhir/type "Observation",
   :zen.fhir/profileUri
   "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-genomic-region-studied",
-  :zen.fhir/version "0.6.3",
+  :zen.fhir/version "0.6.4",
   :confirms
   #{hl7-fhir-us-core.us-core-observation-lab/schema zen.fhir/Resource},
   :type zen/map,
   :keys
   {:code
-   {:match {:coding #{{:system "http://loinc.org", :code "53041-0"}}},
-    :confirms #{hl7-fhir-r4-core.CodeableConcept/schema}},
+   {:match {:coding #{{:system "http://loinc.org", :code "53041-0"}}}},
    :value #:fhir{:polymorphic true},
    :component
    {:slicing
@@ -37,14 +31,11 @@
          {:code
           {:match
            {:coding #{{:system "http://loinc.org", :code "36908-2"}}},
-           :confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
            :fhir/flags #{:MS}},
           :value
           {:fhir/polymorphic true,
            :type zen/map,
-           :keys
-           {:CodeableConcept
-            {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema}}},
+           :keys {},
            :fhir/flags #{:MS},
            :zen.fhir/value-set
            {:symbol
@@ -64,14 +55,11 @@
          {:code
           {:match
            {:coding #{{:system "http://loinc.org", :code "48018-6"}}},
-           :confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
            :fhir/flags #{:MS}},
           :value
           {:fhir/polymorphic true,
            :type zen/map,
-           :keys
-           {:CodeableConcept
-            {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema}}},
+           :keys {},
            :fhir/flags #{:MS},
            :zen.fhir/value-set
            {:symbol
@@ -91,14 +79,11 @@
          {:code
           {:match
            {:coding #{{:system "http://loinc.org", :code "81293-3"}}},
-           :confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
            :fhir/flags #{:MS}},
           :value
           {:fhir/polymorphic true,
            :type zen/map,
-           :keys
-           {:string {:confirms #{hl7-fhir-r4-core.string/schema}},
-            :_string {:confirms #{hl7-fhir-r4-core.Element/schema}}},
+           :keys {},
            :fhir/flags #{:MS}}}}},
        :filter
        {:engine :match,
@@ -114,12 +99,11 @@
          {:code
           {:match
            {:coding #{{:system "http://loinc.org", :code "51959-5"}}},
-           :confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
            :fhir/flags #{:MS}},
           :value
           {:fhir/polymorphic true,
            :type zen/map,
-           :keys {:Range {:confirms #{hl7-fhir-r4-core.Range/schema}}},
+           :keys {},
            :fhir/flags #{:MS}}}}},
        :filter
        {:engine :match,
@@ -136,14 +120,11 @@
          {:code
           {:match
            {:coding #{{:system "http://loinc.org", :code "92822-6"}}},
-           :confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
            :fhir/flags #{:MS}},
           :value
           {:fhir/polymorphic true,
            :type zen/map,
-           :keys
-           {:CodeableConcept
-            {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema}}},
+           :keys {},
            :fhir/flags #{:MS}}}}},
        :filter
        {:engine :match,
@@ -160,7 +141,6 @@
          {:code
           {:match
            {:coding #{{:system "http://loinc.org", :code "48013-7"}}},
-           :confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
            :fhir/flags #{:MS}},
           :value #:fhir{:polymorphic true, :flags #{:MS}}}}},
        :filter
@@ -171,11 +151,8 @@
           #{{:system "http://loinc.org", :code "48013-7"}}}}}}}},
     :type zen/vector,
     :every
-    {:confirms #{hl7-fhir-r4-core.BackboneElement/schema},
-     :type zen/map,
+    {:type zen/map,
      :keys
-     {:code
-      {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
-       :fhir/flags #{:MS}},
+     {:code #:fhir{:flags #{:MS}},
       :value #:fhir{:polymorphic true, :flags #{:MS}}},
      :fhir/flags #{:MS}}}}}}

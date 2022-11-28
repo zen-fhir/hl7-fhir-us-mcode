@@ -6,7 +6,6 @@
    hl7-fhir-us-mcode.mcode-primary-cancer-condition
    hl7-fhir-us-mcode.mcode-body-location-qualifier
    hl7-fhir-us-mcode.value-set.mcode-secondary-cancer-disorder-vs
-   hl7-fhir-r4-core.Reference
    hl7-fhir-us-mcode.mcode-histology-morphology-behavior
    hl7-fhir-r4-core.condition-assertedDate
    hl7-fhir-r4-core.condition-related},
@@ -17,7 +16,7 @@
   :zen.fhir/type "Condition",
   :zen.fhir/profileUri
   "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-secondary-cancer-condition",
-  :zen.fhir/version "0.6.3",
+  :zen.fhir/version "0.6.4",
   :confirms #{zen.fhir/Resource},
   :type zen/map,
   :keys
@@ -43,8 +42,7 @@
       :type zen/map,
       :keys
       {:Reference
-       {:confirms
-        #{hl7-fhir-r4-core.Reference/schema zen.fhir/Reference},
+       {:confirms #{zen.fhir/Reference},
         :zen.fhir/reference
         {:refers
          #{hl7-fhir-us-mcode.mcode-primary-cancer-condition/schema}}}}}},

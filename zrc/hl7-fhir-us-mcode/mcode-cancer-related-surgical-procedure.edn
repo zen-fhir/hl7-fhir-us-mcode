@@ -8,11 +8,9 @@
    hl7-fhir-us-mcode.mcode-primary-cancer-condition
    hl7-fhir-us-core.us-core-procedure
    hl7-fhir-us-mcode.mcode-body-location-qualifier
-   hl7-fhir-r4-core.Reference
-   hl7-fhir-r4-core.CodeableConcept
    hl7-fhir-us-mcode.mcode-secondary-cancer-condition},
  schema
- {:zen.fhir/version "0.6.3",
+ {:zen.fhir/version "0.6.4",
   :confirms
   #{zen.fhir/Resource hl7-fhir-us-core.us-core-procedure/schema},
   :zen/tags #{zen.fhir/profile-schema zen/schema},
@@ -30,22 +28,20 @@
     :fhir/flags #{:MS}},
    :category
    {:match
-    {:coding #{{:system "http://snomed.info/sct", :code "387713003"}}},
-    :confirms #{hl7-fhir-r4-core.CodeableConcept/schema}},
+    {:coding
+     #{{:system "http://snomed.info/sct", :code "387713003"}}}},
    :code
-   {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
-    :zen.fhir/value-set
-    {:symbol
-     hl7-fhir-us-mcode.value-set.mcode-cancer-related-surgical-procedure-vs/value-set,
-     :strength :extensible}},
+   #:zen.fhir{:value-set
+              {:symbol
+               hl7-fhir-us-mcode.value-set.mcode-cancer-related-surgical-procedure-vs/value-set,
+               :strength :extensible}},
    :subject
-   {:confirms #{hl7-fhir-r4-core.Reference/schema zen.fhir/Reference},
+   {:confirms #{zen.fhir/Reference},
     :zen.fhir/reference {:refers #{}}},
    :reasonCode
    {:type zen/vector,
     :every
-    {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
-     :fhir/flags #{:MS},
+    {:fhir/flags #{:MS},
      :zen.fhir/value-set
      {:symbol
       hl7-fhir-us-mcode.value-set.mcode-cancer-disorder-vs/value-set,
@@ -53,8 +49,8 @@
    :reasonReference
    {:type zen/vector,
     :every
-    {:confirms #{hl7-fhir-r4-core.Reference/schema zen.fhir/Reference},
-     :fhir/flags #{:MS},
+    {:fhir/flags #{:MS},
+     :confirms #{zen.fhir/Reference},
      :zen.fhir/reference
      {:refers
       #{hl7-fhir-us-mcode.mcode-primary-cancer-condition/schema
@@ -62,8 +58,7 @@
    :bodySite
    {:type zen/vector,
     :every
-    {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
-     :type zen/map,
+    {:type zen/map,
      :keys
      {:locationQualifier
       {:type zen/vector,

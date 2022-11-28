@@ -1,17 +1,12 @@
 {ns hl7-fhir-us-mcode.mcode-tnm-regional-nodes-category,
  import
  #{hl7-fhir-r4-core.Observation
-   hl7-fhir-r4-core.BackboneElement
-   hl7-fhir-r4-core.code
    zen.fhir
    hl7-fhir-us-mcode.value-set.mcode-cancer-staging-system-vs
    hl7-fhir-us-mcode.mcode-primary-cancer-condition
    hl7-fhir-us-mcode.mcode-cancer-patient
    hl7-fhir-us-mcode.value-set.mcode-tnm-regional-nodes-category-vs
-   hl7-fhir-us-mcode.value-set.mcode-observation-codes-regional-nodes-vs
-   hl7-fhir-r4-core.Reference
-   hl7-fhir-r4-core.Element
-   hl7-fhir-r4-core.CodeableConcept},
+   hl7-fhir-us-mcode.value-set.mcode-observation-codes-regional-nodes-vs},
  schema
  {:zen/tags #{zen.fhir/profile-schema zen/schema},
   :zen/desc
@@ -19,24 +14,20 @@
   :zen.fhir/type "Observation",
   :zen.fhir/profileUri
   "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-tnm-regional-nodes-category",
-  :zen.fhir/version "0.6.3",
+  :zen.fhir/version "0.6.4",
   :confirms #{hl7-fhir-r4-core.Observation/schema zen.fhir/Resource},
   :type zen/map,
   :keys
   {:referenceRange
-   {:type zen/vector,
-    :every
-    {:confirms #{hl7-fhir-r4-core.BackboneElement/schema},
-     :zen/desc "Not used in this profile"}},
+   {:type zen/vector, :every #:zen{:desc "Not used in this profile"}},
    :hasMember
    {:type zen/vector,
     :every
-    {:confirms #{hl7-fhir-r4-core.Reference/schema zen.fhir/Reference},
+    {:confirms #{zen.fhir/Reference},
      :zen.fhir/reference {:refers #{}},
      :zen/desc "Not used in this profile"}},
    :method
-   {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
-    :fhir/flags #{:MS},
+   {:fhir/flags #{:MS},
     :zen.fhir/value-set
     {:symbol
      hl7-fhir-us-mcode.value-set.mcode-cancer-staging-system-vs/value-set,
@@ -44,26 +35,18 @@
    :value
    {:fhir/polymorphic true,
     :type zen/map,
-    :keys
-    {:CodeableConcept
-     {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema}}},
+    :keys {},
     :fhir/flags #{:MS},
     :zen.fhir/value-set
     {:symbol
      hl7-fhir-us-mcode.value-set.mcode-tnm-regional-nodes-category-vs/value-set,
      :strength :preferred}},
-   :_status {:confirms #{hl7-fhir-r4-core.Element/schema}},
    :component
-   {:type zen/vector,
-    :every
-    {:confirms #{hl7-fhir-r4-core.BackboneElement/schema},
-     :zen/desc "Not used in this profile"}},
-   :status
-   {:confirms #{hl7-fhir-r4-core.code/schema}, :fhir/flags #{:MS}},
+   {:type zen/vector, :every #:zen{:desc "Not used in this profile"}},
+   :status #:fhir{:flags #{:MS}},
    :effective #:fhir{:polymorphic true, :flags #{:MS}},
    :code
-   {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
-    :fhir/flags #{:MS},
+   {:fhir/flags #{:MS},
     :zen.fhir/value-set
     {:symbol
      hl7-fhir-us-mcode.value-set.mcode-observation-codes-regional-nodes-vs/value-set,
@@ -71,17 +54,17 @@
    :focus
    {:type zen/vector,
     :every
-    {:confirms #{hl7-fhir-r4-core.Reference/schema zen.fhir/Reference},
-     :fhir/flags #{:MS},
+    {:fhir/flags #{:MS},
+     :confirms #{zen.fhir/Reference},
      :zen.fhir/reference
      {:refers
       #{hl7-fhir-us-mcode.mcode-primary-cancer-condition/schema}}}},
    :device
-   {:confirms #{hl7-fhir-r4-core.Reference/schema zen.fhir/Reference},
+   {:confirms #{zen.fhir/Reference},
     :zen.fhir/reference {:refers #{}},
     :zen/desc "Not used in this profile"},
    :subject
-   {:confirms #{hl7-fhir-r4-core.Reference/schema zen.fhir/Reference},
-    :fhir/flags #{:MS},
+   {:fhir/flags #{:MS},
+    :confirms #{zen.fhir/Reference},
     :zen.fhir/reference
     {:refers #{hl7-fhir-us-mcode.mcode-cancer-patient/schema}}}}}}

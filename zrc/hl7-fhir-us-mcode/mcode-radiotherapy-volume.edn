@@ -1,15 +1,10 @@
 {ns hl7-fhir-us-mcode.mcode-radiotherapy-volume,
  import
  #{zen.fhir
-   hl7-fhir-r4-core.string
    hl7-fhir-us-mcode.value-set.mcode-radiotherapy-volume-type-vs
    hl7-fhir-us-mcode.mcode-cancer-patient
-   hl7-fhir-r4-core.Reference
    hl7-fhir-r4-core.BodyStructure
-   hl7-fhir-r4-core.Element
    hl7-fhir-us-mcode.value-set.mcode-radiotherapy-treatment-location-vs
-   hl7-fhir-r4-core.CodeableConcept
-   hl7-fhir-r4-core.Identifier
    hl7-fhir-us-mcode.value-set.mcode-radiotherapy-treatment-location-qualifier-vs},
  schema
  {:zen/tags #{zen.fhir/profile-schema zen/schema},
@@ -18,28 +13,23 @@
   :zen.fhir/type "BodyStructure",
   :zen.fhir/profileUri
   "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-radiotherapy-volume",
-  :zen.fhir/version "0.6.3",
+  :zen.fhir/version "0.6.4",
   :confirms #{hl7-fhir-r4-core.BodyStructure/schema zen.fhir/Resource},
   :type zen/map,
   :keys
   {:identifier
    {:slicing {:slices {}},
     :type zen/vector,
-    :every
-    {:confirms #{hl7-fhir-r4-core.Identifier/schema},
-     :fhir/flags #{:MS},
-     :zen/desc "Volume Identifier"}},
+    :every {:fhir/flags #{:MS}, :zen/desc "Volume Identifier"}},
    :morphology
-   {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
-    :fhir/flags #{:MS},
+   {:fhir/flags #{:MS},
     :zen.fhir/value-set
     {:symbol
      hl7-fhir-us-mcode.value-set.mcode-radiotherapy-volume-type-vs/value-set,
      :strength :extensible},
     :zen/desc "Type of Radiotherapy Volume"},
    :location
-   {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
-    :fhir/flags #{:MS},
+   {:fhir/flags #{:MS},
     :zen.fhir/value-set
     {:symbol
      hl7-fhir-us-mcode.value-set.mcode-radiotherapy-treatment-location-vs/value-set,
@@ -48,21 +38,16 @@
    :locationQualifier
    {:type zen/vector,
     :every
-    {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
-     :fhir/flags #{:MS},
+    {:fhir/flags #{:MS},
      :zen.fhir/value-set
      {:symbol
       hl7-fhir-us-mcode.value-set.mcode-radiotherapy-treatment-location-qualifier-vs/value-set,
       :strength :required},
      :zen/desc
      "Qualifiers on location used to specify a TG263 body structure comprising the irradiated volume."}},
-   :description
-   {:confirms #{hl7-fhir-r4-core.string/schema},
-    :fhir/flags #{:MS},
-    :zen/desc "Volume Description"},
-   :_description {:confirms #{hl7-fhir-r4-core.Element/schema}},
+   :description {:fhir/flags #{:MS}, :zen/desc "Volume Description"},
    :patient
-   {:confirms #{hl7-fhir-r4-core.Reference/schema zen.fhir/Reference},
-    :fhir/flags #{:MS},
+   {:fhir/flags #{:MS},
+    :confirms #{zen.fhir/Reference},
     :zen.fhir/reference
     {:refers #{hl7-fhir-us-mcode.mcode-cancer-patient/schema}}}}}}

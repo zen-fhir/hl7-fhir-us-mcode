@@ -1,7 +1,6 @@
 {ns hl7-fhir-us-mcode.mcode-cancer-related-medication-administration,
  import
  #{hl7-fhir-us-mcode.value-set.mcode-cancer-disorder-vs
-   hl7-fhir-r4-core.code
    zen.fhir
    hl7-fhir-us-mcode.mcode-procedure-intent
    hl7-fhir-r4-core.MedicationAdministration
@@ -9,9 +8,6 @@
    us-nlm-vsac.value-set.2.16.840.1.113762.1.4.1010.4
    hl7-fhir-us-mcode.mcode-primary-cancer-condition
    hl7-fhir-us-mcode.mcode-cancer-patient
-   hl7-fhir-r4-core.Reference
-   hl7-fhir-r4-core.Element
-   hl7-fhir-r4-core.CodeableConcept
    hl7-fhir-us-mcode.mcode-secondary-cancer-condition},
  schema
  {:zen/tags #{zen.fhir/profile-schema zen/schema},
@@ -20,7 +16,7 @@
   :zen.fhir/type "MedicationAdministration",
   :zen.fhir/profileUri
   "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-cancer-related-medication-administration",
-  :zen.fhir/version "0.6.3",
+  :zen.fhir/version "0.6.4",
   :confirms
   #{hl7-fhir-r4-core.MedicationAdministration/schema
     zen.fhir/Resource},
@@ -34,12 +30,10 @@
      :fhir/extensionUri
      "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-treatment-termination-reason",
      :fhir/flags #{:MS}}},
-   :_status {:confirms #{hl7-fhir-r4-core.Element/schema}},
    :reasonCode
    {:type zen/vector,
     :every
-    {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
-     :fhir/flags #{:MS},
+    {:fhir/flags #{:MS},
      :zen.fhir/value-set
      {:symbol
       hl7-fhir-us-mcode.value-set.mcode-cancer-disorder-vs/value-set,
@@ -49,12 +43,11 @@
     :fhir/extensionUri
     "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-procedure-intent",
     :fhir/flags #{:MS}},
-   :status
-   {:confirms #{hl7-fhir-r4-core.code/schema}, :fhir/flags #{:MS}},
+   :status #:fhir{:flags #{:MS}},
    :effective #:fhir{:polymorphic true, :flags #{:MS}},
    :subject
-   {:confirms #{hl7-fhir-r4-core.Reference/schema zen.fhir/Reference},
-    :fhir/flags #{:MS},
+   {:fhir/flags #{:MS},
+    :confirms #{zen.fhir/Reference},
     :zen.fhir/reference
     {:refers #{hl7-fhir-us-mcode.mcode-cancer-patient/schema}}},
    :medication
@@ -67,8 +60,8 @@
    :reasonReference
    {:type zen/vector,
     :every
-    {:confirms #{hl7-fhir-r4-core.Reference/schema zen.fhir/Reference},
-     :fhir/flags #{:MS},
+    {:fhir/flags #{:MS},
+     :confirms #{zen.fhir/Reference},
      :zen.fhir/reference
      {:refers
       #{hl7-fhir-us-mcode.mcode-primary-cancer-condition/schema

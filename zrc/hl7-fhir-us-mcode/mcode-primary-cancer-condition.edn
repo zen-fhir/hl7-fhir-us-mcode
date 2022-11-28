@@ -6,7 +6,6 @@
    hl7-fhir-us-mcode.mcode-laterality-qualifier
    hl7-fhir-us-mcode.value-set.mcode-observation-codes-stage-group-vs
    hl7-fhir-us-mcode.mcode-body-location-qualifier
-   hl7-fhir-r4-core.Reference
    hl7-fhir-us-mcode.mcode-histology-morphology-behavior
    hl7-fhir-r4-core.condition-assertedDate
    hl7-fhir-us-mcode.mcode-cancer-stage-group},
@@ -17,7 +16,7 @@
   :zen.fhir/type "Condition",
   :zen.fhir/profileUri
   "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-primary-cancer-condition",
-  :zen.fhir/version "0.6.3",
+  :zen.fhir/version "0.6.4",
   :confirms #{zen.fhir/Resource},
   :type zen/map,
   :keys
@@ -63,9 +62,8 @@
     :keys
     {:summary #:zen{:desc "Most recent Stage Group"},
      :assessment
-     {:confirms
-      #{hl7-fhir-r4-core.Reference/schema zen.fhir/Reference},
-      :fhir/flags #{:MS},
+     {:fhir/flags #{:MS},
+      :confirms #{zen.fhir/Reference},
       :zen.fhir/reference
       {:refers #{hl7-fhir-us-mcode.mcode-cancer-stage-group/schema}}},
      :type
