@@ -7,7 +7,7 @@
    hl7-fhir-r4-core.ServiceRequest
    hl7-fhir-r4-core.Procedure},
  schema
- {:zen.fhir/version "0.6.4",
+ {:zen.fhir/version "0.6.5",
   :confirms #{hl7-fhir-r4-core.Observation/schema zen.fhir/Resource},
   :zen/tags #{zen.fhir/profile-schema zen/schema},
   :zen.fhir/profileUri
@@ -36,19 +36,13 @@
    {:confirms #{zen.fhir/Reference},
     :zen.fhir/reference {:refers #{}},
     :zen/desc "Not used in this profile"},
-   :value
-   {:fhir/polymorphic true,
-    :type zen/map,
-    :keys {},
-    :fhir/flags #{:MS}},
+   :value #:fhir{:polymorphic true, :flags #{:MS}},
    :component
    {:type zen/vector, :every #:zen{:desc "Not used in this profile"}},
    :status #:fhir{:flags #{:MS}},
    :effective
    {:fhir/polymorphic true,
     :exclusive-keys #{#{:dateTime :Period}},
-    :type zen/map,
-    :keys {},
     :fhir/flags #{:MS}},
    :code
    {:match {:coding #{{:system "http://loinc.org", :code "89243-0"}}},

@@ -1,4 +1,5 @@
 {:deps
  {zen.fhir "https://github.com/zen-fhir/zen.fhir.git",
+  hl7-fhir-us-core "https://github.com/zen-fhir/hl7-fhir-us-core.git",
   hl7-fhir-r4-core "https://github.com/zen-fhir/hl7-fhir-r4-core.git",
-  hl7-fhir-us-core "https://github.com/zen-fhir/hl7-fhir-us-core.git"}}
+  us-nlm-vsac "https://github.com/zen-fhir/us-nlm-vsac.git"}}

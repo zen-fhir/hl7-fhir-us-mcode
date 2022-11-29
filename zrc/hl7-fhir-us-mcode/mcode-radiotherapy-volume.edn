@@ -13,13 +13,13 @@
   :zen.fhir/type "BodyStructure",
   :zen.fhir/profileUri
   "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-radiotherapy-volume",
-  :zen.fhir/version "0.6.4",
+  :zen.fhir/version "0.6.5",
   :confirms #{hl7-fhir-r4-core.BodyStructure/schema zen.fhir/Resource},
   :type zen/map,
   :keys
   {:identifier
-   {:slicing {:slices {}},
-    :type zen/vector,
+   {:type zen/vector,
+    :slicing {:slices {}},
     :every {:fhir/flags #{:MS}, :zen/desc "Volume Identifier"}},
    :morphology
    {:fhir/flags #{:MS},

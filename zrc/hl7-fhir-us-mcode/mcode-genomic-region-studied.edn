@@ -11,7 +11,7 @@
   :zen.fhir/type "Observation",
   :zen.fhir/profileUri
   "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-genomic-region-studied",
-  :zen.fhir/version "0.6.4",
+  :zen.fhir/version "0.6.5",
   :confirms
   #{hl7-fhir-us-core.us-core-observation-lab/schema zen.fhir/Resource},
   :type zen/map,
@@ -20,7 +20,8 @@
    {:match {:coding #{{:system "http://loinc.org", :code "53041-0"}}}},
    :value #:fhir{:polymorphic true},
    :component
-   {:slicing
+   {:type zen/vector,
+    :slicing
     {:slices
      {"geneMutations"
       {:schema
@@ -34,8 +35,6 @@
            :fhir/flags #{:MS}},
           :value
           {:fhir/polymorphic true,
-           :type zen/map,
-           :keys {},
            :fhir/flags #{:MS},
            :zen.fhir/value-set
            {:symbol
@@ -58,8 +57,6 @@
            :fhir/flags #{:MS}},
           :value
           {:fhir/polymorphic true,
-           :type zen/map,
-           :keys {},
            :fhir/flags #{:MS},
            :zen.fhir/value-set
            {:symbol
@@ -80,11 +77,7 @@
           {:match
            {:coding #{{:system "http://loinc.org", :code "81293-3"}}},
            :fhir/flags #{:MS}},
-          :value
-          {:fhir/polymorphic true,
-           :type zen/map,
-           :keys {},
-           :fhir/flags #{:MS}}}}},
+          :value #:fhir{:polymorphic true, :flags #{:MS}}}}},
        :filter
        {:engine :match,
         :match
@@ -100,11 +93,7 @@
           {:match
            {:coding #{{:system "http://loinc.org", :code "51959-5"}}},
            :fhir/flags #{:MS}},
-          :value
-          {:fhir/polymorphic true,
-           :type zen/map,
-           :keys {},
-           :fhir/flags #{:MS}}}}},
+          :value #:fhir{:polymorphic true, :flags #{:MS}}}}},
        :filter
        {:engine :match,
         :match
@@ -121,11 +110,7 @@
           {:match
            {:coding #{{:system "http://loinc.org", :code "92822-6"}}},
            :fhir/flags #{:MS}},
-          :value
-          {:fhir/polymorphic true,
-           :type zen/map,
-           :keys {},
-           :fhir/flags #{:MS}}}}},
+          :value #:fhir{:polymorphic true, :flags #{:MS}}}}},
        :filter
        {:engine :match,
         :match
@@ -149,7 +134,6 @@
         {:code
          {:coding
           #{{:system "http://loinc.org", :code "48013-7"}}}}}}}},
-    :type zen/vector,
     :every
     {:type zen/map,
      :keys

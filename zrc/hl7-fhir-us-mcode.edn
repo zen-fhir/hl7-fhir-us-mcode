@@ -1,5 +1,5 @@
 {ns hl7-fhir-us-mcode,
- import #{zen.fhir hl7-fhir-us-core hl7-fhir-r4-core},
+ import #{zen.fhir hl7-fhir-us-core hl7-fhir-r4-core us-nlm-vsac},
  extensions
  {:zen/tags #{zen.fhir/extensions},
   :schemas

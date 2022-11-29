@@ -7,7 +7,7 @@
   :zen.fhir/type "Patient",
   :zen.fhir/profileUri
   "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-cancer-patient",
-  :zen.fhir/version "0.6.4",
+  :zen.fhir/version "0.6.5",
   :confirms
   #{hl7-fhir-us-core.us-core-patient/schema zen.fhir/Resource},
   :type zen/map,
