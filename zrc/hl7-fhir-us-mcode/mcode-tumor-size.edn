@@ -8,7 +8,7 @@
    hl7-fhir-us-mcode.value-set.mcode-tumor-size-units-vs
    hl7-fhir-us-mcode.value-set.mcode-tumor-size-method-vs},
  schema
- {:zen.fhir/version "0.6.5",
+ {:zen.fhir/version "0.6.6",
   :confirms #{hl7-fhir-r4-core.Observation/schema zen.fhir/Resource},
   :zen/tags #{zen.fhir/profile-schema zen/schema},
   :zen.fhir/profileUri
@@ -36,7 +36,8 @@
      :zen/desc
      "Identifies a tumor that has NOT been removed from the body"},
     :maxItems 1},
-   :effective #:fhir{:polymorphic true, :flags #{:MS}},
+   :effective
+   {:fhir/polymorphic true, :type zen/map, :fhir/flags #{:MS}},
    :method
    {:fhir/flags #{:MS},
     :zen.fhir/value-set

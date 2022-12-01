@@ -14,7 +14,7 @@
   :zen.fhir/type "Observation",
   :zen.fhir/profileUri
   "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-tnm-regional-nodes-category",
-  :zen.fhir/version "0.6.5",
+  :zen.fhir/version "0.6.6",
   :confirms #{hl7-fhir-r4-core.Observation/schema zen.fhir/Resource},
   :type zen/map,
   :keys
@@ -34,6 +34,7 @@
      :strength :extensible}},
    :value
    {:fhir/polymorphic true,
+    :type zen/map,
     :fhir/flags #{:MS},
     :zen.fhir/value-set
     {:symbol
@@ -42,7 +43,8 @@
    :component
    {:type zen/vector, :every #:zen{:desc "Not used in this profile"}},
    :status #:fhir{:flags #{:MS}},
-   :effective #:fhir{:polymorphic true, :flags #{:MS}},
+   :effective
+   {:fhir/polymorphic true, :type zen/map, :fhir/flags #{:MS}},
    :code
    {:fhir/flags #{:MS},
     :zen.fhir/value-set

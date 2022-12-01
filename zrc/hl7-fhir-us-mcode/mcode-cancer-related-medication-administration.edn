@@ -16,7 +16,7 @@
   :zen.fhir/type "MedicationAdministration",
   :zen.fhir/profileUri
   "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-cancer-related-medication-administration",
-  :zen.fhir/version "0.6.5",
+  :zen.fhir/version "0.6.6",
   :confirms
   #{hl7-fhir-r4-core.MedicationAdministration/schema
     zen.fhir/Resource},
@@ -44,7 +44,8 @@
     "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-procedure-intent",
     :fhir/flags #{:MS}},
    :status #:fhir{:flags #{:MS}},
-   :effective #:fhir{:polymorphic true, :flags #{:MS}},
+   :effective
+   {:fhir/polymorphic true, :type zen/map, :fhir/flags #{:MS}},
    :subject
    {:fhir/flags #{:MS},
     :confirms #{zen.fhir/Reference},
@@ -52,6 +53,7 @@
     {:refers #{hl7-fhir-us-mcode.mcode-cancer-patient/schema}}},
    :medication
    {:fhir/polymorphic true,
+    :type zen/map,
     :fhir/flags #{:MS},
     :zen.fhir/value-set
     {:symbol

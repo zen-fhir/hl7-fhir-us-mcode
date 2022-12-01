@@ -13,7 +13,7 @@
   :zen.fhir/type "Observation",
   :zen.fhir/profileUri
   "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-comorbidities-parent",
-  :zen.fhir/version "0.6.5",
+  :zen.fhir/version "0.6.6",
   :confirms #{hl7-fhir-r4-core.Observation/schema zen.fhir/Resource},
   :type zen/map,
   :keys
@@ -58,4 +58,4 @@
         "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-comorbid-condition-reference"}},
       :modifierExtension {:type zen/vector, :maxItems 0},
       :code #:zen{:desc "Code representing the comorbidity category"},
-      :value #:fhir{:polymorphic true}}}}}}}
+      :value {:fhir/polymorphic true, :type zen/map}}}}}}}

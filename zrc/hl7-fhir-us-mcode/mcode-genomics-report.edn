@@ -4,7 +4,7 @@
    zen.fhir
    hl7-fhir-us-mcode.mcode-genomic-specimen},
  schema
- {:zen.fhir/version "0.6.5",
+ {:zen.fhir/version "0.6.6",
   :confirms
   #{hl7-fhir-us-core.us-core-diagnosticreport-lab/schema
     zen.fhir/Resource},

@@ -7,8 +7,10 @@
   :zen.fhir/type "Patient",
   :zen.fhir/profileUri
   "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-cancer-patient",
-  :zen.fhir/version "0.6.5",
+  :zen.fhir/version "0.6.6",
   :confirms
   #{hl7-fhir-us-core.us-core-patient/schema zen.fhir/Resource},
   :type zen/map,
-  :keys {:deceased #:fhir{:polymorphic true, :flags #{:MS}}}}}
+  :keys
+  {:deceased
+   {:fhir/polymorphic true, :type zen/map, :fhir/flags #{:MS}}}}}

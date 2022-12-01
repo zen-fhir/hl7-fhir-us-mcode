@@ -11,7 +11,7 @@
   :zen.fhir/type "Observation",
   :zen.fhir/profileUri
   "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-tumor-marker-test",
-  :zen.fhir/version "0.6.5",
+  :zen.fhir/version "0.6.6",
   :confirms
   #{hl7-fhir-us-core.us-core-observation-lab/schema zen.fhir/Resource},
   :type zen/map,
@@ -26,9 +26,12 @@
     :zen.fhir/reference
     {:refers #{hl7-fhir-us-mcode.mcode-cancer-patient/schema}}},
    :effective
-   {:fhir/polymorphic true, :exclusive-keys #{#{:dateTime :Period}}},
+   {:fhir/polymorphic true,
+    :type zen/map,
+    :exclusive-keys #{#{:dateTime :Period}}},
    :value
    {:fhir/polymorphic true,
+    :type zen/map,
     :exclusive-keys #{#{:string :Ratio :CodeableConcept :Quantity}}},
    :specimen
    {:fhir/flags #{:MS},
