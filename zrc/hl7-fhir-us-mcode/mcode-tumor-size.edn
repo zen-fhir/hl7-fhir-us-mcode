@@ -1,111 +1,69 @@
 {ns hl7-fhir-us-mcode.mcode-tumor-size,
- import
- #{hl7-fhir-r4-core.Observation
-   zen.fhir
-   hl7-fhir-us-mcode.mcode-tumor-specimen
-   hl7-fhir-us-mcode.mcode-cancer-patient
-   hl7-fhir-us-mcode.mcode-tumor
-   hl7-fhir-us-mcode.value-set.mcode-tumor-size-units-vs
-   hl7-fhir-us-mcode.value-set.mcode-tumor-size-method-vs},
- schema
- {:zen.fhir/version "0.6.6-7",
-  :confirms #{hl7-fhir-r4-core.Observation/schema zen.fhir/Resource},
-  :zen/tags #{zen.fhir/profile-schema zen/schema},
-  :zen.fhir/profileUri
-  "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-tumor-size",
-  :require #{:component :subject},
-  :type zen/map,
-  :zen/desc "Records the dimensions of a tumor",
-  :keys
-  {:code
-   {:match {:coding #{{:system "http://loinc.org", :code "21889-1"}}},
-    :fhir/flags #{:MS}},
-   :subject
-   {:fhir/flags #{:MS},
-    :confirms #{zen.fhir/Reference},
-    :zen.fhir/reference
-    {:refers #{hl7-fhir-us-mcode.mcode-cancer-patient/schema}},
-    :zen/desc "The patient whose tumor was measured."},
-   :focus
-   {:type zen/vector,
-    :every
-    {:fhir/flags #{:MS},
-     :confirms #{zen.fhir/Reference},
-     :zen.fhir/reference
-     {:refers #{hl7-fhir-us-mcode.mcode-tumor/schema}},
-     :zen/desc
-     "Identifies a tumor that has NOT been removed from the body"},
-    :maxItems 1},
-   :effective
-   {:fhir/polymorphic true, :type zen/map, :fhir/flags #{:MS}},
-   :method
-   {:fhir/flags #{:MS},
-    :zen.fhir/value-set
-    {:symbol
-     hl7-fhir-us-mcode.value-set.mcode-tumor-size-method-vs/value-set,
-     :strength :extensible},
-    :zen/desc "Method for measuring the tumor"},
-   :specimen
-   {:fhir/flags #{:MS},
-    :confirms #{zen.fhir/Reference},
-    :zen.fhir/reference
-    {:refers #{hl7-fhir-us-mcode.mcode-tumor-specimen/schema}},
-    :zen/desc
-    "Identifies a tumor that has been removed from the body"},
-   :component
-   {:type zen/vector,
-    :slicing
-    {:slices
-     {"tumorLongestDimension"
-      {:schema
-       {:type zen/vector,
-        :minItems 1,
-        :maxItems 1,
-        :every
-        {:type zen/map,
-         :keys
-         {:code
-          {:match
-           {:coding #{{:system "http://loinc.org", :code "33728-7"}}},
-           :fhir/flags #{:MS}},
-          :value
-          {:type zen/map,
-           :keys
-           {:Quantity
-            #:zen.fhir{:value-set
-                       {:symbol
-                        hl7-fhir-us-mcode.value-set.mcode-tumor-size-units-vs/value-set,
-                        :strength :required}}}}}}},
-       :filter
-       {:engine :match,
-        :match
-        {:code
-         {:coding #{{:system "http://loinc.org", :code "33728-7"}}}}}},
-      "tumorOtherDimension"
-      {:schema
-       {:type zen/vector,
-        :maxItems 2,
-        :every
-        {:type zen/map,
-         :keys
-         {:code
-          {:match
-           {:coding #{{:system "http://loinc.org", :code "33729-5"}}},
-           :fhir/flags #{:MS}},
-          :value
-          {:type zen/map,
-           :keys
-           {:Quantity
-            #:zen.fhir{:value-set
-                       {:symbol
-                        hl7-fhir-us-mcode.value-set.mcode-tumor-size-units-vs/value-set,
-                        :strength :required}}}}}}},
-       :filter
-       {:engine :match,
-        :match
-        {:code
-         {:coding
-          #{{:system "http://loinc.org", :code "33729-5"}}}}}}}},
-    :every #:fhir{:flags #{:MS}},
-    :minItems 1}},
-  :zen.fhir/type "Observation"}}
+ import #{hl7-fhir-r4-core.Observation
+          zen.fhir
+          hl7-fhir-us-mcode.mcode-tumor-specimen
+          hl7-fhir-us-mcode.mcode-cancer-patient
+          hl7-fhir-us-mcode.mcode-tumor
+          hl7-fhir-us-mcode.value-set.mcode-tumor-size-units-vs
+          hl7-fhir-us-mcode.value-set.mcode-tumor-size-method-vs},
+ schema {:zen.fhir/version "0.6.6-8",
+         :confirms #{hl7-fhir-r4-core.Observation/schema
+                     zen.fhir/Resource},
+         :zen/tags #{zen.fhir/profile-schema zen/schema},
+         :zen.fhir/profileUri "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-tumor-size",
+         :require #{:component :subject},
+         :type zen/map,
+         :zen/desc "Records the dimensions of a tumor",
+         :keys {:code {:match {:coding #{{:system "http://loinc.org",
+                                          :code "21889-1"}}},
+                       :fhir/flags #{:MS}},
+                :subject {:fhir/flags #{:MS},
+                          :confirms #{zen.fhir/Reference},
+                          :zen.fhir/reference {:refers #{hl7-fhir-us-mcode.mcode-cancer-patient/schema}},
+                          :zen/desc "The patient whose tumor was measured."},
+                :focus {:type zen/vector,
+                        :every {:fhir/flags #{:MS},
+                                :confirms #{zen.fhir/Reference},
+                                :zen.fhir/reference {:refers #{hl7-fhir-us-mcode.mcode-tumor/schema}},
+                                :zen/desc "Identifies a tumor that has NOT been removed from the body"},
+                        :maxItems 1},
+                :effective {:fhir/polymorphic true,
+                            :type zen/map,
+                            :fhir/flags #{:MS}},
+                :method {:fhir/flags #{:MS},
+                         :zen.fhir/value-set {:symbol hl7-fhir-us-mcode.value-set.mcode-tumor-size-method-vs/value-set,
+                                              :strength :extensible},
+                         :zen/desc "Method for measuring the tumor"},
+                :specimen {:fhir/flags #{:MS},
+                           :confirms #{zen.fhir/Reference},
+                           :zen.fhir/reference {:refers #{hl7-fhir-us-mcode.mcode-tumor-specimen/schema}},
+                           :zen/desc "Identifies a tumor that has been removed from the body"},
+                :component {:type zen/vector,
+                            :slicing {:slices {"tumorLongestDimension" {:schema {:type zen/vector,
+                                                                                 :minItems 1,
+                                                                                 :maxItems 1,
+                                                                                 :every {:type zen/map,
+                                                                                         :keys {:code {:match {:coding #{{:system "http://loinc.org",
+                                                                                                                          :code "33728-7"}}},
+                                                                                                       :fhir/flags #{:MS}},
+                                                                                                :value {:type zen/map,
+                                                                                                        :keys {:Quantity {:zen.fhir/value-set {:symbol hl7-fhir-us-mcode.value-set.mcode-tumor-size-units-vs/value-set,
+                                                                                                                                               :strength :required}}}}}}},
+                                                                        :filter {:engine :match,
+                                                                                 :match {:code {:coding #{{:system "http://loinc.org",
+                                                                                                           :code "33728-7"}}}}}},
+                                               "tumorOtherDimension" {:schema {:type zen/vector,
+                                                                               :maxItems 2,
+                                                                               :every {:type zen/map,
+                                                                                       :keys {:code {:match {:coding #{{:system "http://loinc.org",
+                                                                                                                        :code "33729-5"}}},
+                                                                                                     :fhir/flags #{:MS}},
+                                                                                              :value {:type zen/map,
+                                                                                                      :keys {:Quantity {:zen.fhir/value-set {:symbol hl7-fhir-us-mcode.value-set.mcode-tumor-size-units-vs/value-set,
+                                                                                                                                             :strength :required}}}}}}},
+                                                                      :filter {:engine :match,
+                                                                               :match {:code {:coding #{{:system "http://loinc.org",
+                                                                                                         :code "33729-5"}}}}}}}},
+                            :every {:fhir/flags #{:MS}},
+                            :minItems 1}},
+         :zen.fhir/type "Observation"}}

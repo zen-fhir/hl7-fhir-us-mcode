@@ -1,66 +1,41 @@
 {ns hl7-fhir-us-mcode.mcode-cancer-related-medication-request,
- import
- #{hl7-fhir-us-mcode.value-set.mcode-cancer-disorder-vs
-   zen.fhir
-   hl7-fhir-us-core.us-core-practitioner
-   hl7-fhir-us-mcode.mcode-procedure-intent
-   hl7-fhir-us-mcode.mcode-treatment-termination-reason
-   hl7-fhir-us-core.us-core-organization
-   hl7-fhir-us-mcode.mcode-primary-cancer-condition
-   hl7-fhir-us-mcode.mcode-cancer-patient
-   hl7-fhir-us-mcode.mcode-secondary-cancer-condition
-   hl7-fhir-us-core.us-core-medicationrequest},
- schema
- {:zen/tags #{zen.fhir/profile-schema zen/schema},
-  :zen/desc
-  "A record of a medication prescription or consumption associated with cancer treatment. The medication may reported by the prescriber, prescribing organization, or patient. It does not have to be directly observed.",
-  :zen.fhir/type "MedicationRequest",
-  :zen.fhir/profileUri
-  "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-cancer-related-medication-request",
-  :zen.fhir/version "0.6.6-7",
-  :confirms
-  #{hl7-fhir-us-core.us-core-medicationrequest/schema
-    zen.fhir/Resource},
-  :type zen/map,
-  :keys
-  {:treatmentIntent
-   {:confirms #{hl7-fhir-us-mcode.mcode-procedure-intent/schema},
-    :fhir/extensionUri
-    "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-procedure-intent",
-    :fhir/flags #{:MS}},
-   :terminationReason
-   {:type zen/vector,
-    :every
-    {:confirms
-     #{hl7-fhir-us-mcode.mcode-treatment-termination-reason/schema},
-     :fhir/extensionUri
-     "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-treatment-termination-reason",
-     :fhir/flags #{:MS}}},
-   :subject
-   {:confirms #{zen.fhir/Reference},
-    :zen.fhir/reference
-    {:refers #{hl7-fhir-us-mcode.mcode-cancer-patient/schema}}},
-   :requester
-   {:confirms #{zen.fhir/Reference},
-    :zen.fhir/reference
-    {:refers
-     #{hl7-fhir-us-core.us-core-organization/schema
-       hl7-fhir-us-core.us-core-practitioner/schema
-       hl7-fhir-us-mcode.mcode-cancer-patient/schema}}},
-   :reasonCode
-   {:type zen/vector,
-    :every
-    {:fhir/flags #{:MS},
-     :zen.fhir/value-set
-     {:symbol
-      hl7-fhir-us-mcode.value-set.mcode-cancer-disorder-vs/value-set,
-      :strength :extensible}}},
-   :reasonReference
-   {:type zen/vector,
-    :every
-    {:fhir/flags #{:MS},
-     :confirms #{zen.fhir/Reference},
-     :zen.fhir/reference
-     {:refers
-      #{hl7-fhir-us-mcode.mcode-primary-cancer-condition/schema
-        hl7-fhir-us-mcode.mcode-secondary-cancer-condition/schema}}}}}}}
+ import #{hl7-fhir-us-mcode.value-set.mcode-cancer-disorder-vs
+          zen.fhir
+          hl7-fhir-us-core.us-core-practitioner
+          hl7-fhir-us-mcode.mcode-procedure-intent
+          hl7-fhir-us-mcode.mcode-treatment-termination-reason
+          hl7-fhir-us-core.us-core-organization
+          hl7-fhir-us-mcode.mcode-primary-cancer-condition
+          hl7-fhir-us-mcode.mcode-cancer-patient
+          hl7-fhir-us-mcode.mcode-secondary-cancer-condition
+          hl7-fhir-us-core.us-core-medicationrequest},
+ schema {:zen/tags #{zen.fhir/profile-schema zen/schema},
+         :zen/desc "A record of a medication prescription or consumption associated with cancer treatment. The medication may reported by the prescriber, prescribing organization, or patient. It does not have to be directly observed.",
+         :zen.fhir/type "MedicationRequest",
+         :zen.fhir/profileUri "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-cancer-related-medication-request",
+         :zen.fhir/version "0.6.6-8",
+         :confirms #{hl7-fhir-us-core.us-core-medicationrequest/schema
+                     zen.fhir/Resource},
+         :type zen/map,
+         :keys {:treatmentIntent {:confirms #{hl7-fhir-us-mcode.mcode-procedure-intent/schema},
+                                  :fhir/extensionUri "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-procedure-intent",
+                                  :fhir/flags #{:MS}},
+                :terminationReason {:type zen/vector,
+                                    :every {:confirms #{hl7-fhir-us-mcode.mcode-treatment-termination-reason/schema},
+                                            :fhir/extensionUri "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-treatment-termination-reason",
+                                            :fhir/flags #{:MS}}},
+                :subject {:confirms #{zen.fhir/Reference},
+                          :zen.fhir/reference {:refers #{hl7-fhir-us-mcode.mcode-cancer-patient/schema}}},
+                :requester {:confirms #{zen.fhir/Reference},
+                            :zen.fhir/reference {:refers #{hl7-fhir-us-core.us-core-organization/schema
+                                                           hl7-fhir-us-core.us-core-practitioner/schema
+                                                           hl7-fhir-us-mcode.mcode-cancer-patient/schema}}},
+                :reasonCode {:type zen/vector,
+                             :every {:fhir/flags #{:MS},
+                                     :zen.fhir/value-set {:symbol hl7-fhir-us-mcode.value-set.mcode-cancer-disorder-vs/value-set,
+                                                          :strength :extensible}}},
+                :reasonReference {:type zen/vector,
+                                  :every {:fhir/flags #{:MS},
+                                          :confirms #{zen.fhir/Reference},
+                                          :zen.fhir/reference {:refers #{hl7-fhir-us-mcode.mcode-primary-cancer-condition/schema
+                                                                         hl7-fhir-us-mcode.mcode-secondary-cancer-condition/schema}}}}}}}

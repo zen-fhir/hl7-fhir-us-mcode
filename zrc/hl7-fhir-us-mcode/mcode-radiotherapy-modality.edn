@@ -1,11 +1,8 @@
 {ns hl7-fhir-us-mcode.mcode-radiotherapy-modality,
  import #{zen.fhir hl7-fhir-r4-core.CodeableConcept},
- schema
- {:zen/tags #{zen/schema zen.fhir/structure-schema},
-  :zen/desc
-  "Extension capturing a modality of external beam or brachytherapy radiation procedures.",
-  :zen.fhir/type "CodeableConcept",
-  :zen.fhir/profileUri
-  "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-radiotherapy-modality",
-  :zen.fhir/version "0.6.6-7",
-  :confirms #{hl7-fhir-r4-core.CodeableConcept/schema}}}
+ schema {:zen/tags #{zen/schema zen.fhir/structure-schema},
+         :zen/desc "Extension capturing a modality of external beam or brachytherapy radiation procedures.",
+         :zen.fhir/type "CodeableConcept",
+         :zen.fhir/profileUri "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-radiotherapy-modality",
+         :zen.fhir/version "0.6.6-8",
+         :confirms #{hl7-fhir-r4-core.CodeableConcept/schema}}}

@@ -1,42 +1,26 @@
 {ns hl7-fhir-us-mcode.mcode-radiotherapy-modality-and-technique,
- import
- #{hl7-fhir-us-mcode.mcode-radiotherapy-modality
-   zen.fhir
-   hl7-fhir-us-mcode.value-set.mcode-radiotherapy-technique-vs
-   hl7-fhir-r4-core.Extension
-   hl7-fhir-us-mcode.value-set.mcode-radiotherapy-modality-vs
-   hl7-fhir-us-mcode.mcode-radiotherapy-technique},
- schema
- {:zen.fhir/version "0.6.6-7",
-  :zen/tags #{zen/schema zen.fhir/structure-schema},
-  :zen.fhir/profileUri
-  "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-radiotherapy-modality-and-technique",
-  :require #{:modality},
-  :type zen/map,
-  :zen/desc
-  "Extension capturing modality and technique of a given radiotherapy procedure.  The allowed combinations of modality and technique are constrained by invariants, one per modality.",
-  :keys
-  {:modality
-   {:confirms
-    #{hl7-fhir-us-mcode.mcode-radiotherapy-modality/schema
-      hl7-fhir-r4-core.Extension/schema},
-    :fhir/extensionUri
-    "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-radiotherapy-modality",
-    :fhir/flags #{:MS},
-    :zen.fhir/value-set
-    {:symbol
-     hl7-fhir-us-mcode.value-set.mcode-radiotherapy-modality-vs/value-set,
-     :strength :required}},
-   :technique
-   {:type zen/vector,
-    :every
-    {:confirms
-     #{hl7-fhir-us-mcode.mcode-radiotherapy-technique/schema
-       hl7-fhir-r4-core.Extension/schema},
-     :fhir/extensionUri
-     "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-radiotherapy-technique",
-     :fhir/flags #{:MS},
-     :zen.fhir/value-set
-     {:symbol
-      hl7-fhir-us-mcode.value-set.mcode-radiotherapy-technique-vs/value-set,
-      :strength :required}}}}}}
+ import #{hl7-fhir-us-mcode.mcode-radiotherapy-modality
+          zen.fhir
+          hl7-fhir-us-mcode.value-set.mcode-radiotherapy-technique-vs
+          hl7-fhir-r4-core.Extension
+          hl7-fhir-us-mcode.value-set.mcode-radiotherapy-modality-vs
+          hl7-fhir-us-mcode.mcode-radiotherapy-technique},
+ schema {:zen.fhir/version "0.6.6-8",
+         :zen/tags #{zen/schema zen.fhir/structure-schema},
+         :zen.fhir/profileUri "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-radiotherapy-modality-and-technique",
+         :require #{:modality},
+         :type zen/map,
+         :zen/desc "Extension capturing modality and technique of a given radiotherapy procedure.  The allowed combinations of modality and technique are constrained by invariants, one per modality.",
+         :keys {:modality {:confirms #{hl7-fhir-us-mcode.mcode-radiotherapy-modality/schema
+                                       hl7-fhir-r4-core.Extension/schema},
+                           :fhir/extensionUri "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-radiotherapy-modality",
+                           :fhir/flags #{:MS},
+                           :zen.fhir/value-set {:symbol hl7-fhir-us-mcode.value-set.mcode-radiotherapy-modality-vs/value-set,
+                                                :strength :required}},
+                :technique {:type zen/vector,
+                            :every {:confirms #{hl7-fhir-us-mcode.mcode-radiotherapy-technique/schema
+                                                hl7-fhir-r4-core.Extension/schema},
+                                    :fhir/extensionUri "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-radiotherapy-technique",
+                                    :fhir/flags #{:MS},
+                                    :zen.fhir/value-set {:symbol hl7-fhir-us-mcode.value-set.mcode-radiotherapy-technique-vs/value-set,
+                                                         :strength :required}}}}}}

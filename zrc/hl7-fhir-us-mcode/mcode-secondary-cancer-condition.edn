@@ -1,77 +1,46 @@
 {ns hl7-fhir-us-mcode.mcode-secondary-cancer-condition,
- import
- #{hl7-fhir-us-mcode.value-set.mcode-cancer-body-location-vs
-   zen.fhir
-   hl7-fhir-us-mcode.mcode-laterality-qualifier
-   hl7-fhir-us-mcode.mcode-primary-cancer-condition
-   hl7-fhir-us-mcode.mcode-body-location-qualifier
-   hl7-fhir-us-mcode.value-set.mcode-secondary-cancer-disorder-vs
-   hl7-fhir-us-mcode.mcode-histology-morphology-behavior
-   hl7-fhir-r4-core.condition-assertedDate
-   hl7-fhir-r4-core.condition-related},
- schema
- {:zen/tags #{zen.fhir/profile-schema zen/schema},
-  :zen/desc
-  "Records the history of secondary neoplasms, including location(s) and the date of onset of metastases. A secondary cancer results from the spread (metastasization) of cancer from its original site (Definition from: NCI Dictionary of Cancer Terms).",
-  :zen.fhir/type "Condition",
-  :zen.fhir/profileUri
-  "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-secondary-cancer-condition",
-  :zen.fhir/version "0.6.6-7",
-  :confirms #{zen.fhir/Resource},
-  :type zen/map,
-  :keys
-  {:assertedDate
-   {:confirms #{hl7-fhir-r4-core.condition-assertedDate/schema},
-    :fhir/extensionUri
-    "http://hl7.org/fhir/StructureDefinition/condition-assertedDate",
-    :fhir/flags #{:MS}},
-   :histologyMorphologyBehavior
-   {:confirms
-    #{hl7-fhir-us-mcode.mcode-histology-morphology-behavior/schema},
-    :fhir/extensionUri
-    "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-histology-morphology-behavior",
-    :fhir/flags #{:MS}},
-   :relatedPrimaryCancerCondition
-   {:confirms #{hl7-fhir-r4-core.condition-related/schema},
-    :fhir/extensionUri
-    "http://hl7.org/fhir/StructureDefinition/condition-related",
-    :type zen/map,
-    :keys
-    {:value
-     {:fhir/polymorphic true,
-      :type zen/map,
-      :keys
-      {:Reference
-       {:confirms #{zen.fhir/Reference},
-        :zen.fhir/reference
-        {:refers
-         #{hl7-fhir-us-mcode.mcode-primary-cancer-condition/schema}}}}}},
-    :fhir/flags #{:MS},
-    :zen/desc "Related Primary Cancer Condition"},
-   :code
-   #:zen.fhir{:value-set
-              {:symbol
-               hl7-fhir-us-mcode.value-set.mcode-secondary-cancer-disorder-vs/value-set,
-               :strength :extensible}},
-   :bodySite
-   {:type zen/map,
-    :keys
-    {:locationQualifier
-     {:type zen/vector,
-      :every
-      {:confirms
-       #{hl7-fhir-us-mcode.mcode-body-location-qualifier/schema},
-       :fhir/extensionUri
-       "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-body-location-qualifier",
-       :fhir/flags #{:MS}}},
-     :lateralityQualifier
-     {:confirms #{hl7-fhir-us-mcode.mcode-laterality-qualifier/schema},
-      :fhir/extensionUri
-      "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-laterality-qualifier",
-      :fhir/flags #{:MS}}},
-    :fhir/flags #{:MS},
-    :zen.fhir/value-set
-    {:symbol
-     hl7-fhir-us-mcode.value-set.mcode-cancer-body-location-vs/value-set,
-     :strength :extensible}},
-   :stage #:zen{:desc "Not used in this profile"}}}}
+ import #{hl7-fhir-us-mcode.value-set.mcode-cancer-body-location-vs
+          zen.fhir
+          hl7-fhir-us-mcode.mcode-laterality-qualifier
+          hl7-fhir-us-mcode.mcode-primary-cancer-condition
+          hl7-fhir-us-mcode.mcode-body-location-qualifier
+          hl7-fhir-us-mcode.value-set.mcode-secondary-cancer-disorder-vs
+          hl7-fhir-us-mcode.mcode-histology-morphology-behavior
+          hl7-fhir-r4-core.condition-assertedDate
+          hl7-fhir-r4-core.condition-related},
+ schema {:zen/tags #{zen.fhir/profile-schema zen/schema},
+         :zen/desc "Records the history of secondary neoplasms, including location(s) and the date of onset of metastases. A secondary cancer results from the spread (metastasization) of cancer from its original site (Definition from: NCI Dictionary of Cancer Terms).",
+         :zen.fhir/type "Condition",
+         :zen.fhir/profileUri "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-secondary-cancer-condition",
+         :zen.fhir/version "0.6.6-8",
+         :confirms #{zen.fhir/Resource},
+         :type zen/map,
+         :keys {:assertedDate {:confirms #{hl7-fhir-r4-core.condition-assertedDate/schema},
+                               :fhir/extensionUri "http://hl7.org/fhir/StructureDefinition/condition-assertedDate",
+                               :fhir/flags #{:MS}},
+                :histologyMorphologyBehavior {:confirms #{hl7-fhir-us-mcode.mcode-histology-morphology-behavior/schema},
+                                              :fhir/extensionUri "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-histology-morphology-behavior",
+                                              :fhir/flags #{:MS}},
+                :relatedPrimaryCancerCondition {:confirms #{hl7-fhir-r4-core.condition-related/schema},
+                                                :fhir/extensionUri "http://hl7.org/fhir/StructureDefinition/condition-related",
+                                                :type zen/map,
+                                                :keys {:value {:fhir/polymorphic true,
+                                                               :type zen/map,
+                                                               :keys {:Reference {:confirms #{zen.fhir/Reference},
+                                                                                  :zen.fhir/reference {:refers #{hl7-fhir-us-mcode.mcode-primary-cancer-condition/schema}}}}}},
+                                                :fhir/flags #{:MS},
+                                                :zen/desc "Related Primary Cancer Condition"},
+                :code {:zen.fhir/value-set {:symbol hl7-fhir-us-mcode.value-set.mcode-secondary-cancer-disorder-vs/value-set,
+                                            :strength :extensible}},
+                :bodySite {:type zen/map,
+                           :keys {:locationQualifier {:type zen/vector,
+                                                      :every {:confirms #{hl7-fhir-us-mcode.mcode-body-location-qualifier/schema},
+                                                              :fhir/extensionUri "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-body-location-qualifier",
+                                                              :fhir/flags #{:MS}}},
+                                  :lateralityQualifier {:confirms #{hl7-fhir-us-mcode.mcode-laterality-qualifier/schema},
+                                                        :fhir/extensionUri "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-laterality-qualifier",
+                                                        :fhir/flags #{:MS}}},
+                           :fhir/flags #{:MS},
+                           :zen.fhir/value-set {:symbol hl7-fhir-us-mcode.value-set.mcode-cancer-body-location-vs/value-set,
+                                                :strength :extensible}},
+                :stage {:zen/desc "Not used in this profile"}}}}

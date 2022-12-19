@@ -1,75 +1,45 @@
 {ns hl7-fhir-us-mcode.mcode-primary-cancer-condition,
- import
- #{hl7-fhir-us-mcode.value-set.mcode-primary-cancer-disorder-vs
-   hl7-fhir-us-mcode.value-set.mcode-cancer-body-location-vs
-   zen.fhir
-   hl7-fhir-us-mcode.mcode-laterality-qualifier
-   hl7-fhir-us-mcode.value-set.mcode-observation-codes-stage-group-vs
-   hl7-fhir-us-mcode.mcode-body-location-qualifier
-   hl7-fhir-us-mcode.mcode-histology-morphology-behavior
-   hl7-fhir-r4-core.condition-assertedDate
-   hl7-fhir-us-mcode.mcode-cancer-stage-group},
- schema
- {:zen/tags #{zen.fhir/profile-schema zen/schema},
-  :zen/desc
-  "Records the the primary cancer condition, the original or first tumor in the body (Definition from: [NCI Dictionary of Cancer Terms](https://www.cancer.gov/publications/dictionaries/cancer-terms/def/primary-tumor)). Cancers that are not clearly secondary (i.e., of uncertain origin or behavior) should be documented as primary.",
-  :zen.fhir/type "Condition",
-  :zen.fhir/profileUri
-  "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-primary-cancer-condition",
-  :zen.fhir/version "0.6.6-7",
-  :confirms #{zen.fhir/Resource},
-  :type zen/map,
-  :keys
-  {:assertedDate
-   {:confirms #{hl7-fhir-r4-core.condition-assertedDate/schema},
-    :fhir/extensionUri
-    "http://hl7.org/fhir/StructureDefinition/condition-assertedDate",
-    :fhir/flags #{:MS}},
-   :histologyMorphologyBehavior
-   {:confirms
-    #{hl7-fhir-us-mcode.mcode-histology-morphology-behavior/schema},
-    :fhir/extensionUri
-    "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-histology-morphology-behavior",
-    :fhir/flags #{:MS}},
-   :code
-   #:zen.fhir{:value-set
-              {:symbol
-               hl7-fhir-us-mcode.value-set.mcode-primary-cancer-disorder-vs/value-set,
-               :strength :extensible}},
-   :bodySite
-   {:type zen/map,
-    :keys
-    {:locationQualifier
-     {:type zen/vector,
-      :every
-      {:confirms
-       #{hl7-fhir-us-mcode.mcode-body-location-qualifier/schema},
-       :fhir/extensionUri
-       "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-body-location-qualifier",
-       :fhir/flags #{:MS}}},
-     :lateralityQualifier
-     {:confirms #{hl7-fhir-us-mcode.mcode-laterality-qualifier/schema},
-      :fhir/extensionUri
-      "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-laterality-qualifier",
-      :fhir/flags #{:MS}}},
-    :fhir/flags #{:MS},
-    :zen.fhir/value-set
-    {:symbol
-     hl7-fhir-us-mcode.value-set.mcode-cancer-body-location-vs/value-set,
-     :strength :extensible}},
-   :stage
-   {:type zen/map,
-    :keys
-    {:summary #:zen{:desc "Most recent Stage Group"},
-     :assessment
-     {:fhir/flags #{:MS},
-      :confirms #{zen.fhir/Reference},
-      :zen.fhir/reference
-      {:refers #{hl7-fhir-us-mcode.mcode-cancer-stage-group/schema}}},
-     :type
-     {:zen.fhir/value-set
-      {:symbol
-       hl7-fhir-us-mcode.value-set.mcode-observation-codes-stage-group-vs/value-set,
-       :strength :required},
-      :zen/desc "Staging system used."}},
-    :fhir/flags #{:MS}}}}}
+ import #{hl7-fhir-us-mcode.value-set.mcode-primary-cancer-disorder-vs
+          hl7-fhir-us-mcode.value-set.mcode-cancer-body-location-vs
+          zen.fhir
+          hl7-fhir-us-mcode.mcode-laterality-qualifier
+          hl7-fhir-us-mcode.value-set.mcode-observation-codes-stage-group-vs
+          hl7-fhir-us-mcode.mcode-body-location-qualifier
+          hl7-fhir-us-mcode.mcode-histology-morphology-behavior
+          hl7-fhir-r4-core.condition-assertedDate
+          hl7-fhir-us-mcode.mcode-cancer-stage-group},
+ schema {:zen/tags #{zen.fhir/profile-schema zen/schema},
+         :zen/desc "Records the the primary cancer condition, the original or first tumor in the body (Definition from: [NCI Dictionary of Cancer Terms](https://www.cancer.gov/publications/dictionaries/cancer-terms/def/primary-tumor)). Cancers that are not clearly secondary (i.e., of uncertain origin or behavior) should be documented as primary.",
+         :zen.fhir/type "Condition",
+         :zen.fhir/profileUri "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-primary-cancer-condition",
+         :zen.fhir/version "0.6.6-8",
+         :confirms #{zen.fhir/Resource},
+         :type zen/map,
+         :keys {:assertedDate {:confirms #{hl7-fhir-r4-core.condition-assertedDate/schema},
+                               :fhir/extensionUri "http://hl7.org/fhir/StructureDefinition/condition-assertedDate",
+                               :fhir/flags #{:MS}},
+                :histologyMorphologyBehavior {:confirms #{hl7-fhir-us-mcode.mcode-histology-morphology-behavior/schema},
+                                              :fhir/extensionUri "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-histology-morphology-behavior",
+                                              :fhir/flags #{:MS}},
+                :code {:zen.fhir/value-set {:symbol hl7-fhir-us-mcode.value-set.mcode-primary-cancer-disorder-vs/value-set,
+                                            :strength :extensible}},
+                :bodySite {:type zen/map,
+                           :keys {:locationQualifier {:type zen/vector,
+                                                      :every {:confirms #{hl7-fhir-us-mcode.mcode-body-location-qualifier/schema},
+                                                              :fhir/extensionUri "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-body-location-qualifier",
+                                                              :fhir/flags #{:MS}}},
+                                  :lateralityQualifier {:confirms #{hl7-fhir-us-mcode.mcode-laterality-qualifier/schema},
+                                                        :fhir/extensionUri "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-laterality-qualifier",
+                                                        :fhir/flags #{:MS}}},
+                           :fhir/flags #{:MS},
+                           :zen.fhir/value-set {:symbol hl7-fhir-us-mcode.value-set.mcode-cancer-body-location-vs/value-set,
+                                                :strength :extensible}},
+                :stage {:type zen/map,
+                        :keys {:summary {:zen/desc "Most recent Stage Group"},
+                               :assessment {:fhir/flags #{:MS},
+                                            :confirms #{zen.fhir/Reference},
+                                            :zen.fhir/reference {:refers #{hl7-fhir-us-mcode.mcode-cancer-stage-group/schema}}},
+                               :type {:zen.fhir/value-set {:symbol hl7-fhir-us-mcode.value-set.mcode-observation-codes-stage-group-vs/value-set,
+                                                           :strength :required},
+                                      :zen/desc "Staging system used."}},
+                        :fhir/flags #{:MS}}}}}

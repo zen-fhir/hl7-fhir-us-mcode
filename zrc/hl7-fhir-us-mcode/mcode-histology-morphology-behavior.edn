@@ -1,18 +1,12 @@
 {ns hl7-fhir-us-mcode.mcode-histology-morphology-behavior,
- import
- #{zen.fhir
-   hl7-fhir-r4-core.CodeableConcept
-   hl7-fhir-us-mcode.value-set.mcode-histology-morphology-behavior-vs},
- schema
- {:zen/tags #{zen/schema zen.fhir/structure-schema},
-  :zen/desc
-  "An extension describing the morphologic and behavioral characteristics of the cancer.",
-  :zen.fhir/type "CodeableConcept",
-  :zen.fhir/profileUri
-  "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-histology-morphology-behavior",
-  :zen.fhir/version "0.6.6-7",
-  :confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
-  :zen.fhir/value-set
-  {:symbol
-   hl7-fhir-us-mcode.value-set.mcode-histology-morphology-behavior-vs/value-set,
-   :strength :extensible}}}
+ import #{zen.fhir
+          hl7-fhir-r4-core.CodeableConcept
+          hl7-fhir-us-mcode.value-set.mcode-histology-morphology-behavior-vs},
+ schema {:zen/tags #{zen/schema zen.fhir/structure-schema},
+         :zen/desc "An extension describing the morphologic and behavioral characteristics of the cancer.",
+         :zen.fhir/type "CodeableConcept",
+         :zen.fhir/profileUri "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-histology-morphology-behavior",
+         :zen.fhir/version "0.6.6-8",
+         :confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+         :zen.fhir/value-set {:symbol hl7-fhir-us-mcode.value-set.mcode-histology-morphology-behavior-vs/value-set,
+                              :strength :extensible}}}

@@ -1,1084 +1,532 @@
 {ns hl7-fhir-us-mcode.mcode-comorbidities-elixhauser,
- import
- #{zen.fhir
-   hl7-fhir-us-mcode.value-set.mcode-present-absent
-   hl7-fhir-us-mcode.mcode-primary-cancer-condition
-   hl7-fhir-us-mcode.mcode-comorbidities-parent},
- schema
- {:zen/tags #{zen.fhir/profile-schema zen/schema},
-  :zen/desc
-  "Comorbid condition checklist and optional risk score, using Elixhauser comorbidity categories as defined by the Agency for Healthcare Research and Quality (AHRQ) Healthcare Cost and Utilization Project (H-CUP).",
-  :zen.fhir/type "Observation",
-  :zen.fhir/profileUri
-  "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-comorbidities-elixhauser",
-  :zen.fhir/version "0.6.6-7",
-  :confirms
-  #{zen.fhir/Resource
-    hl7-fhir-us-mcode.mcode-comorbidities-parent/schema},
-  :type zen/map,
-  :keys
-  {:status #:fhir{:flags #{:MS}},
-   :code
-   {:match
-    {:coding
-     #{{:system
-        "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
-        :code "comorbidities-elixhauser",
-        :display "Elixhauser Comorbidity Panel"}}},
-    :fhir/flags #{:MS}},
-   :subject
-   {:fhir/flags #{:MS},
-    :confirms #{zen.fhir/Reference},
-    :zen.fhir/reference {:refers #{}}},
-   :focus
-   {:type zen/vector,
-    :every
-    {:fhir/flags #{:MS},
-     :confirms #{zen.fhir/Reference},
-     :zen.fhir/reference
-     {:refers
-      #{hl7-fhir-us-mcode.mcode-primary-cancer-condition/schema}}}},
-   :effective
-   {:fhir/polymorphic true, :type zen/map, :fhir/flags #{:MS}},
-   :value {:fhir/polymorphic true, :type zen/map, :fhir/flags #{:MS}},
-   :component
-   {:type zen/vector,
-    :slicing
-    {:slices
-     {"valvularDisease"
-      {:schema
-       {:type zen/vector,
-        :maxItems 1,
-        :every
-        {:type zen/map,
-         :keys
-         {:extension #:fhir{:flags #{:MS}},
-          :code
-          {:match
-           {:coding
-            #{{:system
-               "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
-               :code "VALVE"}}},
-           :fhir/flags #{:MS}},
-          :value
-          {:fhir/polymorphic true,
-           :type zen/map,
-           :fhir/flags #{:MS}}}}},
-       :filter
-       {:engine :match,
-        :match
-        {:code
-         {:coding
-          #{{:system
-             "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
-             :code "VALVE"}}}}}},
-      "pulmonaryCirculationDisorder"
-      {:schema
-       {:type zen/vector,
-        :maxItems 1,
-        :every
-        {:type zen/map,
-         :keys
-         {:extension #:fhir{:flags #{:MS}},
-          :code
-          {:match
-           {:coding
-            #{{:system
-               "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
-               :code "PULMCIRC"}}},
-           :fhir/flags #{:MS}},
-          :value
-          {:fhir/polymorphic true,
-           :type zen/map,
-           :fhir/flags #{:MS}}}}},
-       :filter
-       {:engine :match,
-        :match
-        {:code
-         {:coding
-          #{{:system
-             "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
-             :code "PULMCIRC"}}}}}},
-      "cerebrovascular"
-      {:schema
-       {:type zen/vector,
-        :maxItems 1,
-        :every
-        {:type zen/map,
-         :keys
-         {:extension #:fhir{:flags #{:MS}},
-          :code
-          {:match
-           {:coding
-            #{{:system
-               "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
-               :code "CBVD"}}},
-           :fhir/flags #{:MS}},
-          :value
-          {:fhir/polymorphic true,
-           :type zen/map,
-           :fhir/flags #{:MS}}}}},
-       :filter
-       {:engine :match,
-        :match
-        {:code
-         {:coding
-          #{{:system
-             "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
-             :code "CBVD"}}}}}},
-      "psychosis"
-      {:schema
-       {:type zen/vector,
-        :maxItems 1,
-        :every
-        {:type zen/map,
-         :keys
-         {:extension #:fhir{:flags #{:MS}},
-          :code
-          {:match
-           {:coding
-            #{{:system
-               "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
-               :code "PSYCHOSIS"}}},
-           :fhir/flags #{:MS}},
-          :value
-          {:fhir/polymorphic true,
-           :type zen/map,
-           :fhir/flags #{:MS}}}}},
-       :filter
-       {:engine :match,
-        :match
-        {:code
-         {:coding
-          #{{:system
-             "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
-             :code "PSYCHOSIS"}}}}}},
-      "cancerLymphoma"
-      {:schema
-       {:type zen/vector,
-        :maxItems 1,
-        :every
-        {:type zen/map,
-         :keys
-         {:extension #:fhir{:flags #{:MS}},
-          :code
-          {:match
-           {:coding
-            #{{:system
-               "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
-               :code "CANCER_LYMPH"}}},
-           :fhir/flags #{:MS}},
-          :value
-          {:fhir/polymorphic true,
-           :type zen/map,
-           :fhir/flags #{:MS}}}}},
-       :filter
-       {:engine :match,
-        :match
-        {:code
-         {:coding
-          #{{:system
-             "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
-             :code "CANCER_LYMPH"}}}}}},
-      "hypertensionComplicated"
-      {:schema
-       {:type zen/vector,
-        :maxItems 1,
-        :every
-        {:type zen/map,
-         :keys
-         {:extension #:fhir{:flags #{:MS}},
-          :code
-          {:match
-           {:coding
-            #{{:system
-               "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
-               :code "HTN_CX"}}},
-           :fhir/flags #{:MS}},
-          :value
-          {:fhir/polymorphic true,
-           :type zen/map,
-           :fhir/flags #{:MS}}}}},
-       :filter
-       {:engine :match,
-        :match
-        {:code
-         {:coding
-          #{{:system
-             "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
-             :code "HTN_CX"}}}}}},
-      "deficiencyAnemia"
-      {:schema
-       {:type zen/vector,
-        :maxItems 1,
-        :every
-        {:type zen/map,
-         :keys
-         {:extension #:fhir{:flags #{:MS}},
-          :code
-          {:match
-           {:coding
-            #{{:system
-               "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
-               :code "ANEMDF"}}},
-           :fhir/flags #{:MS}},
-          :value
-          {:fhir/polymorphic true,
-           :type zen/map,
-           :fhir/flags #{:MS}}}}},
-       :filter
-       {:engine :match,
-        :match
-        {:code
-         {:coding
-          #{{:system
-             "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
-             :code "ANEMDF"}}}}}},
-      "paralysis"
-      {:schema
-       {:type zen/vector,
-        :maxItems 1,
-        :every
-        {:type zen/map,
-         :keys
-         {:extension #:fhir{:flags #{:MS}},
-          :code
-          {:match
-           {:coding
-            #{{:system
-               "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
-               :code "PARALYSIS"}}},
-           :fhir/flags #{:MS}},
-          :value
-          {:fhir/polymorphic true,
-           :type zen/map,
-           :fhir/flags #{:MS}}}}},
-       :filter
-       {:engine :match,
-        :match
-        {:code
-         {:coding
-          #{{:system
-             "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
-             :code "PARALYSIS"}}}}}},
-      "renalFailureModerate"
-      {:schema
-       {:type zen/vector,
-        :maxItems 1,
-        :every
-        {:type zen/map,
-         :keys
-         {:extension #:fhir{:flags #{:MS}},
-          :code
-          {:match
-           {:coding
-            #{{:system
-               "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
-               :code "RENLFL_MOD"}}},
-           :fhir/flags #{:MS}},
-          :value
-          {:fhir/polymorphic true,
-           :type zen/map,
-           :fhir/flags #{:MS}}}}},
-       :filter
-       {:engine :match,
-        :match
-        {:code
-         {:coding
-          #{{:system
-             "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
-             :code "RENLFL_MOD"}}}}}},
-      "neurologicalOther"
-      {:schema
-       {:type zen/vector,
-        :maxItems 1,
-        :every
-        {:type zen/map,
-         :keys
-         {:extension #:fhir{:flags #{:MS}},
-          :code
-          {:match
-           {:coding
-            #{{:system
-               "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
-               :code "NEURO_OTH"}}},
-           :fhir/flags #{:MS}},
-          :value
-          {:fhir/polymorphic true,
-           :type zen/map,
-           :fhir/flags #{:MS}}}}},
-       :filter
-       {:engine :match,
-        :match
-        {:code
-         {:coding
-          #{{:system
-             "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
-             :code "NEURO_OTH"}}}}}},
-      "cancerSolidInSitu"
-      {:schema
-       {:type zen/vector,
-        :maxItems 1,
-        :every
-        {:type zen/map,
-         :keys
-         {:extension #:fhir{:flags #{:MS}},
-          :code
-          {:match
-           {:coding
-            #{{:system
-               "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
-               :code "CANCER_NSITU"}}},
-           :fhir/flags #{:MS}},
-          :value
-          {:fhir/polymorphic true,
-           :type zen/map,
-           :fhir/flags #{:MS}}}}},
-       :filter
-       {:engine :match,
-        :match
-        {:code
-         {:coding
-          #{{:system
-             "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
-             :code "CANCER_NSITU"}}}}}},
-      "depression"
-      {:schema
-       {:type zen/vector,
-        :maxItems 1,
-        :every
-        {:type zen/map,
-         :keys
-         {:extension #:fhir{:flags #{:MS}},
-          :code
-          {:match
-           {:coding
-            #{{:system
-               "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
-               :code "DEPRESS"}}},
-           :fhir/flags #{:MS}},
-          :value
-          {:fhir/polymorphic true,
-           :type zen/map,
-           :fhir/flags #{:MS}}}}},
-       :filter
-       {:engine :match,
-        :match
-        {:code
-         {:coding
-          #{{:system
-             "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
-             :code "DEPRESS"}}}}}},
-      "thyroidOther"
-      {:schema
-       {:type zen/vector,
-        :maxItems 1,
-        :every
-        {:type zen/map,
-         :keys
-         {:extension #:fhir{:flags #{:MS}},
-          :code
-          {:match
-           {:coding
-            #{{:system
-               "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
-               :code "THYROID_OTH"}}},
-           :fhir/flags #{:MS}},
-          :value
-          {:fhir/polymorphic true,
-           :type zen/map,
-           :fhir/flags #{:MS}}}}},
-       :filter
-       {:engine :match,
-        :match
-        {:code
-         {:coding
-          #{{:system
-             "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
-             :code "THYROID_OTH"}}}}}},
-      "dementia"
-      {:schema
-       {:type zen/vector,
-        :maxItems 1,
-        :every
-        {:type zen/map,
-         :keys
-         {:extension #:fhir{:flags #{:MS}},
-          :code
-          {:match
-           {:coding
-            #{{:system
-               "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
-               :code "DEMENTIA"}}},
-           :fhir/flags #{:MS}},
-          :value
-          {:fhir/polymorphic true,
-           :type zen/map,
-           :fhir/flags #{:MS}}}}},
-       :filter
-       {:engine :match,
-        :match
-        {:code
-         {:coding
-          #{{:system
-             "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
-             :code "DEMENTIA"}}}}}},
-      "alcoholAbuse"
-      {:schema
-       {:type zen/vector,
-        :maxItems 1,
-        :every
-        {:type zen/map,
-         :keys
-         {:extension #:fhir{:flags #{:MS}},
-          :code
-          {:match
-           {:coding
-            #{{:system
-               "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
-               :code "ALCOHOL"}}},
-           :fhir/flags #{:MS}},
-          :value
-          {:fhir/polymorphic true,
-           :type zen/map,
-           :fhir/flags #{:MS}}}}},
-       :filter
-       {:engine :match,
-        :match
-        {:code
-         {:coding
-          #{{:system
-             "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
-             :code "ALCOHOL"}}}}}},
-      "neurologicalSeizure"
-      {:schema
-       {:type zen/vector,
-        :maxItems 1,
-        :every
-        {:type zen/map,
-         :keys
-         {:extension #:fhir{:flags #{:MS}},
-          :code
-          {:match
-           {:coding
-            #{{:system
-               "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
-               :code "NEURO_SEIZ"}}},
-           :fhir/flags #{:MS}},
-          :value
-          {:fhir/polymorphic true,
-           :type zen/map,
-           :fhir/flags #{:MS}}}}},
-       :filter
-       {:engine :match,
-        :match
-        {:code
-         {:coding
-          #{{:system
-             "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
-             :code "NEURO_SEIZ"}}}}}},
-      "renalFailureSevere"
-      {:schema
-       {:type zen/vector,
-        :maxItems 1,
-        :every
-        {:type zen/map,
-         :keys
-         {:extension #:fhir{:flags #{:MS}},
-          :code
-          {:match
-           {:coding
-            #{{:system
-               "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
-               :code "RENLFL_SEV"}}},
-           :fhir/flags #{:MS}},
-          :value
-          {:fhir/polymorphic true,
-           :type zen/map,
-           :fhir/flags #{:MS}}}}},
-       :filter
-       {:engine :match,
-        :match
-        {:code
-         {:coding
-          #{{:system
-             "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
-             :code "RENLFL_SEV"}}}}}},
-      "hypertensionUncomplicated"
-      {:schema
-       {:type zen/vector,
-        :maxItems 1,
-        :every
-        {:type zen/map,
-         :keys
-         {:extension #:fhir{:flags #{:MS}},
-          :code
-          {:match
-           {:coding
-            #{{:system
-               "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
-               :code "HTN_UNCX"}}},
-           :fhir/flags #{:MS}},
-          :value
-          {:fhir/polymorphic true,
-           :type zen/map,
-           :fhir/flags #{:MS}}}}},
-       :filter
-       {:engine :match,
-        :match
-        {:code
-         {:coding
-          #{{:system
-             "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
-             :code "HTN_UNCX"}}}}}},
-      "obesity"
-      {:schema
-       {:type zen/vector,
-        :maxItems 1,
-        :every
-        {:type zen/map,
-         :keys
-         {:extension #:fhir{:flags #{:MS}},
-          :code
-          {:match
-           {:coding
-            #{{:system
-               "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
-               :code "OBESE"}}},
-           :fhir/flags #{:MS}},
-          :value
-          {:fhir/polymorphic true,
-           :type zen/map,
-           :fhir/flags #{:MS}}}}},
-       :filter
-       {:engine :match,
-        :match
-        {:code
-         {:coding
-          #{{:system
-             "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
-             :code "OBESE"}}}}}},
-      "cancerMetastatic"
-      {:schema
-       {:type zen/vector,
-        :maxItems 1,
-        :every
-        {:type zen/map,
-         :keys
-         {:extension #:fhir{:flags #{:MS}},
-          :code
-          {:match
-           {:coding
-            #{{:system
-               "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
-               :code "CANCER_METS"}}},
-           :fhir/flags #{:MS}},
-          :value
-          {:fhir/polymorphic true,
-           :type zen/map,
-           :fhir/flags #{:MS}}}}},
-       :filter
-       {:engine :match,
-        :match
-        {:code
-         {:coding
-          #{{:system
-             "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
-             :code "CANCER_METS"}}}}}},
-      "liverDiseaseSevere"
-      {:schema
-       {:type zen/vector,
-        :maxItems 1,
-        :every
-        {:type zen/map,
-         :keys
-         {:extension #:fhir{:flags #{:MS}},
-          :code
-          {:match
-           {:coding
-            #{{:system
-               "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
-               :code "LIVER_SEV"}}},
-           :fhir/flags #{:MS}},
-          :value
-          {:fhir/polymorphic true,
-           :type zen/map,
-           :fhir/flags #{:MS}}}}},
-       :filter
-       {:engine :match,
-        :match
-        {:code
-         {:coding
-          #{{:system
-             "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
-             :code "LIVER_SEV"}}}}}},
-      "peripheralVascularDisease"
-      {:schema
-       {:type zen/vector,
-        :maxItems 1,
-        :every
-        {:type zen/map,
-         :keys
-         {:extension #:fhir{:flags #{:MS}},
-          :code
-          {:match
-           {:coding
-            #{{:system
-               "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
-               :code "PERIVASC"}}},
-           :fhir/flags #{:MS}},
-          :value
-          {:fhir/polymorphic true,
-           :type zen/map,
-           :fhir/flags #{:MS}}}}},
-       :filter
-       {:engine :match,
-        :match
-        {:code
-         {:coding
-          #{{:system
-             "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
-             :code "PERIVASC"}}}}}},
-      "chronicPulmonaryDisease"
-      {:schema
-       {:type zen/vector,
-        :maxItems 1,
-        :every
-        {:type zen/map,
-         :keys
-         {:extension #:fhir{:flags #{:MS}},
-          :code
-          {:match
-           {:coding
-            #{{:system
-               "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
-               :code "LUNG_CHRONIC"}}},
-           :fhir/flags #{:MS}},
-          :value
-          {:fhir/polymorphic true,
-           :type zen/map,
-           :fhir/flags #{:MS}}}}},
-       :filter
-       {:engine :match,
-        :match
-        {:code
-         {:coding
-          #{{:system
-             "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
-             :code "LUNG_CHRONIC"}}}}}},
-      "cancerLeukemia"
-      {:schema
-       {:type zen/vector,
-        :maxItems 1,
-        :every
-        {:type zen/map,
-         :keys
-         {:extension #:fhir{:flags #{:MS}},
-          :code
-          {:match
-           {:coding
-            #{{:system
-               "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
-               :code "CANCER_LEUK"}}},
-           :fhir/flags #{:MS}},
-          :value
-          {:fhir/polymorphic true,
-           :type zen/map,
-           :fhir/flags #{:MS}}}}},
-       :filter
-       {:engine :match,
-        :match
-        {:code
-         {:coding
-          #{{:system
-             "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
-             :code "CANCER_LEUK"}}}}}},
-      "liverDiseaseMild"
-      {:schema
-       {:type zen/vector,
-        :maxItems 1,
-        :every
-        {:type zen/map,
-         :keys
-         {:extension #:fhir{:flags #{:MS}},
-          :code
-          {:match
-           {:coding
-            #{{:system
-               "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
-               :code "LIVER_MLD"}}},
-           :fhir/flags #{:MS}},
-          :value
-          {:fhir/polymorphic true,
-           :type zen/map,
-           :fhir/flags #{:MS}}}}},
-       :filter
-       {:engine :match,
-        :match
-        {:code
-         {:coding
-          #{{:system
-             "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
-             :code "LIVER_MLD"}}}}}},
-      "arthropathy"
-      {:schema
-       {:type zen/vector,
-        :maxItems 1,
-        :every
-        {:type zen/map,
-         :keys
-         {:extension #:fhir{:flags #{:MS}},
-          :code
-          {:match
-           {:coding
-            #{{:system
-               "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
-               :code "ARTH"}}},
-           :fhir/flags #{:MS}},
-          :value
-          {:fhir/polymorphic true,
-           :type zen/map,
-           :fhir/flags #{:MS}}}}},
-       :filter
-       {:engine :match,
-        :match
-        {:code
-         {:coding
-          #{{:system
-             "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
-             :code "ARTH"}}}}}},
-      "cancerSolidMalignant"
-      {:schema
-       {:type zen/vector,
-        :maxItems 1,
-        :every
-        {:type zen/map,
-         :keys
-         {:extension #:fhir{:flags #{:MS}},
-          :code
-          {:match
-           {:coding
-            #{{:system
-               "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
-               :code "CANCER_SOLID"}}},
-           :fhir/flags #{:MS}},
-          :value
-          {:fhir/polymorphic true,
-           :type zen/map,
-           :fhir/flags #{:MS}}}}},
-       :filter
-       {:engine :match,
-        :match
-        {:code
-         {:coding
-          #{{:system
-             "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
-             :code "CANCER_SOLID"}}}}}},
-      "coagulopathy"
-      {:schema
-       {:type zen/vector,
-        :maxItems 1,
-        :every
-        {:type zen/map,
-         :keys
-         {:extension #:fhir{:flags #{:MS}},
-          :code
-          {:match
-           {:coding
-            #{{:system
-               "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
-               :code "COAG"}}},
-           :fhir/flags #{:MS}},
-          :value
-          {:fhir/polymorphic true,
-           :type zen/map,
-           :fhir/flags #{:MS}}}}},
-       :filter
-       {:engine :match,
-        :match
-        {:code
-         {:coding
-          #{{:system
-             "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
-             :code "COAG"}}}}}},
-      "weightLoss"
-      {:schema
-       {:type zen/vector,
-        :maxItems 1,
-        :every
-        {:type zen/map,
-         :keys
-         {:extension #:fhir{:flags #{:MS}},
-          :code
-          {:match
-           {:coding
-            #{{:system
-               "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
-               :code "WGHTLOSS"}}},
-           :fhir/flags #{:MS}},
-          :value
-          {:fhir/polymorphic true,
-           :type zen/map,
-           :fhir/flags #{:MS}}}}},
-       :filter
-       {:engine :match,
-        :match
-        {:code
-         {:coding
-          #{{:system
-             "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
-             :code "WGHTLOSS"}}}}}},
-      "congestiveHeartFailure"
-      {:schema
-       {:type zen/vector,
-        :maxItems 1,
-        :every
-        {:type zen/map,
-         :keys
-         {:extension #:fhir{:flags #{:MS}},
-          :code
-          {:match
-           {:coding
-            #{{:system
-               "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
-               :code "CHF"}}},
-           :fhir/flags #{:MS}},
-          :value
-          {:fhir/polymorphic true,
-           :type zen/map,
-           :fhir/flags #{:MS}}}}},
-       :filter
-       {:engine :match,
-        :match
-        {:code
-         {:coding
-          #{{:system
-             "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
-             :code "CHF"}}}}}},
-      "hypothyroidism"
-      {:schema
-       {:type zen/vector,
-        :maxItems 1,
-        :every
-        {:type zen/map,
-         :keys
-         {:extension #:fhir{:flags #{:MS}},
-          :code
-          {:match
-           {:coding
-            #{{:system
-               "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
-               :code "THYROID_HYPO"}}},
-           :fhir/flags #{:MS}},
-          :value
-          {:fhir/polymorphic true,
-           :type zen/map,
-           :fhir/flags #{:MS}}}}},
-       :filter
-       {:engine :match,
-        :match
-        {:code
-         {:coding
-          #{{:system
-             "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
-             :code "THYROID_HYPO"}}}}}},
-      "bloodLossAnemia"
-      {:schema
-       {:type zen/vector,
-        :maxItems 1,
-        :every
-        {:type zen/map,
-         :keys
-         {:extension #:fhir{:flags #{:MS}},
-          :code
-          {:match
-           {:coding
-            #{{:system
-               "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
-               :code "BLDLOSS"}}},
-           :fhir/flags #{:MS}},
-          :value
-          {:fhir/polymorphic true,
-           :type zen/map,
-           :fhir/flags #{:MS}}}}},
-       :filter
-       {:engine :match,
-        :match
-        {:code
-         {:coding
-          #{{:system
-             "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
-             :code "BLDLOSS"}}}}}},
-      "drugAbuse"
-      {:schema
-       {:type zen/vector,
-        :maxItems 1,
-        :every
-        {:type zen/map,
-         :keys
-         {:extension #:fhir{:flags #{:MS}},
-          :code
-          {:match
-           {:coding
-            #{{:system
-               "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
-               :code "DRUG_ABUSE"}}},
-           :fhir/flags #{:MS}},
-          :value
-          {:fhir/polymorphic true,
-           :type zen/map,
-           :fhir/flags #{:MS}}}}},
-       :filter
-       {:engine :match,
-        :match
-        {:code
-         {:coding
-          #{{:system
-             "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
-             :code "DRUG_ABUSE"}}}}}},
-      "diabetesComplicated"
-      {:schema
-       {:type zen/vector,
-        :maxItems 1,
-        :every
-        {:type zen/map,
-         :keys
-         {:extension #:fhir{:flags #{:MS}},
-          :code
-          {:match
-           {:coding
-            #{{:system
-               "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
-               :code "DIAB_CX"}}},
-           :fhir/flags #{:MS}},
-          :value
-          {:fhir/polymorphic true,
-           :type zen/map,
-           :fhir/flags #{:MS}}}}},
-       :filter
-       {:engine :match,
-        :match
-        {:code
-         {:coding
-          #{{:system
-             "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
-             :code "DIAB_CX"}}}}}},
-      "ulcer"
-      {:schema
-       {:type zen/vector,
-        :maxItems 1,
-        :every
-        {:type zen/map,
-         :keys
-         {:extension #:fhir{:flags #{:MS}},
-          :code
-          {:match
-           {:coding
-            #{{:system
-               "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
-               :code "ULCER_PEPTIC"}}},
-           :fhir/flags #{:MS}},
-          :value
-          {:fhir/polymorphic true,
-           :type zen/map,
-           :fhir/flags #{:MS}}}}},
-       :filter
-       {:engine :match,
-        :match
-        {:code
-         {:coding
-          #{{:system
-             "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
-             :code "ULCER_PEPTIC"}}}}}},
-      "diabetesUncomplicated"
-      {:schema
-       {:type zen/vector,
-        :maxItems 1,
-        :every
-        {:type zen/map,
-         :keys
-         {:extension #:fhir{:flags #{:MS}},
-          :code
-          {:match
-           {:coding
-            #{{:system
-               "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
-               :code "DIAB_UNCX"}}},
-           :fhir/flags #{:MS}},
-          :value
-          {:fhir/polymorphic true,
-           :type zen/map,
-           :fhir/flags #{:MS}}}}},
-       :filter
-       {:engine :match,
-        :match
-        {:code
-         {:coding
-          #{{:system
-             "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
-             :code "DIAB_UNCX"}}}}}},
-      "aids"
-      {:schema
-       {:type zen/vector,
-        :maxItems 1,
-        :every
-        {:type zen/map,
-         :keys
-         {:extension #:fhir{:flags #{:MS}},
-          :code
-          {:match
-           {:coding
-            #{{:system
-               "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
-               :code "AIDS"}}},
-           :fhir/flags #{:MS}},
-          :value
-          {:fhir/polymorphic true,
-           :type zen/map,
-           :fhir/flags #{:MS}}}}},
-       :filter
-       {:engine :match,
-        :match
-        {:code
-         {:coding
-          #{{:system
-             "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
-             :code "AIDS"}}}}}},
-      "neurologicalMovement"
-      {:schema
-       {:type zen/vector,
-        :maxItems 1,
-        :every
-        {:type zen/map,
-         :keys
-         {:extension #:fhir{:flags #{:MS}},
-          :code
-          {:match
-           {:coding
-            #{{:system
-               "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
-               :code "NEURO_MOVT"}}},
-           :fhir/flags #{:MS}},
-          :value
-          {:fhir/polymorphic true,
-           :type zen/map,
-           :fhir/flags #{:MS}}}}},
-       :filter
-       {:engine :match,
-        :match
-        {:code
-         {:coding
-          #{{:system
-             "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
-             :code "NEURO_MOVT"}}}}}}}},
-    :every
-    {:type zen/map,
-     :keys
-     {:value
-      {:fhir/polymorphic true,
-       :type zen/map,
-       :zen.fhir/value-set
-       {:symbol
-        hl7-fhir-us-mcode.value-set.mcode-present-absent/value-set,
-        :strength :required}}},
-     :fhir/flags #{:MS}}}}}}
+ import #{zen.fhir
+          hl7-fhir-us-mcode.value-set.mcode-present-absent
+          hl7-fhir-us-mcode.mcode-primary-cancer-condition
+          hl7-fhir-us-mcode.mcode-comorbidities-parent},
+ schema {:zen/tags #{zen.fhir/profile-schema zen/schema},
+         :zen/desc "Comorbid condition checklist and optional risk score, using Elixhauser comorbidity categories as defined by the Agency for Healthcare Research and Quality (AHRQ) Healthcare Cost and Utilization Project (H-CUP).",
+         :zen.fhir/type "Observation",
+         :zen.fhir/profileUri "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-comorbidities-elixhauser",
+         :zen.fhir/version "0.6.6-8",
+         :confirms #{zen.fhir/Resource
+                     hl7-fhir-us-mcode.mcode-comorbidities-parent/schema},
+         :type zen/map,
+         :keys {:status {:fhir/flags #{:MS}},
+                :code {:match {:coding #{{:system "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
+                                          :code "comorbidities-elixhauser",
+                                          :display "Elixhauser Comorbidity Panel"}}},
+                       :fhir/flags #{:MS}},
+                :subject {:fhir/flags #{:MS},
+                          :confirms #{zen.fhir/Reference},
+                          :zen.fhir/reference {:refers #{}}},
+                :focus {:type zen/vector,
+                        :every {:fhir/flags #{:MS},
+                                :confirms #{zen.fhir/Reference},
+                                :zen.fhir/reference {:refers #{hl7-fhir-us-mcode.mcode-primary-cancer-condition/schema}}}},
+                :effective {:fhir/polymorphic true,
+                            :type zen/map,
+                            :fhir/flags #{:MS}},
+                :value {:fhir/polymorphic true,
+                        :type zen/map,
+                        :fhir/flags #{:MS}},
+                :component {:type zen/vector,
+                            :slicing {:slices {"valvularDisease" {:schema {:type zen/vector,
+                                                                           :maxItems 1,
+                                                                           :every {:type zen/map,
+                                                                                   :keys {:extension {:fhir/flags #{:MS}},
+                                                                                          :code {:match {:coding #{{:system "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
+                                                                                                                    :code "VALVE"}}},
+                                                                                                 :fhir/flags #{:MS}},
+                                                                                          :value {:fhir/polymorphic true,
+                                                                                                  :type zen/map,
+                                                                                                  :fhir/flags #{:MS}}}}},
+                                                                  :filter {:engine :match,
+                                                                           :match {:code {:coding #{{:system "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
+                                                                                                     :code "VALVE"}}}}}},
+                                               "pulmonaryCirculationDisorder" {:schema {:type zen/vector,
+                                                                                        :maxItems 1,
+                                                                                        :every {:type zen/map,
+                                                                                                :keys {:extension {:fhir/flags #{:MS}},
+                                                                                                       :code {:match {:coding #{{:system "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
+                                                                                                                                 :code "PULMCIRC"}}},
+                                                                                                              :fhir/flags #{:MS}},
+                                                                                                       :value {:fhir/polymorphic true,
+                                                                                                               :type zen/map,
+                                                                                                               :fhir/flags #{:MS}}}}},
+                                                                               :filter {:engine :match,
+                                                                                        :match {:code {:coding #{{:system "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
+                                                                                                                  :code "PULMCIRC"}}}}}},
+                                               "cerebrovascular" {:schema {:type zen/vector,
+                                                                           :maxItems 1,
+                                                                           :every {:type zen/map,
+                                                                                   :keys {:extension {:fhir/flags #{:MS}},
+                                                                                          :code {:match {:coding #{{:system "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
+                                                                                                                    :code "CBVD"}}},
+                                                                                                 :fhir/flags #{:MS}},
+                                                                                          :value {:fhir/polymorphic true,
+                                                                                                  :type zen/map,
+                                                                                                  :fhir/flags #{:MS}}}}},
+                                                                  :filter {:engine :match,
+                                                                           :match {:code {:coding #{{:system "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
+                                                                                                     :code "CBVD"}}}}}},
+                                               "psychosis" {:schema {:type zen/vector,
+                                                                     :maxItems 1,
+                                                                     :every {:type zen/map,
+                                                                             :keys {:extension {:fhir/flags #{:MS}},
+                                                                                    :code {:match {:coding #{{:system "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
+                                                                                                              :code "PSYCHOSIS"}}},
+                                                                                           :fhir/flags #{:MS}},
+                                                                                    :value {:fhir/polymorphic true,
+                                                                                            :type zen/map,
+                                                                                            :fhir/flags #{:MS}}}}},
+                                                            :filter {:engine :match,
+                                                                     :match {:code {:coding #{{:system "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
+                                                                                               :code "PSYCHOSIS"}}}}}},
+                                               "cancerLymphoma" {:schema {:type zen/vector,
+                                                                          :maxItems 1,
+                                                                          :every {:type zen/map,
+                                                                                  :keys {:extension {:fhir/flags #{:MS}},
+                                                                                         :code {:match {:coding #{{:system "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
+                                                                                                                   :code "CANCER_LYMPH"}}},
+                                                                                                :fhir/flags #{:MS}},
+                                                                                         :value {:fhir/polymorphic true,
+                                                                                                 :type zen/map,
+                                                                                                 :fhir/flags #{:MS}}}}},
+                                                                 :filter {:engine :match,
+                                                                          :match {:code {:coding #{{:system "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
+                                                                                                    :code "CANCER_LYMPH"}}}}}},
+                                               "hypertensionComplicated" {:schema {:type zen/vector,
+                                                                                   :maxItems 1,
+                                                                                   :every {:type zen/map,
+                                                                                           :keys {:extension {:fhir/flags #{:MS}},
+                                                                                                  :code {:match {:coding #{{:system "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
+                                                                                                                            :code "HTN_CX"}}},
+                                                                                                         :fhir/flags #{:MS}},
+                                                                                                  :value {:fhir/polymorphic true,
+                                                                                                          :type zen/map,
+                                                                                                          :fhir/flags #{:MS}}}}},
+                                                                          :filter {:engine :match,
+                                                                                   :match {:code {:coding #{{:system "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
+                                                                                                             :code "HTN_CX"}}}}}},
+                                               "deficiencyAnemia" {:schema {:type zen/vector,
+                                                                            :maxItems 1,
+                                                                            :every {:type zen/map,
+                                                                                    :keys {:extension {:fhir/flags #{:MS}},
+                                                                                           :code {:match {:coding #{{:system "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
+                                                                                                                     :code "ANEMDF"}}},
+                                                                                                  :fhir/flags #{:MS}},
+                                                                                           :value {:fhir/polymorphic true,
+                                                                                                   :type zen/map,
+                                                                                                   :fhir/flags #{:MS}}}}},
+                                                                   :filter {:engine :match,
+                                                                            :match {:code {:coding #{{:system "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
+                                                                                                      :code "ANEMDF"}}}}}},
+                                               "paralysis" {:schema {:type zen/vector,
+                                                                     :maxItems 1,
+                                                                     :every {:type zen/map,
+                                                                             :keys {:extension {:fhir/flags #{:MS}},
+                                                                                    :code {:match {:coding #{{:system "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
+                                                                                                              :code "PARALYSIS"}}},
+                                                                                           :fhir/flags #{:MS}},
+                                                                                    :value {:fhir/polymorphic true,
+                                                                                            :type zen/map,
+                                                                                            :fhir/flags #{:MS}}}}},
+                                                            :filter {:engine :match,
+                                                                     :match {:code {:coding #{{:system "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
+                                                                                               :code "PARALYSIS"}}}}}},
+                                               "renalFailureModerate" {:schema {:type zen/vector,
+                                                                                :maxItems 1,
+                                                                                :every {:type zen/map,
+                                                                                        :keys {:extension {:fhir/flags #{:MS}},
+                                                                                               :code {:match {:coding #{{:system "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
+                                                                                                                         :code "RENLFL_MOD"}}},
+                                                                                                      :fhir/flags #{:MS}},
+                                                                                               :value {:fhir/polymorphic true,
+                                                                                                       :type zen/map,
+                                                                                                       :fhir/flags #{:MS}}}}},
+                                                                       :filter {:engine :match,
+                                                                                :match {:code {:coding #{{:system "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
+                                                                                                          :code "RENLFL_MOD"}}}}}},
+                                               "neurologicalOther" {:schema {:type zen/vector,
+                                                                             :maxItems 1,
+                                                                             :every {:type zen/map,
+                                                                                     :keys {:extension {:fhir/flags #{:MS}},
+                                                                                            :code {:match {:coding #{{:system "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
+                                                                                                                      :code "NEURO_OTH"}}},
+                                                                                                   :fhir/flags #{:MS}},
+                                                                                            :value {:fhir/polymorphic true,
+                                                                                                    :type zen/map,
+                                                                                                    :fhir/flags #{:MS}}}}},
+                                                                    :filter {:engine :match,
+                                                                             :match {:code {:coding #{{:system "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
+                                                                                                       :code "NEURO_OTH"}}}}}},
+                                               "cancerSolidInSitu" {:schema {:type zen/vector,
+                                                                             :maxItems 1,
+                                                                             :every {:type zen/map,
+                                                                                     :keys {:extension {:fhir/flags #{:MS}},
+                                                                                            :code {:match {:coding #{{:system "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
+                                                                                                                      :code "CANCER_NSITU"}}},
+                                                                                                   :fhir/flags #{:MS}},
+                                                                                            :value {:fhir/polymorphic true,
+                                                                                                    :type zen/map,
+                                                                                                    :fhir/flags #{:MS}}}}},
+                                                                    :filter {:engine :match,
+                                                                             :match {:code {:coding #{{:system "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
+                                                                                                       :code "CANCER_NSITU"}}}}}},
+                                               "depression" {:schema {:type zen/vector,
+                                                                      :maxItems 1,
+                                                                      :every {:type zen/map,
+                                                                              :keys {:extension {:fhir/flags #{:MS}},
+                                                                                     :code {:match {:coding #{{:system "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
+                                                                                                               :code "DEPRESS"}}},
+                                                                                            :fhir/flags #{:MS}},
+                                                                                     :value {:fhir/polymorphic true,
+                                                                                             :type zen/map,
+                                                                                             :fhir/flags #{:MS}}}}},
+                                                             :filter {:engine :match,
+                                                                      :match {:code {:coding #{{:system "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
+                                                                                                :code "DEPRESS"}}}}}},
+                                               "thyroidOther" {:schema {:type zen/vector,
+                                                                        :maxItems 1,
+                                                                        :every {:type zen/map,
+                                                                                :keys {:extension {:fhir/flags #{:MS}},
+                                                                                       :code {:match {:coding #{{:system "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
+                                                                                                                 :code "THYROID_OTH"}}},
+                                                                                              :fhir/flags #{:MS}},
+                                                                                       :value {:fhir/polymorphic true,
+                                                                                               :type zen/map,
+                                                                                               :fhir/flags #{:MS}}}}},
+                                                               :filter {:engine :match,
+                                                                        :match {:code {:coding #{{:system "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
+                                                                                                  :code "THYROID_OTH"}}}}}},
+                                               "dementia" {:schema {:type zen/vector,
+                                                                    :maxItems 1,
+                                                                    :every {:type zen/map,
+                                                                            :keys {:extension {:fhir/flags #{:MS}},
+                                                                                   :code {:match {:coding #{{:system "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
+                                                                                                             :code "DEMENTIA"}}},
+                                                                                          :fhir/flags #{:MS}},
+                                                                                   :value {:fhir/polymorphic true,
+                                                                                           :type zen/map,
+                                                                                           :fhir/flags #{:MS}}}}},
+                                                           :filter {:engine :match,
+                                                                    :match {:code {:coding #{{:system "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
+                                                                                              :code "DEMENTIA"}}}}}},
+                                               "alcoholAbuse" {:schema {:type zen/vector,
+                                                                        :maxItems 1,
+                                                                        :every {:type zen/map,
+                                                                                :keys {:extension {:fhir/flags #{:MS}},
+                                                                                       :code {:match {:coding #{{:system "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
+                                                                                                                 :code "ALCOHOL"}}},
+                                                                                              :fhir/flags #{:MS}},
+                                                                                       :value {:fhir/polymorphic true,
+                                                                                               :type zen/map,
+                                                                                               :fhir/flags #{:MS}}}}},
+                                                               :filter {:engine :match,
+                                                                        :match {:code {:coding #{{:system "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
+                                                                                                  :code "ALCOHOL"}}}}}},
+                                               "neurologicalSeizure" {:schema {:type zen/vector,
+                                                                               :maxItems 1,
+                                                                               :every {:type zen/map,
+                                                                                       :keys {:extension {:fhir/flags #{:MS}},
+                                                                                              :code {:match {:coding #{{:system "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
+                                                                                                                        :code "NEURO_SEIZ"}}},
+                                                                                                     :fhir/flags #{:MS}},
+                                                                                              :value {:fhir/polymorphic true,
+                                                                                                      :type zen/map,
+                                                                                                      :fhir/flags #{:MS}}}}},
+                                                                      :filter {:engine :match,
+                                                                               :match {:code {:coding #{{:system "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
+                                                                                                         :code "NEURO_SEIZ"}}}}}},
+                                               "renalFailureSevere" {:schema {:type zen/vector,
+                                                                              :maxItems 1,
+                                                                              :every {:type zen/map,
+                                                                                      :keys {:extension {:fhir/flags #{:MS}},
+                                                                                             :code {:match {:coding #{{:system "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
+                                                                                                                       :code "RENLFL_SEV"}}},
+                                                                                                    :fhir/flags #{:MS}},
+                                                                                             :value {:fhir/polymorphic true,
+                                                                                                     :type zen/map,
+                                                                                                     :fhir/flags #{:MS}}}}},
+                                                                     :filter {:engine :match,
+                                                                              :match {:code {:coding #{{:system "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
+                                                                                                        :code "RENLFL_SEV"}}}}}},
+                                               "hypertensionUncomplicated" {:schema {:type zen/vector,
+                                                                                     :maxItems 1,
+                                                                                     :every {:type zen/map,
+                                                                                             :keys {:extension {:fhir/flags #{:MS}},
+                                                                                                    :code {:match {:coding #{{:system "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
+                                                                                                                              :code "HTN_UNCX"}}},
+                                                                                                           :fhir/flags #{:MS}},
+                                                                                                    :value {:fhir/polymorphic true,
+                                                                                                            :type zen/map,
+                                                                                                            :fhir/flags #{:MS}}}}},
+                                                                            :filter {:engine :match,
+                                                                                     :match {:code {:coding #{{:system "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
+                                                                                                               :code "HTN_UNCX"}}}}}},
+                                               "obesity" {:schema {:type zen/vector,
+                                                                   :maxItems 1,
+                                                                   :every {:type zen/map,
+                                                                           :keys {:extension {:fhir/flags #{:MS}},
+                                                                                  :code {:match {:coding #{{:system "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
+                                                                                                            :code "OBESE"}}},
+                                                                                         :fhir/flags #{:MS}},
+                                                                                  :value {:fhir/polymorphic true,
+                                                                                          :type zen/map,
+                                                                                          :fhir/flags #{:MS}}}}},
+                                                          :filter {:engine :match,
+                                                                   :match {:code {:coding #{{:system "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
+                                                                                             :code "OBESE"}}}}}},
+                                               "cancerMetastatic" {:schema {:type zen/vector,
+                                                                            :maxItems 1,
+                                                                            :every {:type zen/map,
+                                                                                    :keys {:extension {:fhir/flags #{:MS}},
+                                                                                           :code {:match {:coding #{{:system "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
+                                                                                                                     :code "CANCER_METS"}}},
+                                                                                                  :fhir/flags #{:MS}},
+                                                                                           :value {:fhir/polymorphic true,
+                                                                                                   :type zen/map,
+                                                                                                   :fhir/flags #{:MS}}}}},
+                                                                   :filter {:engine :match,
+                                                                            :match {:code {:coding #{{:system "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
+                                                                                                      :code "CANCER_METS"}}}}}},
+                                               "liverDiseaseSevere" {:schema {:type zen/vector,
+                                                                              :maxItems 1,
+                                                                              :every {:type zen/map,
+                                                                                      :keys {:extension {:fhir/flags #{:MS}},
+                                                                                             :code {:match {:coding #{{:system "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
+                                                                                                                       :code "LIVER_SEV"}}},
+                                                                                                    :fhir/flags #{:MS}},
+                                                                                             :value {:fhir/polymorphic true,
+                                                                                                     :type zen/map,
+                                                                                                     :fhir/flags #{:MS}}}}},
+                                                                     :filter {:engine :match,
+                                                                              :match {:code {:coding #{{:system "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
+                                                                                                        :code "LIVER_SEV"}}}}}},
+                                               "peripheralVascularDisease" {:schema {:type zen/vector,
+                                                                                     :maxItems 1,
+                                                                                     :every {:type zen/map,
+                                                                                             :keys {:extension {:fhir/flags #{:MS}},
+                                                                                                    :code {:match {:coding #{{:system "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
+                                                                                                                              :code "PERIVASC"}}},
+                                                                                                           :fhir/flags #{:MS}},
+                                                                                                    :value {:fhir/polymorphic true,
+                                                                                                            :type zen/map,
+                                                                                                            :fhir/flags #{:MS}}}}},
+                                                                            :filter {:engine :match,
+                                                                                     :match {:code {:coding #{{:system "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
+                                                                                                               :code "PERIVASC"}}}}}},
+                                               "chronicPulmonaryDisease" {:schema {:type zen/vector,
+                                                                                   :maxItems 1,
+                                                                                   :every {:type zen/map,
+                                                                                           :keys {:extension {:fhir/flags #{:MS}},
+                                                                                                  :code {:match {:coding #{{:system "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
+                                                                                                                            :code "LUNG_CHRONIC"}}},
+                                                                                                         :fhir/flags #{:MS}},
+                                                                                                  :value {:fhir/polymorphic true,
+                                                                                                          :type zen/map,
+                                                                                                          :fhir/flags #{:MS}}}}},
+                                                                          :filter {:engine :match,
+                                                                                   :match {:code {:coding #{{:system "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
+                                                                                                             :code "LUNG_CHRONIC"}}}}}},
+                                               "cancerLeukemia" {:schema {:type zen/vector,
+                                                                          :maxItems 1,
+                                                                          :every {:type zen/map,
+                                                                                  :keys {:extension {:fhir/flags #{:MS}},
+                                                                                         :code {:match {:coding #{{:system "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
+                                                                                                                   :code "CANCER_LEUK"}}},
+                                                                                                :fhir/flags #{:MS}},
+                                                                                         :value {:fhir/polymorphic true,
+                                                                                                 :type zen/map,
+                                                                                                 :fhir/flags #{:MS}}}}},
+                                                                 :filter {:engine :match,
+                                                                          :match {:code {:coding #{{:system "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
+                                                                                                    :code "CANCER_LEUK"}}}}}},
+                                               "liverDiseaseMild" {:schema {:type zen/vector,
+                                                                            :maxItems 1,
+                                                                            :every {:type zen/map,
+                                                                                    :keys {:extension {:fhir/flags #{:MS}},
+                                                                                           :code {:match {:coding #{{:system "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
+                                                                                                                     :code "LIVER_MLD"}}},
+                                                                                                  :fhir/flags #{:MS}},
+                                                                                           :value {:fhir/polymorphic true,
+                                                                                                   :type zen/map,
+                                                                                                   :fhir/flags #{:MS}}}}},
+                                                                   :filter {:engine :match,
+                                                                            :match {:code {:coding #{{:system "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
+                                                                                                      :code "LIVER_MLD"}}}}}},
+                                               "arthropathy" {:schema {:type zen/vector,
+                                                                       :maxItems 1,
+                                                                       :every {:type zen/map,
+                                                                               :keys {:extension {:fhir/flags #{:MS}},
+                                                                                      :code {:match {:coding #{{:system "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
+                                                                                                                :code "ARTH"}}},
+                                                                                             :fhir/flags #{:MS}},
+                                                                                      :value {:fhir/polymorphic true,
+                                                                                              :type zen/map,
+                                                                                              :fhir/flags #{:MS}}}}},
+                                                              :filter {:engine :match,
+                                                                       :match {:code {:coding #{{:system "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
+                                                                                                 :code "ARTH"}}}}}},
+                                               "cancerSolidMalignant" {:schema {:type zen/vector,
+                                                                                :maxItems 1,
+                                                                                :every {:type zen/map,
+                                                                                        :keys {:extension {:fhir/flags #{:MS}},
+                                                                                               :code {:match {:coding #{{:system "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
+                                                                                                                         :code "CANCER_SOLID"}}},
+                                                                                                      :fhir/flags #{:MS}},
+                                                                                               :value {:fhir/polymorphic true,
+                                                                                                       :type zen/map,
+                                                                                                       :fhir/flags #{:MS}}}}},
+                                                                       :filter {:engine :match,
+                                                                                :match {:code {:coding #{{:system "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
+                                                                                                          :code "CANCER_SOLID"}}}}}},
+                                               "coagulopathy" {:schema {:type zen/vector,
+                                                                        :maxItems 1,
+                                                                        :every {:type zen/map,
+                                                                                :keys {:extension {:fhir/flags #{:MS}},
+                                                                                       :code {:match {:coding #{{:system "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
+                                                                                                                 :code "COAG"}}},
+                                                                                              :fhir/flags #{:MS}},
+                                                                                       :value {:fhir/polymorphic true,
+                                                                                               :type zen/map,
+                                                                                               :fhir/flags #{:MS}}}}},
+                                                               :filter {:engine :match,
+                                                                        :match {:code {:coding #{{:system "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
+                                                                                                  :code "COAG"}}}}}},
+                                               "weightLoss" {:schema {:type zen/vector,
+                                                                      :maxItems 1,
+                                                                      :every {:type zen/map,
+                                                                              :keys {:extension {:fhir/flags #{:MS}},
+                                                                                     :code {:match {:coding #{{:system "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
+                                                                                                               :code "WGHTLOSS"}}},
+                                                                                            :fhir/flags #{:MS}},
+                                                                                     :value {:fhir/polymorphic true,
+                                                                                             :type zen/map,
+                                                                                             :fhir/flags #{:MS}}}}},
+                                                             :filter {:engine :match,
+                                                                      :match {:code {:coding #{{:system "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
+                                                                                                :code "WGHTLOSS"}}}}}},
+                                               "congestiveHeartFailure" {:schema {:type zen/vector,
+                                                                                  :maxItems 1,
+                                                                                  :every {:type zen/map,
+                                                                                          :keys {:extension {:fhir/flags #{:MS}},
+                                                                                                 :code {:match {:coding #{{:system "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
+                                                                                                                           :code "CHF"}}},
+                                                                                                        :fhir/flags #{:MS}},
+                                                                                                 :value {:fhir/polymorphic true,
+                                                                                                         :type zen/map,
+                                                                                                         :fhir/flags #{:MS}}}}},
+                                                                         :filter {:engine :match,
+                                                                                  :match {:code {:coding #{{:system "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
+                                                                                                            :code "CHF"}}}}}},
+                                               "hypothyroidism" {:schema {:type zen/vector,
+                                                                          :maxItems 1,
+                                                                          :every {:type zen/map,
+                                                                                  :keys {:extension {:fhir/flags #{:MS}},
+                                                                                         :code {:match {:coding #{{:system "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
+                                                                                                                   :code "THYROID_HYPO"}}},
+                                                                                                :fhir/flags #{:MS}},
+                                                                                         :value {:fhir/polymorphic true,
+                                                                                                 :type zen/map,
+                                                                                                 :fhir/flags #{:MS}}}}},
+                                                                 :filter {:engine :match,
+                                                                          :match {:code {:coding #{{:system "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
+                                                                                                    :code "THYROID_HYPO"}}}}}},
+                                               "bloodLossAnemia" {:schema {:type zen/vector,
+                                                                           :maxItems 1,
+                                                                           :every {:type zen/map,
+                                                                                   :keys {:extension {:fhir/flags #{:MS}},
+                                                                                          :code {:match {:coding #{{:system "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
+                                                                                                                    :code "BLDLOSS"}}},
+                                                                                                 :fhir/flags #{:MS}},
+                                                                                          :value {:fhir/polymorphic true,
+                                                                                                  :type zen/map,
+                                                                                                  :fhir/flags #{:MS}}}}},
+                                                                  :filter {:engine :match,
+                                                                           :match {:code {:coding #{{:system "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
+                                                                                                     :code "BLDLOSS"}}}}}},
+                                               "drugAbuse" {:schema {:type zen/vector,
+                                                                     :maxItems 1,
+                                                                     :every {:type zen/map,
+                                                                             :keys {:extension {:fhir/flags #{:MS}},
+                                                                                    :code {:match {:coding #{{:system "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
+                                                                                                              :code "DRUG_ABUSE"}}},
+                                                                                           :fhir/flags #{:MS}},
+                                                                                    :value {:fhir/polymorphic true,
+                                                                                            :type zen/map,
+                                                                                            :fhir/flags #{:MS}}}}},
+                                                            :filter {:engine :match,
+                                                                     :match {:code {:coding #{{:system "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
+                                                                                               :code "DRUG_ABUSE"}}}}}},
+                                               "diabetesComplicated" {:schema {:type zen/vector,
+                                                                               :maxItems 1,
+                                                                               :every {:type zen/map,
+                                                                                       :keys {:extension {:fhir/flags #{:MS}},
+                                                                                              :code {:match {:coding #{{:system "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
+                                                                                                                        :code "DIAB_CX"}}},
+                                                                                                     :fhir/flags #{:MS}},
+                                                                                              :value {:fhir/polymorphic true,
+                                                                                                      :type zen/map,
+                                                                                                      :fhir/flags #{:MS}}}}},
+                                                                      :filter {:engine :match,
+                                                                               :match {:code {:coding #{{:system "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
+                                                                                                         :code "DIAB_CX"}}}}}},
+                                               "ulcer" {:schema {:type zen/vector,
+                                                                 :maxItems 1,
+                                                                 :every {:type zen/map,
+                                                                         :keys {:extension {:fhir/flags #{:MS}},
+                                                                                :code {:match {:coding #{{:system "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
+                                                                                                          :code "ULCER_PEPTIC"}}},
+                                                                                       :fhir/flags #{:MS}},
+                                                                                :value {:fhir/polymorphic true,
+                                                                                        :type zen/map,
+                                                                                        :fhir/flags #{:MS}}}}},
+                                                        :filter {:engine :match,
+                                                                 :match {:code {:coding #{{:system "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
+                                                                                           :code "ULCER_PEPTIC"}}}}}},
+                                               "diabetesUncomplicated" {:schema {:type zen/vector,
+                                                                                 :maxItems 1,
+                                                                                 :every {:type zen/map,
+                                                                                         :keys {:extension {:fhir/flags #{:MS}},
+                                                                                                :code {:match {:coding #{{:system "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
+                                                                                                                          :code "DIAB_UNCX"}}},
+                                                                                                       :fhir/flags #{:MS}},
+                                                                                                :value {:fhir/polymorphic true,
+                                                                                                        :type zen/map,
+                                                                                                        :fhir/flags #{:MS}}}}},
+                                                                        :filter {:engine :match,
+                                                                                 :match {:code {:coding #{{:system "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
+                                                                                                           :code "DIAB_UNCX"}}}}}},
+                                               "aids" {:schema {:type zen/vector,
+                                                                :maxItems 1,
+                                                                :every {:type zen/map,
+                                                                        :keys {:extension {:fhir/flags #{:MS}},
+                                                                               :code {:match {:coding #{{:system "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
+                                                                                                         :code "AIDS"}}},
+                                                                                      :fhir/flags #{:MS}},
+                                                                               :value {:fhir/polymorphic true,
+                                                                                       :type zen/map,
+                                                                                       :fhir/flags #{:MS}}}}},
+                                                       :filter {:engine :match,
+                                                                :match {:code {:coding #{{:system "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
+                                                                                          :code "AIDS"}}}}}},
+                                               "neurologicalMovement" {:schema {:type zen/vector,
+                                                                                :maxItems 1,
+                                                                                :every {:type zen/map,
+                                                                                        :keys {:extension {:fhir/flags #{:MS}},
+                                                                                               :code {:match {:coding #{{:system "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
+                                                                                                                         :code "NEURO_MOVT"}}},
+                                                                                                      :fhir/flags #{:MS}},
+                                                                                               :value {:fhir/polymorphic true,
+                                                                                                       :type zen/map,
+                                                                                                       :fhir/flags #{:MS}}}}},
+                                                                       :filter {:engine :match,
+                                                                                :match {:code {:coding #{{:system "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
+                                                                                                          :code "NEURO_MOVT"}}}}}}}},
+                            :every {:type zen/map,
+                                    :keys {:value {:fhir/polymorphic true,
+                                                   :type zen/map,
+                                                   :zen.fhir/value-set {:symbol hl7-fhir-us-mcode.value-set.mcode-present-absent/value-set,
+                                                                        :strength :required}}},
+                                    :fhir/flags #{:MS}}}}}}

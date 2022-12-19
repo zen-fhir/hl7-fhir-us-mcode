@@ -1,362 +1,217 @@
 {ns hl7-fhir-us-mcode.mcode-genomic-variant,
- import
- #{hl7-fhir-us-mcode.value-set.mcode-genomic-molecular-consequence-vs
-   hl7-fhir-us-mcode.value-set.mcode-clinvar-vs
-   zen.fhir
-   hl7-fhir-us-mcode.value-set.mcode-dna-change-type-vs
-   hl7-fhir-us-core.us-core-observation-lab
-   hl7-fhir-us-mcode.value-set.mcode-hgvs-vs
-   hl7-fhir-us-mcode.mcode-genomic-specimen
-   hl7-fhir-us-mcode.value-set.mcode-hgnc-vs},
- schema
- {:zen/tags #{zen.fhir/profile-schema zen/schema},
-  :zen/desc
-  "An alteration in the most common DNA nucleotide sequence. The term variant can be used to describe an alteration that may be benign, pathogenic, or of unknown significance. The term variant is increasingly being used in place of the term mutation. Variants can be computed relative to reference sequence assembly from which it was identified.",
-  :zen.fhir/type "Observation",
-  :zen.fhir/profileUri
-  "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-genomic-variant",
-  :zen.fhir/version "0.6.6-7",
-  :confirms
-  #{hl7-fhir-us-core.us-core-observation-lab/schema zen.fhir/Resource},
-  :type zen/map,
-  :keys
-  {:code
-   {:match {:coding #{{:system "http://loinc.org", :code "69548-6"}}}},
-   :value
-   {:fhir/polymorphic true,
-    :type zen/map,
-    :zen/desc "Whether the variant is present"},
-   :bodySite #:zen{:desc "Not used in this profile"},
-   :method #:fhir{:flags #{:MS}},
-   :specimen
-   {:fhir/flags #{:MS},
-    :confirms #{zen.fhir/Reference},
-    :zen.fhir/reference
-    {:refers #{hl7-fhir-us-mcode.mcode-genomic-specimen/schema}}},
-   :referenceRange
-   {:type zen/vector, :every #:zen{:desc "Not used in this profile"}},
-   :hasMember
-   {:type zen/vector,
-    :every
-    {:confirms #{zen.fhir/Reference},
-     :zen.fhir/reference {:refers #{}},
-     :zen/desc "Not used in this profile"}},
-   :component
-   {:type zen/vector,
-    :slicing
-    {:slices
-     {"genomicDNAChangeType"
-      {:schema
-       {:type zen/vector,
-        :maxItems 1,
-        :every
-        {:type zen/map,
-         :keys
-         {:code
-          {:match
-           {:coding #{{:system "http://loinc.org", :code "48019-4"}}},
-           :fhir/flags #{:MS}},
-          :value
-          {:fhir/polymorphic true,
-           :type zen/map,
-           :fhir/flags #{:MS},
-           :zen.fhir/value-set
-           {:symbol
-            hl7-fhir-us-mcode.value-set.mcode-dna-change-type-vs/value-set,
-            :strength :extensible}}}}},
-       :filter
-       {:engine :match,
-        :match
-        {:code
-         {:coding #{{:system "http://loinc.org", :code "48019-4"}}}}}},
-      "cytogeneticNomenclature"
-      {:schema
-       {:type zen/vector,
-        :every
-        {:type zen/map,
-         :keys
-         {:code
-          {:match
-           {:coding #{{:system "http://loinc.org", :code "81291-7"}}},
-           :fhir/flags #{:MS}},
-          :value
-          {:fhir/polymorphic true,
-           :type zen/map,
-           :fhir/flags #{:MS}}}}},
-       :filter
-       {:engine :match,
-        :match
-        {:code
-         {:coding #{{:system "http://loinc.org", :code "81291-7"}}}}}},
-      "genomicDNAChange"
-      {:schema
-       {:type zen/vector,
-        :maxItems 1,
-        :every
-        {:type zen/map,
-         :keys
-         {:code
-          {:match
-           {:coding #{{:system "http://loinc.org", :code "81290-9"}}},
-           :fhir/flags #{:MS}},
-          :value
-          {:fhir/polymorphic true,
-           :type zen/map,
-           :fhir/flags #{:MS},
-           :zen.fhir/value-set
-           {:symbol
-            hl7-fhir-us-mcode.value-set.mcode-hgvs-vs/value-set,
-            :strength :required}}}}},
-       :filter
-       {:engine :match,
-        :match
-        {:code
-         {:coding #{{:system "http://loinc.org", :code "81290-9"}}}}}},
-      "clinicalSignificance"
-      {:schema
-       {:type zen/vector,
-        :maxItems 1,
-        :every
-        {:type zen/map,
-         :keys
-         {:code
-          {:match
-           {:coding #{{:system "http://loinc.org", :code "53037-8"}}},
-           :fhir/flags #{:MS}},
-          :value
-          {:fhir/polymorphic true,
-           :type zen/map,
-           :fhir/flags #{:MS}}}}},
-       :filter
-       {:engine :match,
-        :match
-        {:code
-         {:coding #{{:system "http://loinc.org", :code "53037-8"}}}}}},
-      "molecularConsequence"
-      {:schema
-       {:type zen/vector,
-        :maxItems 1,
-        :every
-        {:type zen/map,
-         :keys
-         {:code
-          {:match
-           {:coding
-            #{{:system
-               "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
-               :code "molecular-consequence"}}},
-           :fhir/flags #{:MS}},
-          :value
-          {:fhir/polymorphic true,
-           :type zen/map,
-           :fhir/flags #{:MS},
-           :zen.fhir/value-set
-           {:symbol
-            hl7-fhir-us-mcode.value-set.mcode-genomic-molecular-consequence-vs/value-set,
-            :strength :extensible}}}}},
-       :filter
-       {:engine :match,
-        :match
-        {:code
-         {:coding
-          #{{:system
-             "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
-             :code "molecular-consequence"}}}}}},
-      "aminoAcidChange"
-      {:schema
-       {:type zen/vector,
-        :maxItems 1,
-        :every
-        {:type zen/map,
-         :keys
-         {:code
-          {:match
-           {:coding #{{:system "http://loinc.org", :code "48005-3"}}},
-           :fhir/flags #{:MS}},
-          :value
-          {:fhir/polymorphic true,
-           :type zen/map,
-           :fhir/flags #{:MS},
-           :zen.fhir/value-set
-           {:symbol
-            hl7-fhir-us-mcode.value-set.mcode-hgvs-vs/value-set,
-            :strength :required}}}}},
-       :filter
-       {:engine :match,
-        :match
-        {:code
-         {:coding #{{:system "http://loinc.org", :code "48005-3"}}}}}},
-      "aminoAcidChangeType"
-      {:schema
-       {:type zen/vector,
-        :maxItems 1,
-        :every
-        {:type zen/map,
-         :keys
-         {:code
-          {:match
-           {:coding #{{:system "http://loinc.org", :code "48006-1"}}},
-           :fhir/flags #{:MS}},
-          :value
-          {:fhir/polymorphic true,
-           :type zen/map,
-           :fhir/flags #{:MS}}}}},
-       :filter
-       {:engine :match,
-        :match
-        {:code
-         {:coding #{{:system "http://loinc.org", :code "48006-1"}}}}}},
-      "allelicState"
-      {:schema
-       {:type zen/vector,
-        :maxItems 1,
-        :every
-        {:type zen/map,
-         :keys
-         {:code
-          {:match
-           {:coding #{{:system "http://loinc.org", :code "53034-5"}}},
-           :fhir/flags #{:MS}},
-          :value
-          {:fhir/polymorphic true,
-           :type zen/map,
-           :fhir/flags #{:MS}}}}},
-       :filter
-       {:engine :match,
-        :match
-        {:code
-         {:coding #{{:system "http://loinc.org", :code "53034-5"}}}}}},
-      "cytogeneticLocation"
-      {:schema
-       {:type zen/vector,
-        :every
-        {:type zen/map,
-         :keys
-         {:code
-          {:match
-           {:coding #{{:system "http://loinc.org", :code "48001-2"}}},
-           :fhir/flags #{:MS}},
-          :value
-          {:fhir/polymorphic true,
-           :type zen/map,
-           :fhir/flags #{:MS}}}}},
-       :filter
-       {:engine :match,
-        :match
-        {:code
-         {:coding #{{:system "http://loinc.org", :code "48001-2"}}}}}},
-      "copyNumber"
-      {:schema
-       {:type zen/vector,
-        :maxItems 1,
-        :every
-        {:type zen/map,
-         :keys
-         {:code
-          {:match
-           {:coding #{{:system "http://loinc.org", :code "82155-3"}}},
-           :fhir/flags #{:MS}},
-          :value
-          {:fhir/polymorphic true,
-           :type zen/map,
-           :fhir/flags #{:MS}}}}},
-       :filter
-       {:engine :match,
-        :match
-        {:code
-         {:coding #{{:system "http://loinc.org", :code "82155-3"}}}}}},
-      "sampleAllelicFrequency"
-      {:schema
-       {:type zen/vector,
-        :maxItems 1,
-        :every
-        {:type zen/map,
-         :keys
-         {:code
-          {:match
-           {:coding #{{:system "http://loinc.org", :code "81258-6"}}},
-           :fhir/flags #{:MS}},
-          :value
-          {:fhir/polymorphic true,
-           :type zen/map,
-           :fhir/flags #{:MS}}}}},
-       :filter
-       {:engine :match,
-        :match
-        {:code
-         {:coding #{{:system "http://loinc.org", :code "81258-6"}}}}}},
-      "geneStudied"
-      {:schema
-       {:type zen/vector,
-        :every
-        {:type zen/map,
-         :keys
-         {:code
-          {:match
-           {:coding #{{:system "http://loinc.org", :code "48018-6"}}},
-           :fhir/flags #{:MS}},
-          :value
-          {:fhir/polymorphic true,
-           :type zen/map,
-           :fhir/flags #{:MS},
-           :zen.fhir/value-set
-           {:symbol
-            hl7-fhir-us-mcode.value-set.mcode-hgnc-vs/value-set,
-            :strength :extensible}}}}},
-       :filter
-       {:engine :match,
-        :match
-        {:code
-         {:coding #{{:system "http://loinc.org", :code "48018-6"}}}}}},
-      "variationCode"
-      {:schema
-       {:type zen/vector,
-        :maxItems 1,
-        :every
-        {:type zen/map,
-         :keys
-         {:code
-          {:match
-           {:coding #{{:system "http://loinc.org", :code "81252-9"}}},
-           :fhir/flags #{:MS}},
-          :value
-          {:fhir/polymorphic true,
-           :type zen/map,
-           :fhir/flags #{:MS},
-           :zen.fhir/value-set
-           {:symbol
-            hl7-fhir-us-mcode.value-set.mcode-clinvar-vs/value-set,
-            :strength :preferred}}}}},
-       :filter
-       {:engine :match,
-        :match
-        {:code
-         {:coding #{{:system "http://loinc.org", :code "81252-9"}}}}}},
-      "genomicSourceClass"
-      {:schema
-       {:type zen/vector,
-        :maxItems 1,
-        :every
-        {:type zen/map,
-         :keys
-         {:code
-          {:match
-           {:coding #{{:system "http://loinc.org", :code "48002-0"}}},
-           :fhir/flags #{:MS}},
-          :value
-          {:fhir/polymorphic true,
-           :type zen/map,
-           :fhir/flags #{:MS}}}}},
-       :filter
-       {:engine :match,
-        :match
-        {:code
-         {:coding
-          #{{:system "http://loinc.org", :code "48002-0"}}}}}}}},
-    :every
-    {:type zen/map,
-     :keys
-     {:code #:fhir{:flags #{:MS}},
-      :value
-      {:fhir/polymorphic true, :type zen/map, :fhir/flags #{:MS}}},
-     :fhir/flags #{:MS}}}}}}
+ import #{hl7-fhir-us-mcode.value-set.mcode-genomic-molecular-consequence-vs
+          hl7-fhir-us-mcode.value-set.mcode-clinvar-vs
+          zen.fhir
+          hl7-fhir-us-mcode.value-set.mcode-dna-change-type-vs
+          hl7-fhir-us-core.us-core-observation-lab
+          hl7-fhir-us-mcode.value-set.mcode-hgvs-vs
+          hl7-fhir-us-mcode.mcode-genomic-specimen
+          hl7-fhir-us-mcode.value-set.mcode-hgnc-vs},
+ schema {:zen/tags #{zen.fhir/profile-schema zen/schema},
+         :zen/desc "An alteration in the most common DNA nucleotide sequence. The term variant can be used to describe an alteration that may be benign, pathogenic, or of unknown significance. The term variant is increasingly being used in place of the term mutation. Variants can be computed relative to reference sequence assembly from which it was identified.",
+         :zen.fhir/type "Observation",
+         :zen.fhir/profileUri "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-genomic-variant",
+         :zen.fhir/version "0.6.6-8",
+         :confirms #{hl7-fhir-us-core.us-core-observation-lab/schema
+                     zen.fhir/Resource},
+         :type zen/map,
+         :keys {:code {:match {:coding #{{:system "http://loinc.org",
+                                          :code "69548-6"}}}},
+                :value {:fhir/polymorphic true,
+                        :type zen/map,
+                        :zen/desc "Whether the variant is present"},
+                :bodySite {:zen/desc "Not used in this profile"},
+                :method {:fhir/flags #{:MS}},
+                :specimen {:fhir/flags #{:MS},
+                           :confirms #{zen.fhir/Reference},
+                           :zen.fhir/reference {:refers #{hl7-fhir-us-mcode.mcode-genomic-specimen/schema}}},
+                :referenceRange {:type zen/vector,
+                                 :every {:zen/desc "Not used in this profile"}},
+                :hasMember {:type zen/vector,
+                            :every {:confirms #{zen.fhir/Reference},
+                                    :zen.fhir/reference {:refers #{}},
+                                    :zen/desc "Not used in this profile"}},
+                :component {:type zen/vector,
+                            :slicing {:slices {"genomicDNAChangeType" {:schema {:type zen/vector,
+                                                                                :maxItems 1,
+                                                                                :every {:type zen/map,
+                                                                                        :keys {:code {:match {:coding #{{:system "http://loinc.org",
+                                                                                                                         :code "48019-4"}}},
+                                                                                                      :fhir/flags #{:MS}},
+                                                                                               :value {:fhir/polymorphic true,
+                                                                                                       :type zen/map,
+                                                                                                       :fhir/flags #{:MS},
+                                                                                                       :zen.fhir/value-set {:symbol hl7-fhir-us-mcode.value-set.mcode-dna-change-type-vs/value-set,
+                                                                                                                            :strength :extensible}}}}},
+                                                                       :filter {:engine :match,
+                                                                                :match {:code {:coding #{{:system "http://loinc.org",
+                                                                                                          :code "48019-4"}}}}}},
+                                               "cytogeneticNomenclature" {:schema {:type zen/vector,
+                                                                                   :every {:type zen/map,
+                                                                                           :keys {:code {:match {:coding #{{:system "http://loinc.org",
+                                                                                                                            :code "81291-7"}}},
+                                                                                                         :fhir/flags #{:MS}},
+                                                                                                  :value {:fhir/polymorphic true,
+                                                                                                          :type zen/map,
+                                                                                                          :fhir/flags #{:MS}}}}},
+                                                                          :filter {:engine :match,
+                                                                                   :match {:code {:coding #{{:system "http://loinc.org",
+                                                                                                             :code "81291-7"}}}}}},
+                                               "genomicDNAChange" {:schema {:type zen/vector,
+                                                                            :maxItems 1,
+                                                                            :every {:type zen/map,
+                                                                                    :keys {:code {:match {:coding #{{:system "http://loinc.org",
+                                                                                                                     :code "81290-9"}}},
+                                                                                                  :fhir/flags #{:MS}},
+                                                                                           :value {:fhir/polymorphic true,
+                                                                                                   :type zen/map,
+                                                                                                   :fhir/flags #{:MS},
+                                                                                                   :zen.fhir/value-set {:symbol hl7-fhir-us-mcode.value-set.mcode-hgvs-vs/value-set,
+                                                                                                                        :strength :required}}}}},
+                                                                   :filter {:engine :match,
+                                                                            :match {:code {:coding #{{:system "http://loinc.org",
+                                                                                                      :code "81290-9"}}}}}},
+                                               "clinicalSignificance" {:schema {:type zen/vector,
+                                                                                :maxItems 1,
+                                                                                :every {:type zen/map,
+                                                                                        :keys {:code {:match {:coding #{{:system "http://loinc.org",
+                                                                                                                         :code "53037-8"}}},
+                                                                                                      :fhir/flags #{:MS}},
+                                                                                               :value {:fhir/polymorphic true,
+                                                                                                       :type zen/map,
+                                                                                                       :fhir/flags #{:MS}}}}},
+                                                                       :filter {:engine :match,
+                                                                                :match {:code {:coding #{{:system "http://loinc.org",
+                                                                                                          :code "53037-8"}}}}}},
+                                               "molecularConsequence" {:schema {:type zen/vector,
+                                                                                :maxItems 1,
+                                                                                :every {:type zen/map,
+                                                                                        :keys {:code {:match {:coding #{{:system "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
+                                                                                                                         :code "molecular-consequence"}}},
+                                                                                                      :fhir/flags #{:MS}},
+                                                                                               :value {:fhir/polymorphic true,
+                                                                                                       :type zen/map,
+                                                                                                       :fhir/flags #{:MS},
+                                                                                                       :zen.fhir/value-set {:symbol hl7-fhir-us-mcode.value-set.mcode-genomic-molecular-consequence-vs/value-set,
+                                                                                                                            :strength :extensible}}}}},
+                                                                       :filter {:engine :match,
+                                                                                :match {:code {:coding #{{:system "http://hl7.org/fhir/us/mcode/CodeSystem/loinc-requested-cs",
+                                                                                                          :code "molecular-consequence"}}}}}},
+                                               "aminoAcidChange" {:schema {:type zen/vector,
+                                                                           :maxItems 1,
+                                                                           :every {:type zen/map,
+                                                                                   :keys {:code {:match {:coding #{{:system "http://loinc.org",
+                                                                                                                    :code "48005-3"}}},
+                                                                                                 :fhir/flags #{:MS}},
+                                                                                          :value {:fhir/polymorphic true,
+                                                                                                  :type zen/map,
+                                                                                                  :fhir/flags #{:MS},
+                                                                                                  :zen.fhir/value-set {:symbol hl7-fhir-us-mcode.value-set.mcode-hgvs-vs/value-set,
+                                                                                                                       :strength :required}}}}},
+                                                                  :filter {:engine :match,
+                                                                           :match {:code {:coding #{{:system "http://loinc.org",
+                                                                                                     :code "48005-3"}}}}}},
+                                               "aminoAcidChangeType" {:schema {:type zen/vector,
+                                                                               :maxItems 1,
+                                                                               :every {:type zen/map,
+                                                                                       :keys {:code {:match {:coding #{{:system "http://loinc.org",
+                                                                                                                        :code "48006-1"}}},
+                                                                                                     :fhir/flags #{:MS}},
+                                                                                              :value {:fhir/polymorphic true,
+                                                                                                      :type zen/map,
+                                                                                                      :fhir/flags #{:MS}}}}},
+                                                                      :filter {:engine :match,
+                                                                               :match {:code {:coding #{{:system "http://loinc.org",
+                                                                                                         :code "48006-1"}}}}}},
+                                               "allelicState" {:schema {:type zen/vector,
+                                                                        :maxItems 1,
+                                                                        :every {:type zen/map,
+                                                                                :keys {:code {:match {:coding #{{:system "http://loinc.org",
+                                                                                                                 :code "53034-5"}}},
+                                                                                              :fhir/flags #{:MS}},
+                                                                                       :value {:fhir/polymorphic true,
+                                                                                               :type zen/map,
+                                                                                               :fhir/flags #{:MS}}}}},
+                                                               :filter {:engine :match,
+                                                                        :match {:code {:coding #{{:system "http://loinc.org",
+                                                                                                  :code "53034-5"}}}}}},
+                                               "cytogeneticLocation" {:schema {:type zen/vector,
+                                                                               :every {:type zen/map,
+                                                                                       :keys {:code {:match {:coding #{{:system "http://loinc.org",
+                                                                                                                        :code "48001-2"}}},
+                                                                                                     :fhir/flags #{:MS}},
+                                                                                              :value {:fhir/polymorphic true,
+                                                                                                      :type zen/map,
+                                                                                                      :fhir/flags #{:MS}}}}},
+                                                                      :filter {:engine :match,
+                                                                               :match {:code {:coding #{{:system "http://loinc.org",
+                                                                                                         :code "48001-2"}}}}}},
+                                               "copyNumber" {:schema {:type zen/vector,
+                                                                      :maxItems 1,
+                                                                      :every {:type zen/map,
+                                                                              :keys {:code {:match {:coding #{{:system "http://loinc.org",
+                                                                                                               :code "82155-3"}}},
+                                                                                            :fhir/flags #{:MS}},
+                                                                                     :value {:fhir/polymorphic true,
+                                                                                             :type zen/map,
+                                                                                             :fhir/flags #{:MS}}}}},
+                                                             :filter {:engine :match,
+                                                                      :match {:code {:coding #{{:system "http://loinc.org",
+                                                                                                :code "82155-3"}}}}}},
+                                               "sampleAllelicFrequency" {:schema {:type zen/vector,
+                                                                                  :maxItems 1,
+                                                                                  :every {:type zen/map,
+                                                                                          :keys {:code {:match {:coding #{{:system "http://loinc.org",
+                                                                                                                           :code "81258-6"}}},
+                                                                                                        :fhir/flags #{:MS}},
+                                                                                                 :value {:fhir/polymorphic true,
+                                                                                                         :type zen/map,
+                                                                                                         :fhir/flags #{:MS}}}}},
+                                                                         :filter {:engine :match,
+                                                                                  :match {:code {:coding #{{:system "http://loinc.org",
+                                                                                                            :code "81258-6"}}}}}},
+                                               "geneStudied" {:schema {:type zen/vector,
+                                                                       :every {:type zen/map,
+                                                                               :keys {:code {:match {:coding #{{:system "http://loinc.org",
+                                                                                                                :code "48018-6"}}},
+                                                                                             :fhir/flags #{:MS}},
+                                                                                      :value {:fhir/polymorphic true,
+                                                                                              :type zen/map,
+                                                                                              :fhir/flags #{:MS},
+                                                                                              :zen.fhir/value-set {:symbol hl7-fhir-us-mcode.value-set.mcode-hgnc-vs/value-set,
+                                                                                                                   :strength :extensible}}}}},
+                                                              :filter {:engine :match,
+                                                                       :match {:code {:coding #{{:system "http://loinc.org",
+                                                                                                 :code "48018-6"}}}}}},
+                                               "variationCode" {:schema {:type zen/vector,
+                                                                         :maxItems 1,
+                                                                         :every {:type zen/map,
+                                                                                 :keys {:code {:match {:coding #{{:system "http://loinc.org",
+                                                                                                                  :code "81252-9"}}},
+                                                                                               :fhir/flags #{:MS}},
+                                                                                        :value {:fhir/polymorphic true,
+                                                                                                :type zen/map,
+                                                                                                :fhir/flags #{:MS},
+                                                                                                :zen.fhir/value-set {:symbol hl7-fhir-us-mcode.value-set.mcode-clinvar-vs/value-set,
+                                                                                                                     :strength :preferred}}}}},
+                                                                :filter {:engine :match,
+                                                                         :match {:code {:coding #{{:system "http://loinc.org",
+                                                                                                   :code "81252-9"}}}}}},
+                                               "genomicSourceClass" {:schema {:type zen/vector,
+                                                                              :maxItems 1,
+                                                                              :every {:type zen/map,
+                                                                                      :keys {:code {:match {:coding #{{:system "http://loinc.org",
+                                                                                                                       :code "48002-0"}}},
+                                                                                                    :fhir/flags #{:MS}},
+                                                                                             :value {:fhir/polymorphic true,
+                                                                                                     :type zen/map,
+                                                                                                     :fhir/flags #{:MS}}}}},
+                                                                     :filter {:engine :match,
+                                                                              :match {:code {:coding #{{:system "http://loinc.org",
+                                                                                                        :code "48002-0"}}}}}}}},
+                            :every {:type zen/map,
+                                    :keys {:code {:fhir/flags #{:MS}},
+                                           :value {:fhir/polymorphic true,
+                                                   :type zen/map,
+                                                   :fhir/flags #{:MS}}},
+                                    :fhir/flags #{:MS}}}}}}

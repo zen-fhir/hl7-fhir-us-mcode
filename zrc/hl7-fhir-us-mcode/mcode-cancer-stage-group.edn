@@ -1,72 +1,50 @@
 {ns hl7-fhir-us-mcode.mcode-cancer-stage-group,
- import
- #{hl7-fhir-r4-core.Observation
-   zen.fhir
-   hl7-fhir-us-mcode.value-set.mcode-observation-codes-stage-group-vs
-   hl7-fhir-us-mcode.value-set.mcode-cancer-staging-system-vs
-   hl7-fhir-us-mcode.mcode-primary-cancer-condition
-   hl7-fhir-us-mcode.mcode-cancer-patient
-   hl7-fhir-us-mcode.value-set.mcode-cancer-stage-group-vs},
- schema
- {:zen/tags #{zen.fhir/profile-schema zen/schema},
-  :zen/desc
-  "The extent of the cancer in the body, according to a given cancer staging classification system, based on evidence such as physical examination, imaging, and/or biopsy or based on pathologic analysis of a specimen.",
-  :zen.fhir/type "Observation",
-  :zen.fhir/profileUri
-  "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-cancer-stage-group",
-  :zen.fhir/version "0.6.6-7",
-  :confirms #{hl7-fhir-r4-core.Observation/schema zen.fhir/Resource},
-  :type zen/map,
-  :keys
-  {:referenceRange
-   {:type zen/vector, :every #:zen{:desc "Not used in this profile"}},
-   :hasMember
-   {:type zen/vector,
-    :slicing {:slices {}},
-    :every
-    {:fhir/flags #{:MS},
-     :confirms #{zen.fhir/Reference},
-     :zen.fhir/reference
-     {:refers #{hl7-fhir-r4-core.Observation/schema}}}},
-   :method
-   {:fhir/flags #{:MS},
-    :zen.fhir/value-set
-    {:symbol
-     hl7-fhir-us-mcode.value-set.mcode-cancer-staging-system-vs/value-set,
-     :strength :extensible}},
-   :value
-   {:fhir/polymorphic true,
-    :type zen/map,
-    :fhir/flags #{:MS},
-    :zen.fhir/value-set
-    {:symbol
-     hl7-fhir-us-mcode.value-set.mcode-cancer-stage-group-vs/value-set,
-     :strength :preferred}},
-   :component
-   {:type zen/vector, :every #:zen{:desc "Not used in this profile"}},
-   :status #:fhir{:flags #{:MS}},
-   :effective
-   {:fhir/polymorphic true, :type zen/map, :fhir/flags #{:MS}},
-   :code
-   {:fhir/flags #{:MS},
-    :zen.fhir/value-set
-    {:symbol
-     hl7-fhir-us-mcode.value-set.mcode-observation-codes-stage-group-vs/value-set,
-     :strength :required}},
-   :focus
-   {:type zen/vector,
-    :every
-    {:fhir/flags #{:MS},
-     :confirms #{zen.fhir/Reference},
-     :zen.fhir/reference
-     {:refers
-      #{hl7-fhir-us-mcode.mcode-primary-cancer-condition/schema}}}},
-   :device
-   {:confirms #{zen.fhir/Reference},
-    :zen.fhir/reference {:refers #{}},
-    :zen/desc "Not used in this profile"},
-   :subject
-   {:fhir/flags #{:MS},
-    :confirms #{zen.fhir/Reference},
-    :zen.fhir/reference
-    {:refers #{hl7-fhir-us-mcode.mcode-cancer-patient/schema}}}}}}
+ import #{hl7-fhir-r4-core.Observation
+          zen.fhir
+          hl7-fhir-us-mcode.value-set.mcode-observation-codes-stage-group-vs
+          hl7-fhir-us-mcode.value-set.mcode-cancer-staging-system-vs
+          hl7-fhir-us-mcode.mcode-primary-cancer-condition
+          hl7-fhir-us-mcode.mcode-cancer-patient
+          hl7-fhir-us-mcode.value-set.mcode-cancer-stage-group-vs},
+ schema {:zen/tags #{zen.fhir/profile-schema zen/schema},
+         :zen/desc "The extent of the cancer in the body, according to a given cancer staging classification system, based on evidence such as physical examination, imaging, and/or biopsy or based on pathologic analysis of a specimen.",
+         :zen.fhir/type "Observation",
+         :zen.fhir/profileUri "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-cancer-stage-group",
+         :zen.fhir/version "0.6.6-8",
+         :confirms #{hl7-fhir-r4-core.Observation/schema
+                     zen.fhir/Resource},
+         :type zen/map,
+         :keys {:referenceRange {:type zen/vector,
+                                 :every {:zen/desc "Not used in this profile"}},
+                :hasMember {:type zen/vector,
+                            :slicing {:slices {}},
+                            :every {:fhir/flags #{:MS},
+                                    :confirms #{zen.fhir/Reference},
+                                    :zen.fhir/reference {:refers #{hl7-fhir-r4-core.Observation/schema}}}},
+                :method {:fhir/flags #{:MS},
+                         :zen.fhir/value-set {:symbol hl7-fhir-us-mcode.value-set.mcode-cancer-staging-system-vs/value-set,
+                                              :strength :extensible}},
+                :value {:fhir/polymorphic true,
+                        :type zen/map,
+                        :fhir/flags #{:MS},
+                        :zen.fhir/value-set {:symbol hl7-fhir-us-mcode.value-set.mcode-cancer-stage-group-vs/value-set,
+                                             :strength :preferred}},
+                :component {:type zen/vector,
+                            :every {:zen/desc "Not used in this profile"}},
+                :status {:fhir/flags #{:MS}},
+                :effective {:fhir/polymorphic true,
+                            :type zen/map,
+                            :fhir/flags #{:MS}},
+                :code {:fhir/flags #{:MS},
+                       :zen.fhir/value-set {:symbol hl7-fhir-us-mcode.value-set.mcode-observation-codes-stage-group-vs/value-set,
+                                            :strength :required}},
+                :focus {:type zen/vector,
+                        :every {:fhir/flags #{:MS},
+                                :confirms #{zen.fhir/Reference},
+                                :zen.fhir/reference {:refers #{hl7-fhir-us-mcode.mcode-primary-cancer-condition/schema}}}},
+                :device {:confirms #{zen.fhir/Reference},
+                         :zen.fhir/reference {:refers #{}},
+                         :zen/desc "Not used in this profile"},
+                :subject {:fhir/flags #{:MS},
+                          :confirms #{zen.fhir/Reference},
+                          :zen.fhir/reference {:refers #{hl7-fhir-us-mcode.mcode-cancer-patient/schema}}}}}}

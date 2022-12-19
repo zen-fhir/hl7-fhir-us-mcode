@@ -1,20 +1,13 @@
 {ns hl7-fhir-us-mcode.mcode-body-structure-identifier,
  import #{zen.fhir hl7-fhir-r4-core.Identifier},
- schema
- {:zen.fhir/version "0.6.6-7",
-  :confirms #{hl7-fhir-r4-core.Identifier/schema},
-  :zen/tags #{zen/schema zen.fhir/structure-schema},
-  :zen.fhir/profileUri
-  "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-body-structure-identifier",
-  :require #{:value},
-  :type zen/map,
-  :zen/desc
-  "An identifier that designates a body structure such as a tumor and can be used for tracking the structure over time.",
-  :keys
-  {:use {:match "usual"},
-   :type
-   {:match
-    {:coding
-     #{{:system "http://hl7.org/fhir/resource-types",
-        :code "BodyStructure"}}}}},
-  :zen.fhir/type "Identifier"}}
+ schema {:zen.fhir/version "0.6.6-8",
+         :confirms #{hl7-fhir-r4-core.Identifier/schema},
+         :zen/tags #{zen/schema zen.fhir/structure-schema},
+         :zen.fhir/profileUri "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-body-structure-identifier",
+         :require #{:value},
+         :type zen/map,
+         :zen/desc "An identifier that designates a body structure such as a tumor and can be used for tracking the structure over time.",
+         :keys {:use {:match "usual"},
+                :type {:match {:coding #{{:system "http://hl7.org/fhir/resource-types",
+                                          :code "BodyStructure"}}}}},
+         :zen.fhir/type "Identifier"}}
