@@ -8,7 +8,7 @@
           hl7-fhir-us-mcode.value-set.mcode-condition-status-trend-vs
           hl7-fhir-us-mcode.mcode-cancer-disease-status-evidence-type
           hl7-fhir-us-mcode.mcode-secondary-cancer-condition},
- schema {:zen.fhir/version "0.6.7-5",
+ schema {:zen.fhir/version "0.6.8",
          :confirms #{hl7-fhir-r4-core.Observation/schema
                      zen.fhir/Resource},
          :zen/tags #{zen.fhir/profile-schema zen/schema},
