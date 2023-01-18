@@ -2,7 +2,7 @@
  import #{zen.fhir},
  value-set {:zen/tags #{zen.fhir/value-set},
             :zen/desc "The type of specimen analyzed in a genomic test. The values include the subset of codes in the HL7 Specimen Type code system (https://terminology.hl7.org/2.1.0/CodeSystem-v2-0487.html) representing body sites and body fluids likely to be used in genomic testing.  The most specific term available should be used.",
-            :zen.fhir/version "0.6.8",
+            :zen.fhir/version "0.6.9",
             :fhir/code-systems #{{:fhir/url "http://terminology.hl7.org/CodeSystem/v2-0487",
                                   :zen.fhir/content :bundled}},
             :uri "http://hl7.org/fhir/us/mcode/ValueSet/mcode-genomic-specimen-type-vs",
