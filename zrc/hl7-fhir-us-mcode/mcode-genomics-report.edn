@@ -2,7 +2,7 @@
  import #{hl7-fhir-us-core.us-core-diagnosticreport-lab
           zen.fhir
           hl7-fhir-us-mcode.mcode-genomic-specimen},
- schema {:zen.fhir/version "0.6.12-1",
+ schema {:zen.fhir/version "0.16.13-2",
          :confirms #{hl7-fhir-us-core.us-core-diagnosticreport-lab/schema
                      zen.fhir/Resource},
          :zen/tags #{zen.fhir/profile-schema zen/schema},
