@@ -12,7 +12,7 @@
          :zen/desc "Records the history of secondary neoplasms, including location(s) and the date of onset of metastases. A secondary cancer results from the spread (metastasization) of cancer from its original site (Definition from: NCI Dictionary of Cancer Terms).",
          :zen.fhir/type "Condition",
          :zen.fhir/profileUri "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-secondary-cancer-condition",
-         :zen.fhir/version "0.6.17-1",
+         :zen.fhir/version "0.6.17-2",
          :confirms #{zen.fhir/Resource},
          :type zen/map,
          :keys {:assertedDate {:confirms #{hl7-fhir-r4-core.condition-assertedDate/schema},

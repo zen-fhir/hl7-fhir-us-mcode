@@ -9,7 +9,7 @@
          :zen/desc "General structure for capturing comorbid conditions with respect to a primary ('index') condition. The specific set of comorbidities of interest in a given context are defined by slicing the components array. The same general approach can be applied to any comorbidity category checklist.",
          :zen.fhir/type "Observation",
          :zen.fhir/profileUri "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-comorbidities-parent",
-         :zen.fhir/version "0.6.17-1",
+         :zen.fhir/version "0.6.17-2",
          :confirms #{hl7-fhir-r4-core.Observation/schema
                      zen.fhir/Resource},
          :type zen/map,
