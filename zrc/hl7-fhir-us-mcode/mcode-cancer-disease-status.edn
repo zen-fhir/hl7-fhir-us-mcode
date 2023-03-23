@@ -2,13 +2,18 @@
  import #{hl7-fhir-r4-core.Observation
           zen.fhir
           hl7-fhir-us-core.us-core-practitioner
+          hl7-fhir-us-mcode.mcode-cancer-disease-status
           hl7-fhir-us-mcode.mcode-primary-cancer-condition
           hl7-fhir-us-mcode.mcode-cancer-patient
           hl7-fhir-us-mcode.mcode-tumor
           hl7-fhir-us-mcode.value-set.mcode-condition-status-trend-vs
           hl7-fhir-us-mcode.mcode-cancer-disease-status-evidence-type
           hl7-fhir-us-mcode.mcode-secondary-cancer-condition},
- schema {:zen.fhir/version "0.6.18-1",
+ referenceRange-schema {:zen/tags #{zen/schema
+                                    zen.fhir/structure-schema},
+                        :zen.fhir/version "0.6.19",
+                        :zen/desc "Not used in this profile"},
+ schema {:zen.fhir/version "0.6.19",
          :confirms #{hl7-fhir-r4-core.Observation/schema
                      zen.fhir/Resource},
          :zen/tags #{zen.fhir/profile-schema zen/schema},
@@ -17,7 +22,7 @@
          :type zen/map,
          :zen/desc "A clinician's qualitative judgment on the current trend of the cancer, e.g., whether it is stable, worsening (progressing), or improving (responding). The judgment may be based a single type or multiple kinds of evidence, such as imaging data, assessment of symptoms, tumor markers, laboratory data, etc.",
          :keys {:referenceRange {:type zen/vector,
-                                 :every {:zen/desc "Not used in this profile"}},
+                                 :every {:confirms #{hl7-fhir-us-mcode.mcode-cancer-disease-status/referenceRange-schema}}},
                 :hasMember {:type zen/vector,
                             :every {:confirms #{zen.fhir/Reference},
                                     :zen.fhir/reference {:refers #{}},

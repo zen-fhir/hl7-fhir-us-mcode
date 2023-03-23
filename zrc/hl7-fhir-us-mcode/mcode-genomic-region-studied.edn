@@ -2,12 +2,16 @@
  import #{zen.fhir
           hl7-fhir-us-core.us-core-observation-lab
           hl7-fhir-us-mcode.value-set.mcode-hgvs-vs
+          hl7-fhir-us-mcode.mcode-genomic-region-studied
           hl7-fhir-us-mcode.value-set.mcode-hgnc-vs},
+ referenceRange-schema {:zen/tags #{zen/schema
+                                    zen.fhir/structure-schema},
+                        :zen.fhir/version "0.6.19"},
  schema {:zen/tags #{zen.fhir/profile-schema zen/schema},
          :zen/desc "A subset of genes or genomic regions of interest in a targeted resequencing study.",
          :zen.fhir/type "Observation",
          :zen.fhir/profileUri "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-genomic-region-studied",
-         :zen.fhir/version "0.6.18-1",
+         :zen.fhir/version "0.6.19",
          :confirms #{hl7-fhir-us-core.us-core-observation-lab/schema
                      zen.fhir/Resource},
          :type zen/map,
@@ -92,4 +96,5 @@
                                            :value {:fhir/polymorphic true,
                                                    :type zen/map,
                                                    :fhir/flags #{:MS}}},
-                                    :fhir/flags #{:MS}}}}}}
+                                    :fhir/flags #{:MS}}},
+                :referenceRange {:confirms #{hl7-fhir-us-mcode.mcode-genomic-region-studied/referenceRange-schema}}}}}

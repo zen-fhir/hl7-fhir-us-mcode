@@ -5,8 +5,12 @@
           hl7-fhir-us-mcode.mcode-cancer-patient
           hl7-fhir-us-mcode.mcode-tumor
           hl7-fhir-us-mcode.value-set.mcode-tumor-size-units-vs
-          hl7-fhir-us-mcode.value-set.mcode-tumor-size-method-vs},
- schema {:zen.fhir/version "0.6.18-1",
+          hl7-fhir-us-mcode.value-set.mcode-tumor-size-method-vs
+          hl7-fhir-us-mcode.mcode-tumor-size},
+ referenceRange-schema {:zen/tags #{zen/schema
+                                    zen.fhir/structure-schema},
+                        :zen.fhir/version "0.6.19"},
+ schema {:zen.fhir/version "0.6.19",
          :confirms #{hl7-fhir-r4-core.Observation/schema
                      zen.fhir/Resource},
          :zen/tags #{zen.fhir/profile-schema zen/schema},
@@ -65,5 +69,6 @@
                                                                                :match {:code {:coding #{{:system "http://loinc.org",
                                                                                                          :code "33729-5"}}}}}}}},
                             :every {:fhir/flags #{:MS}},
-                            :minItems 1}},
+                            :minItems 1},
+                :referenceRange {:confirms #{hl7-fhir-us-mcode.mcode-tumor-size/referenceRange-schema}}},
          :zen.fhir/type "Observation"}}

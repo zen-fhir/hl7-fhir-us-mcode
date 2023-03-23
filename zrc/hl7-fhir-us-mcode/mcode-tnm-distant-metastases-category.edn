@@ -5,17 +5,22 @@
           hl7-fhir-us-mcode.value-set.mcode-observation-codes-distant-metastases-vs
           hl7-fhir-us-mcode.mcode-primary-cancer-condition
           hl7-fhir-us-mcode.mcode-cancer-patient
-          hl7-fhir-us-mcode.value-set.mcode-tnm-distant-metastases-category-vs},
+          hl7-fhir-us-mcode.value-set.mcode-tnm-distant-metastases-category-vs
+          hl7-fhir-us-mcode.mcode-tnm-distant-metastases-category},
+ referenceRange-schema {:zen/tags #{zen/schema
+                                    zen.fhir/structure-schema},
+                        :zen.fhir/version "0.6.19",
+                        :zen/desc "Not used in this profile"},
  schema {:zen/tags #{zen.fhir/profile-schema zen/schema},
          :zen/desc "Category describing the extent of a tumor metastasis in remote anatomical locations, based on evidence such as physical examination, imaging, and/or biopsy.",
          :zen.fhir/type "Observation",
          :zen.fhir/profileUri "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-tnm-distant-metastases-category",
-         :zen.fhir/version "0.6.18-1",
+         :zen.fhir/version "0.6.19",
          :confirms #{hl7-fhir-r4-core.Observation/schema
                      zen.fhir/Resource},
          :type zen/map,
          :keys {:referenceRange {:type zen/vector,
-                                 :every {:zen/desc "Not used in this profile"}},
+                                 :every {:confirms #{hl7-fhir-us-mcode.mcode-tnm-distant-metastases-category/referenceRange-schema}}},
                 :hasMember {:type zen/vector,
                             :every {:confirms #{zen.fhir/Reference},
                                     :zen.fhir/reference {:refers #{}},

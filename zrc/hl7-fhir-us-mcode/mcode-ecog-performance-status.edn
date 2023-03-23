@@ -3,19 +3,29 @@
           hl7-fhir-r4-core.CarePlan
           zen.fhir
           hl7-fhir-us-mcode.mcode-cancer-patient
+          hl7-fhir-us-mcode.mcode-ecog-performance-status
           hl7-fhir-r4-core.ServiceRequest
           hl7-fhir-r4-core.Procedure},
- schema {:zen.fhir/version "0.6.18-1",
+ referenceRange-schema {:zen/tags #{zen/schema
+                                    zen.fhir/structure-schema},
+                        :zen.fhir/version "0.6.19"},
+ schema {:zen.fhir/version "0.6.19",
          :confirms #{hl7-fhir-r4-core.Observation/schema
                      zen.fhir/Resource},
          :zen/tags #{zen.fhir/profile-schema zen/schema},
          :zen.fhir/profileUri "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-ecog-performance-status",
-         :require #{:subject},
+         :require #{:category :subject},
          :type zen/map,
          :zen/desc "The Eastern Cooperative Oncology Group (ECOG) Performance Status represents the patient's functional status and is used to determine their ability to tolerate therapies in serious illness, specifically for chemotherapy. (Definition from: [LOINC](https://loinc.org/89262-0/))",
          :keys {:category {:type zen/vector,
-                           :every {:match {:coding #{{:system "http://terminology.hl7.org/CodeSystem/observation-category",
-                                                      :code "survey"}}}}},
+                           :slicing {:slices {"required" {:schema {:type zen/vector,
+                                                                   :minItems 1,
+                                                                   :maxItems 1},
+                                                          :filter {:engine :match,
+                                                                   :match {:coding #{{:system "http://terminology.hl7.org/CodeSystem/observation-category",
+                                                                                      :code "survey"}}}}}}},
+                           :minItems 1},
+                :referenceRange {:confirms #{hl7-fhir-us-mcode.mcode-ecog-performance-status/referenceRange-schema}},
                 :hasMember {:type zen/vector,
                             :every {:confirms #{zen.fhir/Reference},
                                     :zen.fhir/reference {:refers #{}},

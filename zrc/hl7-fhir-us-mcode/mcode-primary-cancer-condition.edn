@@ -3,7 +3,7 @@
           hl7-fhir-us-mcode.value-set.mcode-cancer-body-location-vs
           zen.fhir
           hl7-fhir-us-mcode.mcode-laterality-qualifier
-          hl7-fhir-us-mcode.value-set.mcode-observation-codes-stage-group-vs
+          hl7-fhir-us-mcode.value-set.mcode-cancer-staging-system-vs
           hl7-fhir-us-mcode.mcode-body-location-qualifier
           hl7-fhir-us-mcode.mcode-histology-morphology-behavior
           hl7-fhir-r4-core.condition-assertedDate
@@ -12,7 +12,7 @@
          :zen/desc "Records the the primary cancer condition, the original or first tumor in the body (Definition from: [NCI Dictionary of Cancer Terms](https://www.cancer.gov/publications/dictionaries/cancer-terms/def/primary-tumor)). Cancers that are not clearly secondary (i.e., of uncertain origin or behavior) should be documented as primary.",
          :zen.fhir/type "Condition",
          :zen.fhir/profileUri "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-primary-cancer-condition",
-         :zen.fhir/version "0.6.18-1",
+         :zen.fhir/version "0.6.19",
          :confirms #{zen.fhir/Resource},
          :type zen/map,
          :keys {:assertedDate {:confirms #{hl7-fhir-r4-core.condition-assertedDate/schema},
@@ -39,7 +39,7 @@
                                :assessment {:fhir/flags #{:MS},
                                             :confirms #{zen.fhir/Reference},
                                             :zen.fhir/reference {:refers #{hl7-fhir-us-mcode.mcode-cancer-stage-group/schema}}},
-                               :type {:zen.fhir/value-set {:symbol hl7-fhir-us-mcode.value-set.mcode-observation-codes-stage-group-vs/value-set,
+                               :type {:zen.fhir/value-set {:symbol hl7-fhir-us-mcode.value-set.mcode-cancer-staging-system-vs/value-set,
                                                            :strength :required},
                                       :zen/desc "Staging system used."}},
                         :fhir/flags #{:MS}}}}}
