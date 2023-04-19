@@ -12,7 +12,7 @@
          :zen/desc "Records the the primary cancer condition, the original or first tumor in the body (Definition from: [NCI Dictionary of Cancer Terms](https://www.cancer.gov/publications/dictionaries/cancer-terms/def/primary-tumor)). Cancers that are not clearly secondary (i.e., of uncertain origin or behavior) should be documented as primary.",
          :zen.fhir/type "Condition",
          :zen.fhir/profileUri "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-primary-cancer-condition",
-         :zen.fhir/version "0.6.21-2",
+         :zen.fhir/version "0.6.22",
          :confirms #{zen.fhir/Resource},
          :type zen/map,
          :keys {:assertedDate {:confirms #{hl7-fhir-r4-core.condition-assertedDate/schema},
