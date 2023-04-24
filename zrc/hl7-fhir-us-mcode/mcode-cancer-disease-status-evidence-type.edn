@@ -6,7 +6,7 @@
          :zen/desc "Categorization of the kind of evidence contributing to a clinical judgment on cancer disease progression.",
          :zen.fhir/type "CodeableConcept",
          :zen.fhir/profileUri "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-cancer-disease-status-evidence-type",
-         :zen.fhir/version "0.6.22",
+         :zen.fhir/version "0.6.22-1",
          :confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
          :zen.fhir/value-set {:symbol hl7-fhir-us-mcode.value-set.mcode-cancer-disease-status-evidence-type-vs/value-set,
                               :strength :required}}}
