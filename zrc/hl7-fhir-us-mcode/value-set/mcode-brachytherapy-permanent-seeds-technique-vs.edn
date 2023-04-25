@@ -2,7 +2,7 @@
  import #{zen.fhir},
  value-set {:zen/tags #{zen.fhir/value-set},
             :zen/desc "Allowed techniques for brachytherapy modality internal radiotherapy - permanent seeds",
-            :zen.fhir/version "0.6.22-2",
+            :zen.fhir/version "0.6.23",
             :fhir/code-systems #{{:fhir/url "http://snomed.info/sct",
                                   :zen.fhir/content :bundled}},
             :uri "http://hl7.org/fhir/us/mcode/ValueSet/mcode-brachytherapy-permanent-seeds-technique-vs",
