@@ -9,13 +9,13 @@
           hl7-fhir-us-mcode.mcode-tnm-primary-tumor-category},
  referenceRange-schema {:zen/tags #{zen/schema
                                     zen.fhir/structure-schema},
-                        :zen.fhir/version "0.6.23",
+                        :zen.fhir/version "0.6.23-1",
                         :zen/desc "Not used in this profile"},
  schema {:zen/tags #{zen.fhir/profile-schema zen/schema},
          :zen/desc "Category of the primary tumor, based on its size and extent, based on evidence such as physical examination, imaging, and/or biopsy.",
          :zen.fhir/type "Observation",
          :zen.fhir/profileUri "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-tnm-primary-tumor-category",
-         :zen.fhir/version "0.6.23",
+         :zen.fhir/version "0.6.23-1",
          :confirms #{hl7-fhir-r4-core.Observation/schema
                      zen.fhir/Resource},
          :type zen/map,
