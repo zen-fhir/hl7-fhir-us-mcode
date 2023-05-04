@@ -4,16 +4,12 @@
           zen.fhir
           hl7-fhir-us-mcode.mcode-comorbid-condition-reference
           hl7-fhir-us-mcode.mcode-comorbid-condition-code
-          hl7-fhir-us-mcode.mcode-cancer-patient
-          hl7-fhir-us-mcode.mcode-comorbidities-parent},
- referenceRange-schema {:zen/tags #{zen/schema
-                                    zen.fhir/structure-schema},
-                        :zen.fhir/version "0.6.23-1"},
+          hl7-fhir-us-mcode.mcode-cancer-patient},
  schema {:zen/tags #{zen/schema zen.fhir/structure-schema},
          :zen/desc "General structure for capturing comorbid conditions with respect to a primary ('index') condition. The specific set of comorbidities of interest in a given context are defined by slicing the components array. The same general approach can be applied to any comorbidity category checklist.",
          :zen.fhir/type "Observation",
          :zen.fhir/profileUri "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-comorbidities-parent",
-         :zen.fhir/version "0.6.23-1",
+         :zen.fhir/version "0.6.24",
          :confirms #{hl7-fhir-r4-core.Observation/schema
                      zen.fhir/Resource},
          :type zen/map,
@@ -42,5 +38,4 @@
                                                                :maxItems 0},
                                            :code {:zen/desc "Code representing the comorbidity category"},
                                            :value {:fhir/polymorphic true,
-                                                   :type zen/map}}}},
-                :referenceRange {:confirms #{hl7-fhir-us-mcode.mcode-comorbidities-parent/referenceRange-schema}}}}}
+                                                   :type zen/map}}}}}}}
