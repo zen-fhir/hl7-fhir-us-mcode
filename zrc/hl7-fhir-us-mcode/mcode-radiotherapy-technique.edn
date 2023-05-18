@@ -4,5 +4,5 @@
          :zen/desc "Extension capturing a technique of external beam or brachytherapy radiation procedures.",
          :zen.fhir/type "CodeableConcept",
          :zen.fhir/profileUri "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-radiotherapy-technique",
-         :zen.fhir/version "0.6.24",
+         :zen.fhir/version "0.6.25-1",
          :confirms #{hl7-fhir-r4-core.CodeableConcept/schema}}}

@@ -13,7 +13,7 @@
          :zen/desc "A record of a medication prescription or consumption associated with cancer treatment. The medication may reported by the prescriber, prescribing organization, or patient. It does not have to be directly observed.",
          :zen.fhir/type "MedicationRequest",
          :zen.fhir/profileUri "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-cancer-related-medication-request",
-         :zen.fhir/version "0.6.24",
+         :zen.fhir/version "0.6.25-1",
          :confirms #{hl7-fhir-us-core.us-core-medicationrequest/schema
                      zen.fhir/Resource},
          :type zen/map,
