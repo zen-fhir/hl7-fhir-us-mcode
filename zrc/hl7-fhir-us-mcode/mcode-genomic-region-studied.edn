@@ -7,7 +7,7 @@
          :zen/desc "A subset of genes or genomic regions of interest in a targeted resequencing study.",
          :zen.fhir/type "Observation",
          :zen.fhir/profileUri "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-genomic-region-studied",
-         :zen.fhir/version "0.6.30-13",
+         :zen.fhir/version "0.6.30-14",
          :confirms #{hl7-fhir-us-core.us-core-observation-lab/schema
                      zen.fhir/Resource},
          :type zen/map,

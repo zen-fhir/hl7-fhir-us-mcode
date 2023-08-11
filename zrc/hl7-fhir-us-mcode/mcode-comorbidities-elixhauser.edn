@@ -7,7 +7,7 @@
          :zen/desc "Comorbid condition checklist and optional risk score, using Elixhauser comorbidity categories as defined by the Agency for Healthcare Research and Quality (AHRQ) Healthcare Cost and Utilization Project (H-CUP).",
          :zen.fhir/type "Observation",
          :zen.fhir/profileUri "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-comorbidities-elixhauser",
-         :zen.fhir/version "0.6.30-13",
+         :zen.fhir/version "0.6.30-14",
          :confirms #{zen.fhir/Resource
                      hl7-fhir-us-mcode.mcode-comorbidities-parent/schema},
          :type zen/map,

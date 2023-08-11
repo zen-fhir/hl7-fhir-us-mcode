@@ -2,7 +2,7 @@
  import #{zen.fhir},
  value-set {:zen/tags #{zen.fhir/value-set},
             :zen/desc "This value set is intended to contain allowable values for the T category, according to TNM staging rules. AJCC codes (preferably, version 8 for current cancers) SHOULD be used.",
-            :zen.fhir/version "0.6.30-13",
+            :zen.fhir/version "0.6.30-14",
             :fhir/code-systems #{{:fhir/url "http://cancerstaging.org",
                                   :zen.fhir/content :not-present}},
             :uri "http://hl7.org/fhir/us/mcode/ValueSet/mcode-tnm-primary-tumor-category-vs",
