@@ -2,7 +2,7 @@
  import #{zen.fhir},
  value-set {:zen/tags #{zen.fhir/value-set},
             :zen/desc "Elixhauser Comorbid Condition Value Set for Leukemia. ICD-10 codes are drawn from https://www.hcup-us.ahrq.gov/toolssoftware/comorbidityicd10/comorbidity_icd10.jsp, version 2021.1",
-            :zen.fhir/version "0.6.30-10",
+            :zen.fhir/version "0.6.30-11",
             :fhir/code-systems #{{:fhir/url "http://hl7.org/fhir/sid/icd-10-cm",
                                   :zen.fhir/content :bundled}},
             :uri "http://hl7.org/fhir/us/mcode/ValueSet/elixhauser-cancer-leukemia-vs",

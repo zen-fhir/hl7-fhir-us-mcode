@@ -8,7 +8,7 @@
          :zen/desc "Qualifier to refine an body location. These include qualifiers for relative location, directionality, number, and plane, and exclude qualifiers for laterality.",
          :zen.fhir/type "CodeableConcept",
          :zen.fhir/profileUri "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-body-location-qualifier",
-         :zen.fhir/version "0.6.30-10",
+         :zen.fhir/version "0.6.30-11",
          :confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
          :zen.fhir/value-set {:symbol hl7-fhir-us-mcode.value-set.mcode-body-location-qualifier-vs/value-set,
                               :strength :required}}}

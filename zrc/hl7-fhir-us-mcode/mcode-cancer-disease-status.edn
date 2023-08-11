@@ -11,9 +11,9 @@
           hl7-fhir-us-mcode.mcode-secondary-cancer-condition},
  referenceRange-schema {:zen/tags #{zen/schema
                                     zen.fhir/structure-schema},
-                        :zen.fhir/version "0.6.30-10",
+                        :zen.fhir/version "0.6.30-11",
                         :zen/desc "Not used in this profile"},
- schema {:zen.fhir/version "0.6.30-10",
+ schema {:zen.fhir/version "0.6.30-11",
          :confirms #{hl7-fhir-r4-core.Observation/schema
                      zen.fhir/Resource},
          :zen/tags #{zen.fhir/profile-schema zen/schema},
