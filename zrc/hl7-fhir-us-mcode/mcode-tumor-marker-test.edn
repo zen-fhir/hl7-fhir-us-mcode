@@ -7,7 +7,7 @@
          :zen/desc "The result of a tumor marker test. Tumor marker tests are generally used to guide cancer treatment decisions and monitor treatment, as well as to predict the chance of recovery and cancer recurrence.",
          :zen.fhir/type "Observation",
          :zen.fhir/profileUri "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-tumor-marker-test",
-         :zen.fhir/version "0.6.30-7",
+         :zen.fhir/version "0.6.30-10",
          :confirms #{hl7-fhir-us-core.us-core-observation-lab/schema
                      zen.fhir/Resource},
          :type zen/map,

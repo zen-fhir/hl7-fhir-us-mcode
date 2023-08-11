@@ -9,13 +9,13 @@
           hl7-fhir-us-mcode.mcode-tnm-regional-nodes-category},
  referenceRange-schema {:zen/tags #{zen/schema
                                     zen.fhir/structure-schema},
-                        :zen.fhir/version "0.6.30-7",
+                        :zen.fhir/version "0.6.30-10",
                         :zen/desc "Not used in this profile"},
  schema {:zen/tags #{zen.fhir/profile-schema zen/schema},
          :zen/desc "Category of the presence or absence of metastases in regional lymph nodes, based on evidence such as physical examination, imaging, and/or biopsy.",
          :zen.fhir/type "Observation",
          :zen.fhir/profileUri "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-tnm-regional-nodes-category",
-         :zen.fhir/version "0.6.30-7",
+         :zen.fhir/version "0.6.30-10",
          :confirms #{hl7-fhir-r4-core.Observation/schema
                      zen.fhir/Resource},
          :type zen/map,
