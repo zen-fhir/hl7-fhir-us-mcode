@@ -12,7 +12,7 @@
          :zen/desc "An episode of medication administration for a patient whose condition is related to a primary or secondary cancer condition. In the context of chemotherapy drugs, the medication administration in most cases is performed and documented by the provider.",
          :zen.fhir/type "MedicationAdministration",
          :zen.fhir/profileUri "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-cancer-related-medication-administration",
-         :zen.fhir/version "0.6.30-14",
+         :zen.fhir/version "0.6.31",
          :confirms #{hl7-fhir-r4-core.MedicationAdministration/schema
                      zen.fhir/Resource},
          :type zen/map,
