@@ -2,7 +2,7 @@
  import #{zen.fhir},
  value-set {:zen/tags #{zen.fhir/value-set},
             :zen/desc "Codes describing the modalities of external beam and brachytherapy radiation procedures, for use with radiotherapy summaries.  This value set is the union of the teleradiotherapy and brachytherapy modality value sets.",
-            :zen.fhir/version "0.6.31",
+            :zen.fhir/version "0.6.32",
             :fhir/code-systems #{{:fhir/url "http://snomed.info/sct",
                                   :zen.fhir/content :bundled}},
             :uri "http://hl7.org/fhir/us/mcode/ValueSet/mcode-radiotherapy-modality-vs",
