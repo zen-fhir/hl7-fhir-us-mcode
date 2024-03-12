@@ -2,7 +2,7 @@
  import #{zen.fhir},
  value-set {:zen/tags #{zen.fhir/value-set},
             :zen/desc "Various modifiers that can be applied to body locations where radiotherapy treatments can be directed.",
-            :zen.fhir/version "0.6.32",
+            :zen.fhir/version "0.6.42",
             :fhir/code-systems #{{:fhir/url "http://snomed.info/sct",
                                   :zen.fhir/content :not-present}},
             :uri "http://hl7.org/fhir/us/mcode/ValueSet/mcode-radiotherapy-treatment-location-qualifier-vs",
